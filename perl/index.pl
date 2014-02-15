@@ -3,7 +3,7 @@
 use strict;
 use CGI;	#load the CGI module
 
-my $CGI_o = CGI->new;
+$CGI_o = CGI->new;
 
 print $CGI_o->header;
 
