@@ -5,7 +5,7 @@ use CGI;	#load the CGI module
 
 my $CGI_o = CGI->new;
 
-#print $CGI_o->header;
+print $CGI_o->header;
 
 print <<__CONTENT__	#here document
 <html>
