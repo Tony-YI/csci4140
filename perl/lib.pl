@@ -25,6 +25,10 @@ sub db_show()   #check whether there exist a database
     {
         print "<h4>exist</h4>";
     }
+    else
+    {
+        print "<h4>not exits</h4>"
+    }
 }
 sub db_create()		#create a database
 {
@@ -70,7 +74,7 @@ sub db_create_table()   #create all tables we need
 {
     db_connect();
     my $query = "CREATE TABLE user (username CHAR(20), password CHAR(20));";
-    db_execute($query);
+    #db_execute($query);
     db_disconnect();
 }
 
