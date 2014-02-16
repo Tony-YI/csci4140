@@ -17,18 +17,29 @@ my $db_username = $ENV{"OPENSHIFT_MYSQL_DB_USERNAME"};
 my $db_password = $ENV{"OPENSHIFT_MYSQL_DB_PASSWORD"};
 my $db_name = $ENV{"OPENSHIFT_APP_NAME"};	#default database name is same as the application name
 
-sub db_connect()	#pass by reference, parameter is (/$db_handler)
+my db_handler;	#GLOBAL VARIABLE
+
+sub db_connect()	#void sub-routine
 {
-	my $ptr = shift @_;
-	
 	my $db_source = "DBI:mysql:$db_name;host=$db_host";
-	$$ptr = DBI->connect($db_source, $db_username, $db_password) or die $DBI::errstr;
+	$db_handler = DBI->connect($db_source, $db_username, $db_password) or die $DBI::errstr;
 }
 
-sub db_disconnect()	#pass by reference, parameter is (/db_handler)
+sub query_execute()	#usage: query($query, \@result), parameter ($query) is the SQL query, parameter
+			#(\@result) is the array used to store the data get from database
 {
+	my $query_str = shift @_;
 	my $ptr = shift @_;
-	$$ptr->disconnect;
+
+	my $query = $db_handler->prepare($query_str);
+	$query->execute() or die $query->errstr;
+
+	@$ptr = $query->fetchrow_array();	#fetch the result from database
+}
+
+sub db_disconnect()
+{
+	$db_handler->disconnect() or die $DBI::errstr;
 }
 
 ###################################################
