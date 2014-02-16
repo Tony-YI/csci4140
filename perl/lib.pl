@@ -86,7 +86,7 @@ sub db_init #insert seed data
 my $img_dir = $ENV{"OPENSHIFT_DATA_DIR"};
 sub clean_storage
 {
-    my $out = `cd "img_dir" && touch a.c && ls`;
+    my $out = `cd "img_dir" && ls -a`;
     print "$out";
 }
 
