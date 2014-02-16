@@ -98,6 +98,8 @@ sub db_init #insert seed data
 ###################################################
 
 my $data_dir = $ENV{"OPENSHIFT_DATA_DIR"};
+my $img_path = "_img";
+my $shortcut_path = "_shortcut";
 
 sub clean_storage
 {
@@ -126,7 +128,7 @@ sub init_storage
     
     foreach my $i (@result)
     {
-        `cd "$data_dir" && mkdir "${i}_img" && mkdir "${i}_shortcut"`;
+        `cd "$data_dir" && mkdir "$i.$img_path" && mkdir "$i.$shortcut_path"`;
     }
     
     my $out3 = `cd "$data_dir" && ls`;
