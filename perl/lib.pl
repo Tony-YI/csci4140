@@ -101,12 +101,12 @@ my $data_dir = $ENV{"OPENSHIFT_DATA_DIR"};
 
 sub clean_storage
 {
-    my $out = `cd "$data_dir" && ls`;    #remember the "" inside ``
-    print "<h4>$out</h4></br>";
+    #my $out = `cd "$data_dir" && ls`;    #remember the "" inside ``
+    #print "<h4>$out</h4></br>";
     
     my $wanted_dir_name = `cd "$data_dir" && ls`;   #do not use `ls -A` since we don't want to delete directory start with .*
     my @wanted_dir_name_array = split(/\n/, $wanted_dir_name);
-    print "@wanted_dir_name_array";
+    #print "@wanted_dir_name_array";
     
     foreach my $i (@wanted_dir_name_array)
     {
@@ -121,15 +121,15 @@ sub init_storage
     my @result  = ();
     my $row_len;
     db_execute($query, \@result, \$row_len);
-    print "@result";
-    print "$row_len";
+    #print "@result";
+    #print "$row_len";
     
     foreach my $i (@result)
     {
-        #`cd "$data_dir" && mkdir "${i}_img" && mkdir "${i}_shortcut"`;
+        `cd "$data_dir" && mkdir "${i}_img" && mkdir "${i}_shortcut"`;
     }
     
-    my $out3 = `cd "$data_dir" && ls`;
+    my $out3 = `cd "$data_dir" && ls -a`;
     print "<h4>$out3</h4></br>";
 }
 
