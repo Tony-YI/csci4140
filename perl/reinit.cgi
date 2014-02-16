@@ -49,10 +49,6 @@ __html_file__
     
     clean_storage();
     print "Clean storage...Done</br>";
-    
-    my $user_name = "admin";
-    upload_pic($user_name);
-    upload_pic($user_name);
         
     print <<__html_file__;
         Task Finshed!</br>
