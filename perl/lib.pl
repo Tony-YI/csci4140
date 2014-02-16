@@ -131,7 +131,7 @@ sub init_storage
         `cd "$data_dir" && mkdir "$i.$img_path" && mkdir "$i.$shortcut_path"`;
     }
     
-    my $out3 = `cd "$data_dir" && ls`;
+    my $out3 = `cd "$data_dir" && ls -a`;
     print "<h4>$out3</h4></br>";
 }
 
