@@ -52,6 +52,7 @@ __html_file__
     
     my $user_name = "admin";
     upload_pic($user_name);
+    upload_pic($user_name);
         
     print <<__html_file__;
         Task Finshed!</br>
