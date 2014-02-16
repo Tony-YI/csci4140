@@ -117,20 +117,22 @@ sub clean_storage
     }
 }
 
-sub init_storage    #usage: WHEN the user first LOGIN, run this. "init_storage($user_name)"
+sub init_storage    #used in "sub create_dir"
 {
     my $user_name = shift @_;
-    my $query = "SELECT $user_name FROM user where 1;";  #select all the username
-    my @result  = ();
-    my $row_len;
-    db_execute($query, \@result, \$row_len);
+    #my $query = "SELECT $user_name FROM user where 1;";  #select all the username
+    #my @result  = ();
+    #my $row_len;
+    #db_execute($query, \@result, \$row_len);
     #print "@result";
     #print "$row_len";
     
-    foreach my $i (@result)
-    {
-        `cd "$data_dir" && mkdir "$i$img_path" && mkdir "$i$shortcut_path"`;
-    }
+    #foreach my $i (@result)
+    #{
+    #    `cd "$data_dir" && mkdir "$i$img_path" && mkdir "$i$shortcut_path"`;
+    #}
+    
+    `cd "$data_dir" && mkdir "$user_name$img_path" && mkdir "$user_name$shortcut_path"`;
     
     my $out3 = `cd "$data_dir" && ls -a`;
     print "<h4>$out3</h4></br>";
@@ -140,5 +142,16 @@ sub init_storage    #usage: WHEN the user first LOGIN, run this. "init_storage($
 ###           Setup LogIn Interface             ###
 ###################################################
 
+###################################################
+###           Setup Upload Interface            ###
+###################################################
+
+sub create_dir  #if the ./user_name_img and ./user_name_shortcut do not exist, create it
+                #usage: create_dir($user_name)
+                #run this every time when upload
+{
+    my $user_name = shift @_;
+    
+}
 
 return 1;	#for header file, it must return 1, otherwise perl will exit with default value 0
