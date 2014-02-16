@@ -30,6 +30,7 @@ sub db_create()		#create a database if it does not exist
 
 sub db_drop()		#drop the database
 {
+    $db_name = "haha";
 	if($db_name eq "haha")	#exist a database
 	{
 		my $db_source = "DBI:mysql:$db_name;host=$db_host";
