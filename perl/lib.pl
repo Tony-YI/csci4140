@@ -63,8 +63,11 @@ sub db_execute()	#usage: query($query, \@result), parameter ($query) is the SQL 
 sub db_create_table()   #create all tables we need
 {
     db_connect();
-    my $query = "CREATE TABLE user (username CHAR(20), password CHAR(20));";
-    db_execute($query);
+    my $query_str = "CREATE TABLE user (username CHAR(20), password CHAR(20));";
+    my query = $db_handler->prepare($query_str);
+    $query->execute() or die $query->errstr;
+    
+    #db_execute($query);
     db_disconnect();
 }
 
