@@ -104,9 +104,6 @@ my $shortcut_path = "_shortcut";    #GLOBAL VARIABLE
 
 sub clean_storage
 {
-    #my $out = `cd "$data_dir" && ls`;    #remember the "" inside ``
-    #print "<h4>$out</h4></br>";
-    
     my $wanted_dir_name = `cd "$data_dir" && ls`;   #do not use `ls -A` since we don't want to delete directory start with .*
     my @wanted_dir_name_array = split(/\n/, $wanted_dir_name);
     #print "@wanted_dir_name_array";
@@ -116,6 +113,9 @@ sub clean_storage
         #delete directory
         `cd "$data_dir" && rm -r "$i"`;
     }
+    
+    my $out = `cd "$data_dir" && ls`;    #remember the "" inside ``
+    print "<h4>$out</h4></br>";
 }
 
 #sub init_storage    #used in "sub create_dir"
