@@ -86,11 +86,11 @@ sub db_init #insert seed data
 ###          Setup Permanent Storage            ###
 ###################################################
 
-my $img_dir = $ENV{"OPENSHIFT_DATA_DIR"};
+my $data_dir = $ENV{"OPENSHIFT_DATA_DIR"};
 
 sub clean_storage
 {
-    my $out = `cd "$img_dir" && ls -a`;    #remember the "" inside ``
+    my $out = `cd "$data_dir" && ls -a`;    #remember the "" inside ``
     print "<h4>$out</h4></br>";
 }
 
@@ -100,15 +100,16 @@ sub init_storage
     my @result  = ();
     db_execute($query, \@result);
     
-    my $out1 = `cd "img_dir"`;
+    my $out1 = `cd "data_dir"`;
     print "<h4>$out1</h4></br>";
     foreach my $i (@result)
     {
-        my $out2 = `mkdir "${result[$i]}_img" && mkdir "${result[$i]}_shortcut"`;
+        print "<h4>'result = '$result[$i]</h4></br>";
+        my $out2 = `cd "data_dir" && mkdir "${result[$i]}_img" && mkdir "${result[$i]}_shortcut"`;
         print "<h4>$out2</h4></br>";
     }
     
-    my $out3 = `cd "$img_dir" && ls -a`;
+    my $out3 = `cd "$data_dir" && ls -a`;
     print "<h4>$out3</h4></br>";
 }
 
