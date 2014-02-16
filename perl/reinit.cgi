@@ -27,7 +27,7 @@ sub reinit()
 {
     ###    Re-Initialize the System    ###
     db_connect();
-    my $query = "CREATE TABLE user (username CHAR(20) password CHAR(20));";
+    my $query = "CREATE TABLE user (username CHAR(20), password CHAR(20));";
     my @result;
     db_execute($query, \@result);
     db_disconnect();
