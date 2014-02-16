@@ -56,11 +56,14 @@ sub db_execute	#usage: query($query, \@result), parameter ($query) is the SQL qu
     
     if(my $ptr = shift @_)
     {
-        while(my @temp_array = $query->fetchrow_array())
-        {
+        #while(my @temp_array = $query->fetchrow_array())
+        #{
             #fetch the result from database
-            @$ptr = unshift(@temp_array);
-        }
+        #    @$ptr = unshift(@temp_array);
+        #}
+        my @temp_array = $query->fetchrow_array();
+        print "@temp_array";
+        
     }
     db_disconnect();
 }
@@ -107,7 +110,7 @@ sub init_storage
     
     foreach my $i (@result)
     {
-        `cd "$data_dir" && mkdir "${result[$i]}_img" && mkdir "${result[$i]}_shortcut"`;
+        #`cd "$data_dir" && mkdir "${result[$i]}_img" && mkdir "${result[$i]}_shortcut"`;
     }
     
     my $out3 = `cd "$data_dir" && ls -a`;
