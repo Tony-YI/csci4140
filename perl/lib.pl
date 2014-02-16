@@ -59,7 +59,7 @@ sub db_execute	#usage: query($query, \@result, \$row_len)
     
     if((my $ptr_result = shift @_) && (my $ptr_row_len = shift @_))
     {
-        $$ptr_row_len = $query->[NUM_OF_FIELDS];
+        $$ptr_row_len = $query->{NUM_OF_FIELDS};
         while (my @temp_array = $query->fetchrow_array())
         {
             print "@temp_array";
