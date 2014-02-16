@@ -19,18 +19,30 @@ my $db_name = $ENV{"OPENSHIFT_APP_NAME"};	#default database name is same as the 
 
 my $db_handler;	#GLOBAL VARIABLE
 
-sub db_connect()	#void sub-routine
+sub db_create()		#create a database if it does not exist
 {
 	$db_name = "haha";
-	my $db_source = "DBI:mysql:$db_name;host=$db_host";
-	$db_handler = DBI->connect($db_source, $db_username, $db_password) or die $DBI::errstr;
+	my $db_source = "DBI:mysql:";
+	$db_handler = $DBI->connect($db_source, $db_username, $db_password) or die $DBI::errstr;
+	$db_handler->do("CREATE DATABASE $db_name");
+	$db_handler->disconnect() or die $DBI::errstr;
 }
 
-sub db_drop_all_table()  #remove the database and clean all tables
+sub db_drop()		#drop the database
 {
-	my $query_str = "DROP DATABASE {$db_name};";
-	my $query = $db_handler->prepare($query_str);
-	$query->execute() or die $query->errstr;
+	if($db_name eq "haha")	#exist a database
+	{
+		my $db_source = "DBI:mysql:$db_name;host=$db_host";
+        	$db_handler = $DBI->connect($db_source, $db_username, $db_password) or die $DBI::errstr;
+        	$db_handler->do("DROP DATABASE $db_name");
+        	$db_handler->disconnect() or die $DBI::errstr;
+	}
+}
+
+sub db_connect()	#void sub-routine
+{
+	my $db_source = "DBI:mysql:$db_name;host=$db_host";
+	$db_handler = DBI->connect($db_source, $db_username, $db_password) or die $DBI::errstr;
 }
 
 sub db_execute()	#usage: query($query, \@result), parameter ($query) is the SQL query, parameter
