@@ -46,8 +46,7 @@ sub db_disconnect()
 	$db_handler->disconnect() or die $DBI::errstr;
 }
 
-sub db_execute()	#usage: query($query, \@result), parameter ($query) is the SQL query, parameter
-			#(\@result) is the array used to store the data get from database
+sub db_execute()	#usage: query($query, \@result), parameter ($query) is the SQL query, parameter (\@result) is the array used to store the data get from database
 {
 	my $query_str = shift @_;
 
@@ -64,7 +63,7 @@ sub db_create_table()   #create all tables we need
 {
     db_connect();
     my $query_str = "CREATE TABLE user (username CHAR(20), password CHAR(20));";
-    my query = $db_handler->prepare($query_str);
+    my $query = $db_handler->prepare($query_str);
     $query->execute() or die $query->errstr;
     
     #db_execute($query);
