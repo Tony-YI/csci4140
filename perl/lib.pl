@@ -129,8 +129,8 @@ sub init_storage
         `cd "$data_dir" && mkdir "${i}_img" && mkdir "${i}_shortcut"`;
     }
     
-    my $out3 = `cd "$data_dir" && ls -a`;
-    print "<h4>$out3</h4></br>";
+    #my $out3 = `cd "$data_dir" && ls -a`;
+    #print "<h4>$out3</h4></br>";
 }
 
 ###################################################
