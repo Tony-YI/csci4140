@@ -147,8 +147,8 @@ sub clean_storage
 ###           Setup Upload Interface            ###
 ###################################################
 
-sub create_dir  #if the ./user_name_img and ./user_name_shortcut do not exist, create it
-                #usage: create_dir($user_name)
+sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, create it
+                #usage: upload_pic($user_name)
                 #run this every time when upload
 {
     my $user_name = shift @_;
@@ -156,13 +156,28 @@ sub create_dir  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     if(!(-d "$user_name$img_path")) #dir not found
     {
         #create dir
+        `cd "$data_dir" && mkdir "$user_name$img_path"`;
+        print "create dir and upload pic<br/>";
+        #upload pictur
     }
-    else{}
+    else
+    {
+        #upload picture
+        print "upload pic<br/>";
+    }
+    
     if(!(-d "$user_name$shortcut_path"))    #dir not found
     {
         #create dir
+        `cd "$data_dir" && mkdir "$user_name$shortcut_path"`;
+        print "create dir and upload pic<br/>";
+        #upload picture
     }
-    else{}
+    else
+    {
+        #upload picture
+        print "upload pic<br/>";
+    }
     
     my $out3 = `cd "$data_dir" && ls -a`;
     print "<h4>$out3</h4></br>";

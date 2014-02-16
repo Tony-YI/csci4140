@@ -51,7 +51,7 @@ __html_file__
     print "Clean storage...Done</br>";
     
     my $user_name = "admin";
-    create_dir($user_name);
+    upload_pic($user_name);
         
     print <<__html_file__;
         Task Finshed!</br>
