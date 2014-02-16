@@ -23,7 +23,7 @@ require "./lib.pl";
 
 my $CGI_o = CGI->new;	#create a new CGI module, GLOBAL VARIABLE
 
-sub reinit()
+sub reinit
 {
     ###    Re-Initialize the System    ###
     ###    Print out the html file     ###
