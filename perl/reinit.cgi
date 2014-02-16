@@ -52,7 +52,7 @@ __html_file__
         
     print <<__html_file__;
         Task Finshed!</br>
-        <a href="login.html">Bcak to Login Interface</a>
+        <a href="login.cgi">Bcak to Login Interface</a>
         </p>
     </body>
 </html>
@@ -68,5 +68,5 @@ if($act eq "YES")	#YES button is clicked
 
 elsif($act eq "NO") #NO button is clicked
 {
-    print $CGI_o->redirect("login.html");
+    print $CGI_o->redirect("login.cgi");
 }
