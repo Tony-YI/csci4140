@@ -65,6 +65,7 @@ sub db_execute	#usage: query($query, \@result, \$row_len)
             foreach my $i (@temp_array)
             {
                 push(@$ptr_result, $temp_array[$i]);
+                print "$temp_array[$i]";
             }
         }
         
