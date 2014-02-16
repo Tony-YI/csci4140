@@ -155,7 +155,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     
     if(!(-d "$data_dir$user_name$img_path")) #dir not found
     {
-        print "create dir and upload pic<br/>";
+        #print "create dir and upload pic<br/>";
         #create dir
         `cd "$data_dir" && mkdir "$user_name$img_path"`;
         
@@ -163,14 +163,14 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     }
     else
     {
-        print "upload pic<br/>";
+        #print "upload pic<br/>";
         #upload picture
         
     }
     
     if(!(-d "$data_dir$user_name$shortcut_path"))    #dir not found
     {
-        print "create dir and upload pic<br/>";
+        #print "create dir and upload pic<br/>";
         #create dir
         `cd "$data_dir" && mkdir "$user_name$shortcut_path"`;
         
@@ -178,13 +178,13 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     }
     else
     {
-        print "upload pic<br/>";
+        #print "upload pic<br/>";
         #upload picture
         
     }
     
-    my $out3 = `cd "$data_dir" && ls -a`;
-    print "<h4>$out3</h4></br>";
+    #my $out3 = `cd "$data_dir" && ls -a`;
+    #print "<h4>$out3</h4></br>";
 }
 
 return 1;	#for header file, it must return 1, otherwise perl will exit with default value 0
