@@ -19,21 +19,6 @@ my $db_name = $ENV{"OPENSHIFT_APP_NAME"};	#default database name is same as the 
 
 my $db_handler;	#GLOBAL VARIABLE
 
-sub db_show()   #check whether there exist a database
-{
-    if($ENV{"OPENSHIFT_MYSQL_DB_URL"})
-    {
-        print "<h4>exist</h4>";
-    }
-    else
-    {
-        print "<h4>not exits</h4>"
-    }
-}
-sub db()
-{
-    db_show();
-}
 sub db_create()		#create a database
 {
 	my $db_source = "DBI:mysql:;host=$db_host";
@@ -44,7 +29,7 @@ sub db_create()		#create a database
 
 sub db_drop()		#drop the database
 {
-	my $db_source = "DBI:mysql:$db_name;host=$db_host";
+	my $db_source = "DBI:mysql:;host=$db_host";
     $db_handler = DBI->connect($db_source, $db_username, $db_password) or die $DBI::errstr;
     $db_handler->do("DROP DATABASE $db_name");
     $db_handler->disconnect() or die $DBI::errstr;
