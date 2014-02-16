@@ -153,7 +153,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
 {
     my $user_name = shift @_;
     
-    if(!(-d "$user_name$img_path")) #dir not found
+    if(!(-d "$data_dir$user_name$img_path")) #dir not found
     {
         #create dir
         `cd "$data_dir" && mkdir "$user_name$img_path"`;
@@ -166,7 +166,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         print "upload pic<br/>";
     }
     
-    if(!(-d "$user_name$shortcut_path"))    #dir not found
+    if(!(-d "$data_dir$user_name$shortcut_path"))    #dir not found
     {
         #create dir
         `cd "$data_dir" && mkdir "$user_name$shortcut_path"`;
