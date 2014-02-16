@@ -35,13 +35,15 @@ sub reinit()
         <p>
 __html_file__
     
-    db_drop();  #drop the MYSQL database
+    db_show();
+    
+    #db_drop();  #drop the MYSQL database
     print "Drop database...Done</br>";
     
-    db_create();    #create a database name as APP_NAME
+    #db_create();    #create a database name as APP_NAME
     print "Create database...Done</br>";
     
-    db_create_table();  #create all tables we need
+    #db_create_table();  #create all tables we need
     print "Create Table...Done</br>";
     
     #clean storage......

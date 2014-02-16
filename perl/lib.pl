@@ -19,6 +19,13 @@ my $db_name = $ENV{"OPENSHIFT_APP_NAME"};	#default database name is same as the 
 
 my $db_handler;	#GLOBAL VARIABLE
 
+sub db_show()   #check whether there exist a database
+{
+    if($ENV{"OPENSHIFT_MYSQL_DB_URL"})
+    {
+        print "<h4>exist</h4>";
+    }
+}
 sub db_create()		#create a database
 {
 	my $db_source = "DBI:mysql:;host=$db_host";
@@ -62,11 +69,8 @@ sub db_execute()	#usage: query($query, \@result), parameter ($query) is the SQL 
 sub db_create_table()   #create all tables we need
 {
     db_connect();
-    my $query_str = "CREATE TABLE user (username CHAR(20), password CHAR(20));";
-    my $query = $db_handler->prepare($query_str);
-    $query->execute() or die $query->errstr;
-    
-    #db_execute($query);
+    my $query = "CREATE TABLE user (username CHAR(20), password CHAR(20));";
+    db_execute($query);
     db_disconnect();
 }
 
