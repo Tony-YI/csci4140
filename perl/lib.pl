@@ -59,13 +59,13 @@ sub db_execute	#usage: query($query, \@result, \$row_len)
     
     if((my $ptr_result = shift @_) && (my $ptr_row_len = shift @_))
     {
-        $$ptr_row_len = $query->row();
+        $$ptr_row_len = $query->[NUM_OF_FIELDS];
         while (my @temp_array = $query->fetchrow_array())
         {
             print "@temp_array";
             foreach my $i (@temp_array)
             {
-                @$ptr_result = unshift($temp_array[$i]);
+                unshift(@$ptr_result, $temp_array[$i]);
             }
         }
         
@@ -112,7 +112,8 @@ sub init_storage
     my @result  = ();
     my $row_len;
     db_execute($query, \@result, \$row_len);
-    print "@result";
+    print "@result  ";
+    print "$row_len";
     
     foreach my $i (@result)
     {
