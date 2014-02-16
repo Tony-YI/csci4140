@@ -163,6 +163,9 @@ sub create_dir  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         #create dir
     }
     else{}
+    
+    my $out3 = `cd "$data_dir" && ls -a`;
+    print "<h4>$out3</h4></br>";
 }
 
 return 1;	#for header file, it must return 1, otherwise perl will exit with default value 0
