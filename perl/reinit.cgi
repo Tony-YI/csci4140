@@ -20,14 +20,15 @@ use CGI;	#use the CGI module
 use strict;	#then every variable should have "my"
 use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 
+my $CGI_o = CGI->new;	#create a new CGI module, GLOBAL VARIABLE
+
 sub reinit()
 {
-    my $ptr = shift @_;
     ###    Re-Initialize the System    ###
     
     
     ###    Print out the html file     ###
-    print $$ptr->header();
+    print $CGI_o->header();
 	print <<__html_file__;
 <html>
     <body>
@@ -43,12 +44,11 @@ sub reinit()
 __html_file__
 }
 
-my $CGI_o = CGI->new;	#create a new CGI module
 my $act = $CGI_o->param("action");	#retrive the value of button, YES/NO
 
 if($act eq "YES")	#YES button is clicked
 {
-    reinit(\$CGI_o);
+    reinit();
 }
 
 elsif($act eq "NO") #NO button is clicked
