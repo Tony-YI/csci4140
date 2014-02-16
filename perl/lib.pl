@@ -21,7 +21,7 @@ my $db_handler;	#GLOBAL VARIABLE
 
 sub db_create()		#create a database
 {
-	my $db_source = "DBI:mysql:;host=$db_host";
+	my $db_source = "DBI:mysql:;host=$db_host"; #note: NO $db_name
 	$db_handler = DBI->connect($db_source, $db_username, $db_password) or die $DBI::errstr;
 	$db_handler->do("CREATE DATABASE $db_name");
 	$db_handler->disconnect() or die $DBI::errstr;
@@ -29,7 +29,7 @@ sub db_create()		#create a database
 
 sub db_drop()		#drop the database
 {
-	my $db_source = "DBI:mysql:;host=$db_host";
+	my $db_source = "DBI:mysql:;host=$db_host"; #note: NO $db_name
     $db_handler = DBI->connect($db_source, $db_username, $db_password) or die $DBI::errstr;
     $db_handler->do("DROP DATABASE $db_name");
     $db_handler->disconnect() or die $DBI::errstr;
@@ -62,8 +62,8 @@ sub db_execute()	#usage: query($query, \@result), parameter ($query) is the SQL 
 sub db_create_table()   #create all tables we need
 {
     db_connect();
-    my $query = "CREATE TABLE user (username CHAR(20), password CHAR(20));";
-    #db_execute($query);
+    my $q = "CREATE TABLE user (username CHAR(20), password CHAR(20));";
+    db_execute($q);
     db_disconnect();
 }
 
