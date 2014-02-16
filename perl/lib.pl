@@ -65,7 +65,6 @@ sub db_execute	#usage: query($query, \@result, \$row_len)
             foreach my $i (@temp_array)
             {
                 push(@$ptr_result, $i);
-                print "$i";
             }
         }
         
@@ -102,7 +101,7 @@ my $data_dir = $ENV{"OPENSHIFT_DATA_DIR"};
 
 sub clean_storage
 {
-    my $out = `cd "$data_dir" && ls -a`;    #remember the "" inside ``
+    my $out = `cd "$data_dir" && ls -a && rm -r _img && rm -r _shortcut`;    #remember the "" inside ``
     print "<h4>$out</h4></br>";
 }
 
