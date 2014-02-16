@@ -101,13 +101,23 @@ my $data_dir = $ENV{"OPENSHIFT_DATA_DIR"};
 
 sub clean_storage
 {
-    my $out = `cd "$data_dir" && ls -a && rm -r _img && rm -r _shortcut`;    #remember the "" inside ``
+    my $out = `cd "$data_dir" && ls -a`;    #remember the "" inside ``
     print "<h4>$out</h4></br>";
+    
+    my $wanted_dir_name = `cd "$data_dir" && ls -A`;
+    my @wanted_dir_name_array = split(/\n/, $wanted_dir_name);
+    print "@wanted_dir_name_array";
+    
+    foreach my $i (@wanted_dir_name_array)
+    {
+        #delete directory
+        #`cd "$data_dir" && rm -r "$i"`;
+    }
 }
 
 sub init_storage
 {
-    my $query = "SELECT * FROM user where 1;";  #select all the username
+    my $query = "SELECT user_name FROM user where 1;";  #select all the username
     my @result  = ();
     my $row_len;
     db_execute($query, \@result, \$row_len);
