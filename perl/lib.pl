@@ -61,8 +61,10 @@ sub db_execute	#usage: query($query, \@result), parameter ($query) is the SQL qu
             #fetch the result from database
         #    @$ptr = unshift(@temp_array);
         #}
-        my @temp_array = $query->fetchrow_array();
-        print "@temp_array";
+        while (my @temp_array = $query->fetchrow_array())
+        {
+            print "@temp_array";
+        }
         
     }
     db_disconnect();
