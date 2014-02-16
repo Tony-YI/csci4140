@@ -6,8 +6,8 @@ use CGI;	#load the CGI module
 
 my $CGI_o = CGI->new;
 
-$user_name = $CGI_o->cookie("user");
-$session_id = $CGI->cookie("session");
+my $user_name = $CGI_o->cookie("user");
+my $session_id = $CGI->cookie("session");
 
 print $CGI_o->header();
 print <<__html_file__ #here document
