@@ -76,7 +76,7 @@ sub db_create_table   #create all tables we need
 sub db_init #insert seed data
 {
     db_connect();
-    my $query = ";";
+    my $query = "INSERT INTO USER (user_name, pass_word) VALUES ('admin', 'admin');";
     db_execute($query);
     db_disconnect();
 }
