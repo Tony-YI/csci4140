@@ -101,7 +101,7 @@ my $data_dir = $ENV{"OPENSHIFT_DATA_DIR"};
 
 sub clean_storage
 {
-    my $out = `cd "$data_dir" && ls -a`;    #remember the "" inside ``
+    my $out = `cd "$data_dir" && ls`;    #remember the "" inside ``
     print "<h4>$out</h4></br>";
     
     my $wanted_dir_name = `cd "$data_dir" && ls`;   #do not use `ls -A` since we don't want to delete directory start with .*
@@ -111,7 +111,7 @@ sub clean_storage
     foreach my $i (@wanted_dir_name_array)
     {
         #delete directory
-        #`cd "$data_dir" && rm -r "$i"`;
+        `cd "$data_dir" && rm -r "$i"`;
     }
 }
 
@@ -129,7 +129,7 @@ sub init_storage
         #`cd "$data_dir" && mkdir "${i}_img" && mkdir "${i}_shortcut"`;
     }
     
-    my $out3 = `cd "$data_dir" && ls -a`;
+    my $out3 = `cd "$data_dir" && ls`;
     print "<h4>$out3</h4></br>";
 }
 
