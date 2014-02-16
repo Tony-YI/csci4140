@@ -87,6 +87,8 @@ my $img_dir = $ENV{"OPENSHIFT_DATA_DIR"};
 sub clean_storage
 {
     print "<h4>$img_dir</h4>";
+    my $out = `cd "$img_dir" && ls -a`;
+    print "<h4>$out</h4>";
 }
 
 sub init_storage
