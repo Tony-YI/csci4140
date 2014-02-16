@@ -47,8 +47,11 @@ __html_file__
     db_init();   #initialize the tables
     print "Initialize Table...Done</br>";
     
-    #clean storage......
+    clean_storage();
     print "Clean storage...Done</br>";
+    
+    init_storage();
+    print "Initialize storage...Done</br>";
     
     print <<__html_file__;
         Task Finshed!</br>
