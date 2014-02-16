@@ -90,8 +90,8 @@ my $img_dir = $ENV{"OPENSHIFT_DATA_DIR"};
 
 sub clean_storage
 {
-    my $out = `cd "$img_dir" && ls`;    #remember the "" inside ``
-    print "<h4>$out</h4>";
+    my $out = `cd "$img_dir" && ls -a`;    #remember the "" inside ``
+    print "<h4>$out</h4></br>";
 }
 
 sub init_storage
@@ -100,14 +100,16 @@ sub init_storage
     my @result  = ();
     db_execute($query, \@result);
     
-    `cd "img_dir"`;
+    my $out1 = `cd "img_dir"`;
+    print "<h4>$out1</h4></br>";
     foreach my $i (@result)
     {
-        `mkdir "${result[$i]}_img" && mkdir "${result[$i]}_shortcut"`;
+        my $out2 = `mkdir "${result[$i]}_img" && mkdir "${result[$i]}_shortcut"`;
+        print "<h4>$out2</h4></br>";
     }
     
-    my $out = `cd "$img_dir" && ls`;
-    print "<h4>$out</h4>";
+    my $out3 = `cd "$img_dir" && ls -a`;
+    print "<h4>$out3</h4></br>";
 }
 
 ###################################################
