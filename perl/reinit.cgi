@@ -26,24 +26,28 @@ my $CGI_o = CGI->new;	#create a new CGI module, GLOBAL VARIABLE
 sub reinit()
 {
     ###    Re-Initialize the System    ###
-    db_drop();
-    #db_connect();
-    #drop all tables
-    #db_drop_database();
-    #my $query = "CREATE TABLE user (username CHAR(20), password CHAR(20));";
-    #my @result;
-    #db_execute($query, \@result);
-    #db_disconnect();
-    
     ###    Print out the html file     ###
-    print $CGI_o->header();
-	print <<__html_file__;
+    
+    print $CGI_o->header(); #print http header
+    print <<__html_file__;
 <html>
     <body>
         <p>
-        Create database...Done</br>
-        Create Table...Done</br>
-        Clean storage...Done</br>
+__html_file__
+    
+    db_drop();  #drop the MYSQL database
+    print "Drop database...Done</br>";
+    
+    db_create();    #create a database name as APP_NAME
+    print "Create database...Done</br>";
+    
+    db_create_table();  #create all tables we need
+    print "Create Table...Done</br>";
+    
+    #clean storage......
+    print "Clean storage...Done</br>";
+    
+    print <<__html_file__;
         Task Finshed!</br>
         <a href="login.html">Bcak to Login Interface</a>
         </p>

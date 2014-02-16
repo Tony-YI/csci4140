@@ -41,6 +41,11 @@ sub db_connect()	#void sub-routine
 	$db_handler = DBI->connect($db_source, $db_username, $db_password) or die $DBI::errstr;
 }
 
+sub db_disconnect()
+{
+	$db_handler->disconnect() or die $DBI::errstr;
+}
+
 sub db_execute()	#usage: query($query, \@result), parameter ($query) is the SQL query, parameter
 			#(\@result) is the array used to store the data get from database
 {
@@ -53,9 +58,13 @@ sub db_execute()	#usage: query($query, \@result), parameter ($query) is the SQL 
 	@$ptr = $query->fetchrow_array();	#fetch the result from database
 }
 
-sub db_disconnect()
+sub db_create_table()   #create all tables we need
 {
-	$db_handler->disconnect() or die $DBI::errstr;
+    db_connect();
+    my $query = "CREATE TABLE user (username CHAR(20), password CHAR(20));";
+    my @result;
+    db_execute($query, \@result);
+    db_disconnect();
 }
 
 ###################################################
