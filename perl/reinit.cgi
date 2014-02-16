@@ -26,13 +26,14 @@ my $CGI_o = CGI->new;	#create a new CGI module, GLOBAL VARIABLE
 sub reinit()
 {
     ###    Re-Initialize the System    ###
-    db_connect();
+    db_create();
+    #db_connect();
     #drop all tables
     #db_drop_database();
     #my $query = "CREATE TABLE user (username CHAR(20), password CHAR(20));";
     #my @result;
     #db_execute($query, \@result);
-    db_disconnect();
+    #db_disconnect();
     
     ###    Print out the html file     ###
     print $CGI_o->header();
