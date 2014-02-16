@@ -26,7 +26,7 @@ my $CGI_o = CGI->new;	#create a new CGI module, GLOBAL VARIABLE
 sub reinit()
 {
     ###    Re-Initialize the System    ###
-    db_create();
+    db_drop();
     #db_connect();
     #drop all tables
     #db_drop_database();
