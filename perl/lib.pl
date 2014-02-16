@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 
 ###	This .pl file is used for storing the lib sub-routine that	###
-###	will be used in the assignment.					###
+###	will be used in the assignment.                             ###
 
 use DBI;	#use DataBase Interface
 use CGI;
@@ -23,7 +23,7 @@ sub db_create()		#create a database if it does not exist
 {
 	$db_name = "haha";
 	my $db_source = "DBI:mysql:";
-	$db_handler = $DBI->connect($db_source, $db_username, $db_password) or die $DBI::errstr;
+	$db_handler = DBI->connect($db_source, $db_username, $db_password) or die $DBI::errstr;
 	$db_handler->do("CREATE DATABASE $db_name");
 	$db_handler->disconnect() or die $DBI::errstr;
 }
@@ -33,9 +33,9 @@ sub db_drop()		#drop the database
 	if($db_name eq "haha")	#exist a database
 	{
 		my $db_source = "DBI:mysql:$db_name;host=$db_host";
-        	$db_handler = $DBI->connect($db_source, $db_username, $db_password) or die $DBI::errstr;
-        	$db_handler->do("DROP DATABASE $db_name");
-        	$db_handler->disconnect() or die $DBI::errstr;
+        $db_handler = DBI->connect($db_source, $db_username, $db_password) or die $DBI::errstr;
+        $db_handler->do("DROP DATABASE $db_name");
+        $db_handler->disconnect() or die $DBI::errstr;
 	}
 }
 
