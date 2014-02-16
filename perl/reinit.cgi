@@ -50,9 +50,9 @@ __html_file__
     clean_storage();
     print "Clean storage...Done</br>";
     
-    init_storage();
-    print "Initialize storage...Done</br>";
-    
+    my $user_name = "admin";
+    init_storage($user_name);
+        
     print <<__html_file__;
         Task Finshed!</br>
         <a href="login.html">Bcak to Login Interface</a>

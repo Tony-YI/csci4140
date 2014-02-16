@@ -117,9 +117,10 @@ sub clean_storage
     }
 }
 
-sub init_storage
+sub init_storage    #usage: WHEN the user first upload pic, run this. "init_storage($user_name)"
 {
-    my $query = "SELECT user_name FROM user where 1;";  #select all the username
+    my $user_name = shift @_;
+    my $query = "SELECT $user_name FROM user where 1;";  #select all the username
     my @result  = ();
     my $row_len;
     db_execute($query, \@result, \$row_len);
