@@ -100,12 +100,12 @@ sub init_storage
     my @result  = ();
     db_execute($query, \@result);
     
-    my $out1 = `cd "data_dir"`;
+    my $out1 = `cd "$data_dir"`;
     print "<h4>$out1</h4></br>";
     foreach my $i (@result)
     {
-        print "<h4>'result = '$result[$i]</h4></br>";
-        my $out2 = `cd "data_dir" && mkdir "${result[$i]}_img" && mkdir "${result[$i]}_shortcut"`;
+        print "<h4>result = $result[$i]</h4></br>";
+        my $out2 = `mkdir "${result[$i]}_img" && mkdir "${result[$i]}_shortcut"`;
         print "<h4>$out2</h4></br>";
     }
     
