@@ -6,7 +6,7 @@
 use DBI;	#use DataBase Interface
 use CGI;
 use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
-use strick;
+use strict;
 
 ###################################################
 ###	Setup connection to MySQL databast	###
