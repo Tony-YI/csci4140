@@ -41,10 +41,7 @@ __html_file__
     db_create();    #create a database name as APP_NAME
     print "Create database...Done</br>";
     
-    #db_create_table();  #create all tables we need
-    my $query = "CREATE TABLE user (username CHAR(20), password CHAR(20));";
-    my @result = ();
-    db_execute($query, \@result);
+    db_create_table();  #create all tables we need
     print "Create Table...Done</br>";
     
     #clean storage......

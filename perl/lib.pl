@@ -53,18 +53,17 @@ sub db_execute()	#usage: query($query, \@result), parameter ($query) is the SQL 
 	my $query = $db_handler->prepare($query_str);
 	$query->execute() or die $query->errstr;
     
-    if(my $ptr = shift @_)
-    {
-        @$ptr = $query->fetchrow_array();	#fetch the result from database
-    }
+    #if(my $ptr = shift @_)
+    #{
+    #    @$ptr = $query->fetchrow_array();	#fetch the result from database
+    #}
 }
 
 sub db_create_table()   #create all tables we need
 {
     db_connect();
-    my $q = "CREATE TABLE user (username CHAR(20), password CHAR(20));";
-    my @result = ();
-    db_execute($q, \@result);
+    my $query = "CREATE TABLE user (username CHAR(20), password CHAR(20));";
+    db_execute($query);
     db_disconnect();
 }
 
