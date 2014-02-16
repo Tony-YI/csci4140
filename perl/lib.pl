@@ -56,7 +56,10 @@ sub db_execute	#usage: query($query, \@result), parameter ($query) is the SQL qu
     
     if(my $ptr = shift @_)
     {
-        @$ptr = $query->fetchrow_array();	#fetch the result from database
+        while(@$ptr = $query->fetchrow_array())
+        {
+            #fetch the result from database
+        }
     }
     db_disconnect();
 }
