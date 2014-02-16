@@ -6,6 +6,7 @@
 use DBI;	#use DataBase Interface
 use CGI;
 use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
+use File::Find;
 use strict;
 
 ###################################################
@@ -117,9 +118,9 @@ sub clean_storage
     }
 }
 
-sub init_storage    #used in "sub create_dir"
-{
-    my $user_name = shift @_;
+#sub init_storage    #used in "sub create_dir"
+#{
+#    my $user_name = shift @_;
     #my $query = "SELECT $user_name FROM user where 1;";  #select all the username
     #my @result  = ();
     #my $row_len;
@@ -132,11 +133,11 @@ sub init_storage    #used in "sub create_dir"
     #    `cd "$data_dir" && mkdir "$i$img_path" && mkdir "$i$shortcut_path"`;
     #}
     
-    `cd "$data_dir" && mkdir "$user_name$img_path" && mkdir "$user_name$shortcut_path"`;
-    
-    my $out3 = `cd "$data_dir" && ls -a`;
-    print "<h4>$out3</h4></br>";
-}
+#    `cd "$data_dir" && mkdir "$user_name$img_path" && mkdir "$user_name$shortcut_path"`;
+
+#    my $out3 = `cd "$data_dir" && ls -a`;
+#    print "<h4>$out3</h4></br>";
+#}
 
 ###################################################
 ###           Setup LogIn Interface             ###
@@ -152,6 +153,16 @@ sub create_dir  #if the ./user_name_img and ./user_name_shortcut do not exist, c
 {
     my $user_name = shift @_;
     
+    if(!(-d "$user_name$img_path")) #dir not found
+    {
+        #create dir
+    }
+    else{}
+    if(!(-d "$user_name$shortcut_path"))    #dir not found
+    {
+        #create dir
+    }
+    else{}
 }
 
 return 1;	#for header file, it must return 1, otherwise perl will exit with default value 0
