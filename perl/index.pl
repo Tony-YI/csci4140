@@ -13,6 +13,7 @@ print <<__CONTENT__	#here document
 <body>
 Hello World!
 <a href="reinit.html">Re-Initialization</a>
+</br>
 </body>
 </html>
 __CONTENT__

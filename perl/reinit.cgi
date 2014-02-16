@@ -27,9 +27,18 @@ if($act eq "YES")	#YES button is clicked
 {
 	print $CGI_o->header();
 	print <<__html_file__;
-<html><body>
-<h2>YES is clicked</h2>
-</body></html>
+<html>
+    <body>
+        <h2>YES is clicked</h2>
+        <p>
+        Create database...Done</br>
+        Create Table...Done</br>
+        Clean storage...Done</br>
+        Task Finshed!</br>
+        <a href="login">Bcak to Login Interface</a>
+        </p>
+    </body>
+</html>
 __html_file__
 }
 
