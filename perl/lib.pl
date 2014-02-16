@@ -30,6 +30,10 @@ sub db_show()   #check whether there exist a database
         print "<h4>not exits</h4>"
     }
 }
+sub db()
+{
+    db_show();
+}
 sub db_create()		#create a database
 {
 	my $db_source = "DBI:mysql:;host=$db_host";
