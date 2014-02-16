@@ -22,13 +22,13 @@ use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 
 sub reinit()
 {
-    my $CGI_o = CGI->new;
-    $CGI_o = shift @_;
+    my $my_CGI_o = CGI->new;
+    $my_CGI_o = shift @_;
     ###    Re-Initialize the System    ###
     
     
     ###    Print out the html file     ###
-    print $CGI_o->header();
+    print $my_CGI_o->header();
 	print <<__html_file__;
 <html>
     <body>
