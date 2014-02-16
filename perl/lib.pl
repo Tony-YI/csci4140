@@ -46,7 +46,10 @@ sub db_disconnect
 	$db_handler->disconnect() or die $DBI::errstr;
 }
 
-sub db_execute	#usage: query($query, \@result), parameter ($query) is the SQL query, parameter (\@result) is the array used to store the data get from database
+sub db_execute	#usage: query($query, \@result, \$row_len)
+                #parameter ($query) is the SQL query
+                #parameter (\@result) is the array used to store the data get from database
+                #parameter (\$row_len) records the number of attributes in one row
 {
     db_connect();
 	my $query_str = shift @_;
@@ -54,16 +57,15 @@ sub db_execute	#usage: query($query, \@result), parameter ($query) is the SQL qu
 	my $query = $db_handler->prepare($query_str);
 	$query->execute() or die $query->errstr;
     
-    if(my $ptr = shift @_)
+    if(my $ptr = shift @_ && my $row_len = shift @_)
     {
-        #while(my @temp_array = $query->fetchrow_array())
-        #{
-            #fetch the result from database
-        #    @$ptr = unshift(@temp_array);
-        #}
         while (my @temp_array = $query->fetchrow_array())
         {
             print "@temp_array";
+            foreach my $i (@temp_array)
+            {
+                @$ptr = unshift($temp_array[$i]);
+            }
         }
         
     }
@@ -107,7 +109,8 @@ sub init_storage
 {
     my $query = "SELECT user_name FROM user where 1;";  #select all the username
     my @result  = ();
-    db_execute($query, \@result);
+    my $row_len;
+    db_execute($query, \@result, \$row_len);
     print "@result";
     
     foreach my $i (@result)
