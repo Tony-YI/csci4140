@@ -26,7 +26,26 @@ my $CGI_o = CGI->new;	#create a new CGI module, GLOBAL VARIABLE
 sub reinit()
 {
     ###    Re-Initialize the System    ###
-
+    my $db_handler;
+    db_connect(\$db_handler);
+    print $CGI_o->header();
+    print <<__html_file__;
+<html>
+    <body>
+        <h2>db_connected</h2>
+    </body>
+</html>
+__html_file__
+    
+    db_disconnect(\$db_handler);
+    print $CGI_o->header();
+    print <<__html_file__;
+<html>
+    <body>
+        <h2>db_disconnected</h2>
+    </body>
+</html>
+__html_file__
     
     ###    Print out the html file     ###
     print $CGI_o->header();
