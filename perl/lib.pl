@@ -48,6 +48,7 @@ sub db_disconnect
 
 sub db_execute	#usage: query($query, \@result), parameter ($query) is the SQL query, parameter (\@result) is the array used to store the data get from database
 {
+    db_connect();
 	my $query_str = shift @_;
 
 	my $query = $db_handler->prepare($query_str);
@@ -57,11 +58,11 @@ sub db_execute	#usage: query($query, \@result), parameter ($query) is the SQL qu
     {
         @$ptr = $query->fetchrow_array();	#fetch the result from database
     }
+    db_disconnect();
 }
 
 sub db_create_table   #create all tables we need
 {
-    db_connect();
     my $query = "CREATE TABLE user (user_name CHAR(20) PRIMARY KEY, pass_word CHAR(20));";
     db_execute($query);
     
@@ -70,15 +71,12 @@ sub db_create_table   #create all tables we need
     
     $query = "CREATE TABLE file (user_name CHAR(20), file_name CHAR(20), file_size INT, upload_time INT, img_description CHAR(50), img_path CHAR(50), shortcut_path CHAR(50), PRIMARY KEY(user_name, file_name));";
     db_execute($query);
-    db_disconnect();
 }
 
 sub db_init #insert seed data
 {
-    db_connect();
     my $query = "INSERT INTO user (user_name, pass_word) VALUES ('admin', 'admin');";
     db_execute($query);
-    db_disconnect();
 }
 ###################################################
 ###
