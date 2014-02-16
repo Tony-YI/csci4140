@@ -22,12 +22,12 @@ use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 
 sub reinit()
 {
-    my $my_CGI_o = shift @_;
+    my $ptr = shift @_;
     ###    Re-Initialize the System    ###
     
     
     ###    Print out the html file     ###
-    print $my_CGI_o->header();
+    print $$ptr->header();
 	print <<__html_file__;
 <html>
     <body>
@@ -48,7 +48,7 @@ my $act = $CGI_o->param("action");	#retrive the value of button, YES/NO
 
 if($act eq "YES")	#YES button is clicked
 {
-    reinit($CGI_o);
+    reinit(\$CGI_o);
 }
 
 elsif($act eq "NO") #NO button is clicked
