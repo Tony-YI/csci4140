@@ -62,10 +62,9 @@ sub db_execute	#usage: query($query, \@result, \$row_len)
         $$ptr_row_len = $query->{NUM_OF_FIELDS};
         while (my @temp_array = $query->fetchrow_array())
         {
-            print "@temp_array";
             foreach my $i (@temp_array)
             {
-                unshift(@$ptr_result, $temp_array[$i]);
+                push(@$ptr_result, $temp_array[$i]);
             }
         }
         
@@ -108,11 +107,11 @@ sub clean_storage
 
 sub init_storage
 {
-    my $query = "SELECT user_name FROM user where 1;";  #select all the username
+    my $query = "SELECT * FROM user where 1;";  #select all the username
     my @result  = ();
     my $row_len;
     db_execute($query, \@result, \$row_len);
-    print "@result  ";
+    print "@result";
     print "$row_len";
     
     foreach my $i (@result)
