@@ -114,8 +114,8 @@ sub clean_storage
         `cd "$data_dir" && rm -r "$i"`;
     }
     
-    my $out = `cd "$data_dir" && ls`;    #remember the "" inside ``
-    print "<h4>$out</h4></br>";
+    #my $out = `cd "$data_dir" && ls -a`;    #remember the "" inside ``
+    #print "<h4>$out</h4></br>";
 }
 
 #sub init_storage    #used in "sub create_dir"
