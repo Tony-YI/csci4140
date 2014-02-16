@@ -57,14 +57,15 @@ sub db_execute	#usage: query($query, \@result, \$row_len)
 	my $query = $db_handler->prepare($query_str);
 	$query->execute() or die $query->errstr;
     
-    if(my $ptr = shift @_ && my $row_len = shift @_)
+    if((my $ptr_result = shift @_) && (my $ptr_row_len = shift @_))
     {
+        $$ptr_row_len = $query->row();
         while (my @temp_array = $query->fetchrow_array())
         {
             print "@temp_array";
             foreach my $i (@temp_array)
             {
-                @$ptr = unshift($temp_array[$i]);
+                @$ptr_result = unshift($temp_array[$i]);
             }
         }
         
