@@ -6,14 +6,16 @@ use CGI;	#load the CGI module
 
 my $CGI_o = CGI->new;
 
-print $CGI_o->header();
+$user_name = $CGI_o->cookie("user");
+$session_id = $CGI->cookie("session");
 
-print <<__CONTENT__	#here document
+print $CGI_o->header();
+print <<__html_file__ #here document
 <html>
-<body>
-Hello World!
-<a href="reinit.html">Re-Initialization</a>
-</br>
-</body>
+    <body>
+        <a href="reinit.html">Re-Initialization</a></br>
+        <h2>$user_name</h2></br>
+        <h2>$session_id</h2>
+    </body>
 </html>
-__CONTENT__
+__html_file__
