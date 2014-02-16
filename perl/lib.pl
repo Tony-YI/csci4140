@@ -104,7 +104,7 @@ sub clean_storage
     my $out = `cd "$data_dir" && ls -a`;    #remember the "" inside ``
     print "<h4>$out</h4></br>";
     
-    my $wanted_dir_name = `cd "$data_dir" && ls -A`;
+    my $wanted_dir_name = `cd "$data_dir" && ls`;   #do not use `ls -A` since we don't want to delete directory start with .*
     my @wanted_dir_name_array = split(/\n/, $wanted_dir_name);
     print "@wanted_dir_name_array";
     
