@@ -91,7 +91,7 @@ my $img_dir = $ENV{"OPENSHIFT_DATA_DIR"};
 sub clean_storage
 {
     my $out = `cd "$img_dir" && ls`;    #remember the "" inside ``
-    print "$out";
+    print "<h4>$out</h4>";
 }
 
 sub init_storage
@@ -106,7 +106,8 @@ sub init_storage
         `mkdir "${result[$i]}_img" && mkdir "${result[$i]}_shortcut"`;
     }
     
-    print "`cd "$img_dir" && ls`";
+    my $out = `cd "$img_dir" && ls`;
+    print "<h4>$out</h4>";
 }
 
 ###################################################
