@@ -1,11 +1,11 @@
 #!/usr/bin/perl -w
 
 ### This .cgi file is for login             ###
-###
 
 use strict;
 use CGI;
 use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
+require "./lib.pl";
 
 my $CGI_o = CGI->new;
 

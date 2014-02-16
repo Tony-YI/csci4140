@@ -32,6 +32,7 @@ sub reinit
     print <<__html_file__;
 <html>
     <body>
+        <title>Re_Initialization</title>
         <p>
 __html_file__
     
