@@ -29,13 +29,12 @@ if($act eq "YES")	#YES button is clicked
 	print <<__html_file__;
 <html>
     <body>
-        <h2>YES is clicked</h2>
         <p>
         Create database...Done</br>
         Create Table...Done</br>
         Clean storage...Done</br>
         Task Finshed!</br>
-        <a href="login">Bcak to Login Interface</a>
+        <a href="login.html">Bcak to Login Interface</a>
         </p>
     </body>
 </html>
@@ -44,20 +43,5 @@ __html_file__
 
 elsif($act eq "NO") #NO button is clicked
 {
-    print $CGI_o->header();
-	print <<__html_file__;
-<html><body>
-<h2>NO is clicked</h2>
-</body></html>
-__html_file__
-}
-
-else                #Unknown error
-{
-    print $CGI_o->header();
-	print <<__html_file__;
-<html><body>
-<h2>Unknown error</h2>
-</body></html>
-__html_file__
+    print $CGI_o->redirect("Login.html");
 }
