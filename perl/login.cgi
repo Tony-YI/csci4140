@@ -12,7 +12,7 @@ my $CGI_o = CGI->new;
 print $CGI_o->header();
 print <<__html_file__;
 <html>
-	<body>
+    <body>
 		<title>LogIn</title>
 		<h2>LogIn Interface</h2>
 	</body>
