@@ -83,8 +83,11 @@ sub db_init #insert seed data
 ###          Setup Permanent Storage            ###
 ###################################################
 
+my $img_dir = $ENV{"OPENSHIFT_DATA_DIR"};
 sub clean_storage
 {
+    my $out = `cd "img_dir" && ls`;
+    print "$out";
 }
 
 sub init_storage
