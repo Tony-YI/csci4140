@@ -25,7 +25,7 @@ sub db_connect()	#void sub-routine
 	$db_handler = DBI->connect($db_source, $db_username, $db_password) or die $DBI::errstr;
 }
 
-sub query_execute()	#usage: query($query, \@result), parameter ($query) is the SQL query, parameter
+sub db_execute()	#usage: query($query, \@result), parameter ($query) is the SQL query, parameter
 			#(\@result) is the array used to store the data get from database
 {
 	my $query_str = shift @_;
