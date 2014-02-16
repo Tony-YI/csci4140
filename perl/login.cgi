@@ -19,3 +19,4 @@ print <<__html_file__;
     </body>
 </html>
 __html_file__
+#when a .cgi file is end with ___html_file__, a new line should be added. Otherwise, error.
