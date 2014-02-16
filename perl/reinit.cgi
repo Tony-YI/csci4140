@@ -43,5 +43,5 @@ __html_file__
 
 elsif($act eq "NO") #NO button is clicked
 {
-    print $CGI_o->redirect("Login.html");
+    print $CGI_o->redirect("login.html");
 }
