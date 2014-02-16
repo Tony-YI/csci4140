@@ -64,8 +64,8 @@ sub db_execute	#usage: query($query, \@result, \$row_len)
         {
             foreach my $i (@temp_array)
             {
-                push(@$ptr_result, $temp_array[$i]);
-                print "$temp_array[$i]";
+                push(@$ptr_result, $i);
+                print "$i";
             }
         }
         
@@ -117,7 +117,7 @@ sub init_storage
     
     foreach my $i (@result)
     {
-        #`cd "$data_dir" && mkdir "${result[$i]}_img" && mkdir "${result[$i]}_shortcut"`;
+        #`cd "$data_dir" && mkdir "${i}_img" && mkdir "${i}_shortcut"`;
     }
     
     my $out3 = `cd "$data_dir" && ls -a`;
