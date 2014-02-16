@@ -128,7 +128,7 @@ sub init_storage
     
     foreach my $i (@result)
     {
-        `cd "$data_dir" && mkdir "$i.$img_path" && mkdir "$i.$shortcut_path"`;
+        `cd "$data_dir" && mkdir "$i$img_path" && mkdir "$i$shortcut_path"`;
     }
     
     my $out3 = `cd "$data_dir" && ls -a`;
