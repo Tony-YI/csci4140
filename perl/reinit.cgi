@@ -22,7 +22,6 @@ use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 
 sub reinit()
 {
-    my $my_CGI_o = CGI->new;
     $my_CGI_o = shift @_;
     ###    Re-Initialize the System    ###
     
