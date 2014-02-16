@@ -65,10 +65,10 @@ sub db_create_table   #create all tables we need
     my $query = "CREATE TABLE user (user_name CHAR(20) PRIMARY KEY, pass_word CHAR(20));";
     db_execute($query);
     
-    $query = "CREATE TABLE session (user_name CHAR(20) PRIMARY KEY, session_id CHAR(20) PRIMARY KEY);";
+    $query = "CREATE TABLE session (user_name CHAR(20), session_id CHAR(20), PRIMARY KEY(user_name, session_id));";
     db_execute($query);
     
-    $query = "CREATE TABLE file (user_name CHAR(20) PRIMARY KEY, file_name CHAR(20) PRIMARY KEY, file_size INT, upload_time INT, img_description CHAR(50), img_path CHAR(50), shortcut_path CHAR(50));";
+    $query = "CREATE TABLE file (user_name CHAR(20), file_name CHAR(20), file_size INT, upload_time INT, img_description CHAR(50), img_path CHAR(50), shortcut_path CHAR(50), PRIMARY KEY(user_name, file_name));";
     db_execute($query);
     db_disconnect();
 }
