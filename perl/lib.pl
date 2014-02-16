@@ -6,7 +6,6 @@
 use DBI;	#use DataBase Interface
 use CGI;
 use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
-use File::Find;
 use strict;
 
 ###################################################
