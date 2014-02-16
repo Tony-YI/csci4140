@@ -17,7 +17,7 @@ my $db_username = $ENV{"OPENSHIFT_MYSQL_DB_USERNAME"};
 my $db_password = $ENV{"OPENSHIFT_MYSQL_DB_PASSWORD"};
 my $db_name = $ENV{"OPENSHIFT_APP_NAME"};	#default database name is same as the application name
 
-my db_handler;	#GLOBAL VARIABLE
+my $db_handler;	#GLOBAL VARIABLE
 
 sub db_connect()	#void sub-routine
 {
