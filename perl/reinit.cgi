@@ -26,29 +26,29 @@ my $act = $CGI_o->param("action");	#retrive the value of button, YES/NO
 if($act eq "YES")	#YES button is clicked
 {
 	print $CGI_o->header();
-	print <<__html_file__;
+	print <<__EOF;
 	<html><body>
 	<h2>YES is clicked</h2>
     </body></html>
-    __html_file__
+    __EOF
 }
 
 elsif($act eq "NO") #NO button is clicked
 {
     print $CGI_o->header();
-	print <<__html_file__;
+	print <<__EOF;
 	<html><body>
 	<h2>NO is clicked</h2>
     </body></html>
-    __html_file__
+    __EOF
 }
 
 else                #Unknown error
 {
     print $CGI_o->header();
-	print <<__html_file__;
+	print <<__EOF;
 	<html><body>
 	<h2>Unknown error</h2>
     </body></html>
-    __html_file__
+    __EOF
 }
