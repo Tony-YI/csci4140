@@ -98,8 +98,8 @@ sub db_init #insert seed data
 ###################################################
 
 my $data_dir = $ENV{"OPENSHIFT_DATA_DIR"};
-my $img_path = "_img";
-my $shortcut_path = "_shortcut";
+my $img_path = "_img";  #GLOBAL VARIABLE
+my $shortcut_path = "_shortcut";    #GLOBAL VARIABLE
 
 sub clean_storage
 {
