@@ -10,11 +10,4 @@ require "./lib.pl";
 my $CGI_o = CGI->new;
 
 print $CGI_o->header();
-print <<__content__;
-<html>
-    <body>
-		<title>LogIn</title>
-		<h2>LogIn Interface</h2>
-	</body>
-</html>
-__content__
+print "<html><body><title>LogIn</title><h2>LogIn Interface</h2></body></html>";
