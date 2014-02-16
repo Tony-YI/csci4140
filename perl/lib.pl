@@ -63,7 +63,8 @@ sub db_create_table()   #create all tables we need
 {
     db_connect();
     my $q = "CREATE TABLE user (username CHAR(20), password CHAR(20));";
-    db_execute($q);
+    my @result;
+    db_execute($q, \@result);
     db_disconnect();
 }
 
