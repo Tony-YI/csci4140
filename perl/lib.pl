@@ -78,8 +78,10 @@ sub db_init #insert seed data
     my $query = "INSERT INTO user (user_name, pass_word) VALUES ('admin', 'admin');";
     db_execute($query);
 }
+
 ###################################################
-###
+###         Setup LogIn Interface               ###
 ###################################################
+
 
 return 1;	#for header file, it must return 1, otherwise perl will exit with default value 0
