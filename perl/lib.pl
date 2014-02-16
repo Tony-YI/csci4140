@@ -22,7 +22,7 @@ my $db_handler;	#GLOBAL VARIABLE
 sub db_create()		#create a database if it does not exist
 {
 	$db_name = "haha";
-	my $db_source = "DBI:mysql:";
+	my $db_source = "DBI:mysql:$db_name;host=$db_host";
 	$db_handler = DBI->connect($db_source, $db_username, $db_password) or die $DBI::errstr;
 	$db_handler->do("CREATE DATABASE $db_name");
 	$db_handler->disconnect() or die $DBI::errstr;
