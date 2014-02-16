@@ -77,6 +77,9 @@ sub db_init #insert seed data
 {
     my $query = "INSERT INTO user (user_name, pass_word) VALUES ('admin', 'admin');";
     db_execute($query);
+    
+    my $query = "INSERT INTO user (user_name, pass_word) VALUES ('wyyi', 'haha');";
+    db_execute($query);
 }
 
 ###################################################
@@ -84,15 +87,25 @@ sub db_init #insert seed data
 ###################################################
 
 my $img_dir = $ENV{"OPENSHIFT_DATA_DIR"};
+
 sub clean_storage
 {
-    print "<h4>$img_dir</h4>";
-    my $out = `cd "$img_dir" && ls -a`;
-    print "<h4>$out</h4>";
+    my $out = `cd "$img_dir" && ls`;    #remember the "" inside ``
 }
 
 sub init_storage
 {
+    my $query = "SELECT user_name FROM user where 1;";  #select all the username
+    my @result  = ();
+    db_execute($query, \@result);
+    
+    `cd "img_dir"`;
+    foreach my $i (@result)
+    {
+        `mkdir "${result[$i]}_img" && mkdir "${result[$i]}_shortcut"`;
+    }
+    
+    my $out = `cd "$img_dir" && ls`;
 }
 
 ###################################################
