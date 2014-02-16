@@ -44,6 +44,9 @@ __html_file__
     db_create_table();  #create all tables we need
     print "Create Table...Done</br>";
     
+    db_init();   #initialize the tables
+    print "Initialize Table...Done</br>";
+    
     #clean storage......
     print "Clean storage...Done</br>";
     

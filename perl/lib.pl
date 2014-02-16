@@ -66,10 +66,10 @@ sub db_create_table   #create all tables we need
     db_execute($query);
     
     $query = "CREATE TABLE session (user_name CHAR(20), session_id CHAR(20));";
-    db_execute();
+    db_execute($query);
     
     $query = "CREATE TABLE file (user_name CHAR(20), file_name CHAR(20), file_size INT, upload_time INT, img_description CHAR(50), img_path CHAR(50), shortcut_path CHAR(50));";
-    db_execute();
+    db_execute($query);
     db_disconnect();
 }
 
