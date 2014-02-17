@@ -19,9 +19,11 @@ print "$user_name $file_name $description<br/>";
 
 ###TODO: get back the uploaded file. how? old query? or sotre in the tmp file first?
 ###########################
+open(INFILE, "<", "$file_name");
 my $buffer;
-my $ret = read("$file_name", $buffer, 1024);
-print "<br/>ret = $ret<br/>";
+my $ret = read(INFILE, $buffer, 1024);
+print "$ret<br/>";
+close(INFILE);
 ###########################
 print <<__html_file__;
 <html>
