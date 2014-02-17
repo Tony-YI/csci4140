@@ -11,7 +11,7 @@ my $CGI_o = CGI->new();
 my $user_name = $CGI_o->param("user_name");
 my $file_name = $CGI_o->param("file_name");
 my $description = $CGI_o->param("description");
-my $CGI_o_ptr = $CGI_o->param("old_CGI_o");
+my $old_CGI_o = $CGI_o->param("old_CGI_o");
 
 print $CGI_o->header();
 print <<__html_file__;
@@ -20,7 +20,7 @@ print <<__html_file__;
         "$user_name"<br/>
         "$file_name"<br/>
         "$description"<br/>
-        "$old_CGI_o_ptr"<br>
+        "$old_CGI_o"<br>
     </body>
 </html>
 __html_file__
