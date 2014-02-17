@@ -14,6 +14,7 @@ my $description = $CGI_o->param("description");
 
 
 print $CGI_o->header();
+print "$user_name $file_name $description\n";
 print <<__html_file__;
 <html>
     <body>
