@@ -98,8 +98,8 @@ sub db_init #insert seed data
 ###################################################
 
 my $data_dir = $ENV{"OPENSHIFT_DATA_DIR"};
-my $img_path = "_img";  #GLOBAL VARIABLE
-my $shortcut_path = "_shortcut";    #GLOBAL VARIABLE
+my $img_dir = "_img";  #GLOBAL VARIABLE
+my $shortcut_dir = "_shortcut";    #GLOBAL VARIABLE
 
 sub clean_storage
 {
@@ -129,10 +129,10 @@ sub clean_storage
     
     #foreach my $i (@result)
     #{
-    #    `cd "$data_dir" && mkdir "$i$img_path" && mkdir "$i$shortcut_path"`;
+    #    `cd "$data_dir" && mkdir "$i$img_dir" && mkdir "$i$shortcut_dir"`;
     #}
     
-#    `cd "$data_dir" && mkdir "$user_name$img_path" && mkdir "$user_name$shortcut_path"`;
+#    `cd "$data_dir" && mkdir "$user_name$img_dir" && mkdir "$user_name$shortcut_dir"`;
 
 #    my $out3 = `cd "$data_dir" && ls -a`;
 #    print "<h4>$out3</h4></br>";
@@ -147,17 +147,22 @@ sub clean_storage
 ###           Setup Upload Interface            ###
 ###################################################
 
+my $upload_dir = $ENV{"OPENSHIFT_DATA_DIR"};    #equals to $data_dir
+
+
 sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, create it
-                #usage: upload_pic($user_name)
+                #usage: upload_pic($user_name, $file_name, $description)
                 #run this every time when upload
 {
     my $user_name = shift @_;
+    my $file_name = shift @_;
+    my $description = shift @_;
     
-    if(!(-d "$data_dir$user_name$img_path")) #dir not found
+    if(!(-d "$upload_dir$user_name$img_dir")) #dir not found
     {
         #print "create dir and upload pic<br/>";
         #create dir
-        `cd "$data_dir" && mkdir "$user_name$img_path"`;
+        `cd "$upload_dir" && mkdir "$user_name$img_dir"`;
         
         #upload pictur
     }
@@ -168,11 +173,11 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         
     }
     
-    if(!(-d "$data_dir$user_name$shortcut_path"))    #dir not found
+    if(!(-d "$upload_dir$user_name$shortcut_dir"))    #dir not found
     {
         #print "create dir and upload pic<br/>";
         #create dir
-        `cd "$data_dir" && mkdir "$user_name$shortcut_path"`;
+        `cd "$upload_dir" && mkdir "$user_name$shortcut_dir"`;
         
         #upload picture
     }
