@@ -171,7 +171,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         `cd "$upload_dir"&& mkdir "$user_name$shortcut_dir"`;
     }
     
-    #check file size
+    ###TODO:check file size
     my $len = -s "$file_name";
     print "<h1>$len</h1></br>";
     if($len > 1024*1024)
@@ -180,6 +180,8 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         print "<h1>$len</h1></br>";
         return;
     }
+    
+    ###TODO: indentify the file
     
     ###TODO:check file existence
     
