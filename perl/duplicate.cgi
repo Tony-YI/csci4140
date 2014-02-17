@@ -6,6 +6,8 @@ use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 
 require "./lib.pl";
 
+my $CGI_o = CGI->new();
+
 my $user_name = "admin"; ###############################################
 my $file_name = $CGI_o->param("photo");
 my $description = $CGI_o->param("description");
