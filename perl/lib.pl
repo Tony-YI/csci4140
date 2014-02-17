@@ -160,10 +160,15 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     my $description = shift @_;
     my $flag_ptr = shift @_;
     
-    if((!(-d "$upload_dir$user_name$img_dir")) || (!(-d "$upload_dir$user_name$shortcut_dir"))) #dir not found
+    if(!(-d "$upload_dir$user_name$img_dir")) #dir not found
     {
         #create dir
-        `cd "$upload_dir" && mkdir "$user_name$img_dir && mkdir "$user_name$shortcut_dir"`;
+        `cd "$upload_dir" && mkdir "$user_name$img_dir"`;
+    }
+    if(!(-d "$upload_dir$user_name$shortcut_dir"))
+    {
+        #create dir
+        `cd "$upload_dir"&& mkdir "$user_name$shortcut_dir"`;
     }
     
     ###TODO:check file existence
