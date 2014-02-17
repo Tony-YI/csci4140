@@ -171,6 +171,14 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         `cd "$upload_dir"&& mkdir "$user_name$shortcut_dir"`;
     }
     
+    #check file size
+    if(my $len = -s "$file_name" gt 1024*1024)
+    {
+        $$flag_ptr = 3;
+        print "<h1>$len</h1></br>";
+        return;
+    }
+    
     ###TODO:check file existence
     
     #file not exist, upload picture
@@ -180,19 +188,10 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         return;
     }
     
-    #open file sucessfully
-    #upload file
+    #open file sucessfully, file size is allowed and upload file
     my $ret = 0;
     my $totalBytes = 0;
     my $buffer = "";
-    
-    my $len = -s "$file_name";
-    if( $len gt 1024*1024))
-    {
-        $$flag_ptr = 3;
-        print "<h1>$len</h1></br>";
-        return;
-    }
     
     binmode($file_name);
     
