@@ -57,14 +57,7 @@ if($name && $ext)
         upload_pic(\$CGI_o, $user_name, $file_name, $description, \$flag);
         if($flag eq 1)    #upload sucessfully
         {
-            print <<__html_file__
-            <title>Upload Successed</title>
-            <p>
-            Upload Successed.
-            <br/><br/>
-            <a href="file_picking.html">Back to File Picking Interface</a>
-            </p>
-__html_file__
+            print "<title>Upload Successed</title><p>Upload Successed.<br/></p>";"
         }
         elsif($flag eq 2)   #file existed
         {
@@ -106,6 +99,7 @@ $out3 = `cd "$upload_dir$user_name$shortcut_dir" && ls -a`;
 print "<h4>$out3</h4></br>";
 
 print <<__html_file__;
+        <br/><a href="file_picking.html">Back to File Picking Interface</a>
         <br/><a href="display_panel.html">Back to Display Panel</a>
     </body>
 </html>
