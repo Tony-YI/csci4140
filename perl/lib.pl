@@ -205,7 +205,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     close(OUTFILE); #file uploaded
     
     ###TODO: indentify the file
-    my $identity = `identifiy -verbose "$upload_dir$user_name$img_dir/$file_name" | grep Format:`;
+    my $identity = `identify -verbose "$upload_dir$user_name$img_dir/$file_name" | grep Format:`;
     print "<br/><h2>$identity</h2><br/>";
     ###TODO: generate a shortcut
     
