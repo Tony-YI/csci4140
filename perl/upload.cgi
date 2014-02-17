@@ -94,18 +94,20 @@ else    #ivalid file name and file extension
     print "<title>Upload Failed</title><p>Upload Failed.<br/>You file name is invalid.</p>";;
 }
 
+#######################################################
 my $upload_dir = $ENV{"OPENSHIFT_DATA_DIR"};
 my $img_dir = "_img";  #GLOBAL VARIABLE
 my $shortcut_dir = "_shortcut";    #GLOBAL VARIABLE
 
-my $out3 = `cd "$upload_dir" && ls -a`;
+my $out3 = `cd "$upload_dir" && ls -l`;
 print "<h4>$out3</h4></br>";
 
-$out3 = `cd "$upload_dir$user_name$img_dir" && ls -a`;
+$out3 = `cd "$upload_dir$user_name$img_dir" && ls -l`;
 print "<h4>$out3</h4></br>";
 
-$out3 = `cd "$upload_dir$user_name$shortcut_dir" && ls -a`;
+$out3 = `cd "$upload_dir$user_name$shortcut_dir" && ls -l`;
 print "<h4>$out3</h4></br>";
+#######################################################
 
 print <<__html_file__;
         <br/><a href="file_picking.html">Back to File Picking Interface</a>
