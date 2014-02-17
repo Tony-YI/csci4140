@@ -17,7 +17,7 @@ print <<__html_file__;
 <html>
 	<body>
 		<title>LogOut</title>
-		<p>LogOut</p><br /><br />
+		<p>LogOut</p>
         <a href="login.html">LogIn</a>
 	</body>
 </html>
