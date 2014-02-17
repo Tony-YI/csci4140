@@ -186,13 +186,15 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     my $totalBytes = 0;
     my $buffer = "";
     
-    binmode($file_name);
-    if(my $len = (-s "$file_name") gt 1024*1024))
+    my $len = -s "$file_name";
+    if( $len gt 1024*1024))
     {
         $$flag_ptr = 3;
-        print ""
-        return
+        print "<h1>$len</h1></br>";
+        return;
     }
+    
+    binmode($file_name);
     
     while($ret = read($$CGI_o_ptr->upload("photo"), $buffer, 1024))
     {
