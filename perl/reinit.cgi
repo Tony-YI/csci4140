@@ -40,19 +40,19 @@ __html_file__
     print "Drop database...Done<br />";
     
     db_create();    #create a database name as APP_NAME
-    print "Create database...Done<br />";
+    print "<br />Create database...Done<br />";
     
     db_create_table();  #create all tables we need
-    print "Create Table...Done<br />";
+    print "<br />Create Table...Done<br />";
     
     db_init();   #initialize the tables
-    print "Initialize Table...Done<br />";
+    print "<br />Initialize Table...Done<br />";
     
     clean_storage();
-    print "Clean storage...Done<br />";
+    print "<br />Clean storage...Done<br />";
         
     print <<__html_file__;
-        <br />Task Finshed!<br />
+        <br />Task Finshed!<br /><br /><br />
         <a href="login.html">Bcak to Login Interface</a>
         </p>
     </body>
