@@ -223,7 +223,8 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     ###TODO:convert description into viewable
     
     #upload description and other attributes to the database
-    my $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ($user_name, $file_name, $totalBytes, 0, $description, $upload_dir$user_name$img_dir/$file_name, $upload_dir$user_name$img_dir/$file_name);";
+    #my $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ($user_name, $file_name, $totalBytes, 0, $description, $upload_dir$user_name$img_dir/$file_name, $upload_dir$user_name$img_dir/$file_name);";
+    my $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ($user_name, $file_name, $totalBytes, 0, $description, $file_name, $file_name);";
     db_execute($query);
     
     $$flag_ptr = 1;
