@@ -171,15 +171,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         `cd "$upload_dir"&& mkdir "$user_name$shortcut_dir"`;
     }
     
-    ###TODO:check file size
-    my $len = -s "$file_name";
-    print "<h1>$len</h1></br>";
-    if($len > 1024*1024)
-    {
-        $$flag_ptr = 3;
-        print "<h1>$len</h1></br>";
-        return;
-    }
+    ###TODO:check file size in an easy way...no can do
     
     ###TODO: indentify the file
     
@@ -197,13 +189,13 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     my $totalBytes = 0;
     my $buffer = "";
     
-    binmode($file_name);
+    binmode($file_name);    #???
     
     while($ret = read($$CGI_o_ptr->upload("photo"), $buffer, 1024))
     {
         print OUTFILE $buffer;
         $totalBytes += $ret;
-        if($totalBytes > 1024*1024) #1 MB
+        if($totalBytes > 1024*1024) #1 MB, check file size
         {
             close(OUTFILE);
             `rm "$upload_dir$user_name$img_dir/$file_name"`;
