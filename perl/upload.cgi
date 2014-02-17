@@ -75,6 +75,7 @@ if($name && $ext)
                 <input type="radio" name="duplicate" value="cancle"/>Cancle the current upload.<br/><br/>
                 <input type="submit" value="Proceed"/>
             </form>
+__html_file__
         }
         elsif($flag eq 3)   #file size too large
         {
@@ -118,10 +119,20 @@ $out3 = `cd "$upload_dir$user_name$shortcut_dir" && ls -A`;
 print "<h4>$out3</h4></br>";
 #######################################################
 
-print <<__html_file__;
+if($flag != 2)
+{
+    print <<__html_file__;
         <br/><a href="file_picking.html">Back to File Picking Interface</a>
         <br/><br/><a href="display_panel.html">Back to Display Panel</a>
     </body>
 </html>
 __html_file__
+}
+else
+{
+    print <<__html_file__;
+    </body>
+    </html>
+__html_file__
+}
 #if end with __html_file__, must add a new line
