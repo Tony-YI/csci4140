@@ -176,7 +176,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     ###TODO:check file existence
     my @result = ();
     my $row_len = "";
-    my $query = "SELECT file_name FROM file WHERE file_name='$file_name'";
+    my $query = "SELECT user_name, file_name FROM file WHERE user_name='$user_name' AND file_name='$file_name';";
     db_execute($query, \@result, \$row_len);
     if(@result) #exist
     {
