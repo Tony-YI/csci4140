@@ -57,7 +57,14 @@ if($name && $ext)
         upload_pic(\$CGI_o, $user_name, $file_name, $description, \$flag);
         if($flag eq 1)    #upload sucessfully
         {
-            print "<title>Upload Successed</title><p>Upload Successed.<br/><br/><a href="file_picking.html">Back to File Picking Interface</a></p><br/>";
+            print <<__html_file__
+            <title>Upload Successed</title>
+            <p>
+            Upload Successed.
+            <br/><br/>
+            <a href="file_picking.html">Back to File Picking Interface</a>
+            </p>
+__html_file__
         }
         elsif($flag eq 2)   #file existed
         {
@@ -85,8 +92,14 @@ else    #ivalid file name and file extension
     print "<title>Upload Failed</title><p>Upload Failed.<br/>You file name is invalid.</p>";;
 }
 
+my $out3 = `cd "$upload_dir" && ls -a`;
+print "<h4>$out3</h4></br>";
+
+$out3 = `cd "$upload_dir$user_name$img_dir" && ls -a`;
+print "<h4>$out3</h4></br>";
+
 print <<__html_file__;
-        <a href="display_panel.html">Back to Display Panel</a>
+        <br/><a href="display_panel.html">Back to Display Panel</a>
     </body>
 </html>
 __html_file__
