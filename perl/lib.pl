@@ -178,7 +178,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     ###TODO:check file existence
     
     #file not exist, upload picture
-    if(!open(OUTFILE, "> $upload_dir$user_name$img_dir/$file_name"))    #can't open file for writing
+    if(!open(OUTFILE, ">", "$upload_dir$user_name$img_dir/$file_name"))    #can't open file for writing
     {
         $$flag_ptr = 4;
         return;
