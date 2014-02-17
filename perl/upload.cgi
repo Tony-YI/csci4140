@@ -52,13 +52,14 @@ $file_name =~ tr/A-Z/a-z/;  #convert uppercase to lowercase
 $_ = $file_name;
 my ($name, $ext) = /([a-z0-9_]+)\.([a-z0-9_]+)/;
 
+my $flag;   #1 is sucessful, 2 is file exited, 3 is file too large, 4 is can't open dir, 5 is invalid extension
+
 #check whether the file name and file ext is valided
 if($name && $ext)
 {
     if($ext eq "png" || $ext eq "jpg" || $ext eq "jpeg" || $ext eq "gif")
     {
         #check file size, check file existence and upload photo/description
-        my $flag;   #1 is sucessful, 2 is file exited, 3 is file too large, 4 is can't open dir, 5 is invalid extension
         upload_pic(\$CGI_o, $user_name, $file_name, $description, \$flag);
         if($flag eq 1)    #upload sucessfully
         {
