@@ -92,6 +92,10 @@ else    #ivalid file name and file extension
     print "<title>Upload Failed</title><p>Upload Failed.<br/>You file name is invalid.</p>";;
 }
 
+my $data_dir = $ENV{"OPENSHIFT_DATA_DIR"};
+my $img_dir = "_img";  #GLOBAL VARIABLE
+my $shortcut_dir = "_shortcut";    #GLOBAL VARIABLE
+
 my $out3 = `cd "$upload_dir" && ls -a`;
 print "<h4>$out3</h4></br>";
 
