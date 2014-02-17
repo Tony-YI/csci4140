@@ -194,16 +194,14 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         $totalBytes += $ret;
         if($totalBytes > 1024*1024) #1 MB
         {
-            print "<h4>$user_name, $file_name</h4><br/>";
-            my $out3 = `cd "$upload_dir" && ls -a`;
+            my $out3 = `cd "$upload_dir$user_name$img_dir" && ls -a`;
             print "<h4>$out3</h4></br>";
             
             close(OUTFILE);
             `rm "$upload_dir$user_name$img_dir/$file_name"`;
             $$flag_ptr = 3;
             
-            print "<h4>$user_name, $file_name</h4><br/>";
-            my $out3 = `cd "$upload_dir" && ls -a`;
+            my $out3 = `cd "$upload_dir$user_name$img_dir" && ls -a`;
             print "<h4>$out3</h4></br>";
             
             return;
