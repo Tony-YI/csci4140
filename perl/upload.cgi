@@ -77,7 +77,6 @@ if($name && $ext)
             $description =~ s/\"/&quot;/g;
             $description =~ s/\'/&#39;/g;
             
-            print $CGI_o->upload("photo");
             print <<__html_file__;
             <title>Duplication Handling Interface</title>
             <form action="duplicate.cgi" method="POST">
