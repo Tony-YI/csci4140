@@ -100,7 +100,7 @@ print "<h4>$out3</h4></br>";
 
 print <<__html_file__;
         <br/><a href="file_picking.html">Back to File Picking Interface</a>
-        <br/><a href="display_panel.html">Back to Display Panel</a>
+        <br/><br/><a href="display_panel.html">Back to Display Panel</a>
     </body>
 </html>
 __html_file__
