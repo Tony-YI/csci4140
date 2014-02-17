@@ -5,7 +5,7 @@
 
 use DBI;	#use DataBase Interface
 use CGI;
-use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
+#use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 use strict;
 
 ###################################################

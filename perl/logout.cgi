@@ -10,7 +10,7 @@ use strict;
 use CGI;
 use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 
-my $CGI_o = CGI->new();
+my $CGI_o = CGI->new;
 
 print "$CGI_o->header()";
 print <<__html_file__;
