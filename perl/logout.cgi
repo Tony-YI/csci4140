@@ -1,10 +1,10 @@
 #!/usr/bin/perl -w
 
 ###	This .cgi file is to log the user out.	###
-###	The logout action should remove the	###
+###	The logout action should remove the     ###
 ###	corresponding login session information	###
 ###	from both the client and the system of	###
-###	the corresponding browser instance.	###
+###	the corresponding browser instance.     ###
 
 use strict;
 use CGI;
