@@ -8,7 +8,8 @@ require "./lib.pl";
 
 my $CGI_o = CGI->new();
 
-my $old_CGI_o = CGI->new($CGI_o->param("old_CGI_o"));   #old query
+my $old_CGI_o = $CGI_o->param("old_CGI_o");   #old query
+$old_CGI_o = CGI->new($old_CGI_o);
 my $user_name = $CGI_o->param("user_name");
 
 my $file_name = $old_CGI_o->param("photo");
