@@ -102,6 +102,9 @@ print "<h4>$out3</h4></br>";
 $out3 = `cd "$upload_dir$user_name$img_dir" && ls -a`;
 print "<h4>$out3</h4></br>";
 
+$out3 = `cd "$upload_dir$user_name$shortcut_dir" && ls -a`;
+print "<h4>$out3</h4></br>";
+
 print <<__html_file__;
         <br/><a href="display_panel.html">Back to Display Panel</a>
     </body>

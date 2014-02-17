@@ -187,9 +187,12 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     my $buffer = "";
     
     binmode($file_name);
-    
-    #my $out3 = `cd "$upload_dir$user_name$img_dir" && ls -a`;
-    #print "<h4>$out3</h4></br>";
+    if(my $len = (-s "$file_name") gt 1024*1024))
+    {
+        $$flag_ptr = 3;
+        print ""
+        return
+    }
     
     while($ret = read($$CGI_o_ptr->upload("photo"), $buffer, 1024))
     {
@@ -200,7 +203,6 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
             close(OUTFILE);
             `rm "$upload_dir$user_name$img_dir/$file_name"`;
             $$flag_ptr = 3;
-            
             return;
         }
     }
