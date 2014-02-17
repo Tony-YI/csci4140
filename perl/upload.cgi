@@ -57,7 +57,7 @@ if($name && $ext)
         upload_pic(\$CGI_o, $user_name, $file_name, $description, \$flag);
         if($flag eq 1)    #upload sucessfully
         {
-            
+            print "<br/><p>name = $name, ext = $ext</p>";
         }
         elsif($flag eq 2)   #file existed
         {
