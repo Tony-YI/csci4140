@@ -229,7 +229,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     #generate a shortcut, convert only when larger than 100x100
     `convert "$upload_dir$user_name$img_dir/$file_name" -resize 100x100\> "$upload_dir$user_name$shortcut_dir/$file_name"`;
     
-    #TODO:convert description into viewable
+    #convert description into viewable
     $_ = $description;
     $description =~ s/&/&amp;/g;
     $description =~ s/</&lt;/g;
@@ -242,10 +242,6 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     my $shortcut_path = "$upload_dir$user_name$shortcut_dir/$file_name";
     $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$file_name', '$totalBytes', 0, '$description', '$img_path', '$shortcut_path');";  #remember the ' ' of SQL
     db_execute($query);
-    
-    $query = "SELECT img_description FROM file WHERE 1;";
-    db_execute($query, \@temp_array, \$row_len);
-    print "@temp_array";
     
     $$flag_ptr = 1;
 }
