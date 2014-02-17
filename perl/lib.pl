@@ -173,8 +173,6 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     
     ###TODO:check file size in an easy way...no can do
     
-    ###TODO: indentify the file
-    
     ###TODO:check file existence
     
     #file not exist, upload picture
@@ -206,7 +204,9 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     
     close(OUTFILE); #file uploaded
     
-    
+    ###TODO: indentify the file
+    my $identity = `identify "$upload_dir$user_name$img_dir/$file_name"`;
+    print "<br/><h2>#identity</h2><br/>";
     ###TODO: generate a shortcut
     
     ###TODO: upload description and other attributes to the database
