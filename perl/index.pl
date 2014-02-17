@@ -14,6 +14,7 @@ print <<__html_file__; #here document
 <html>
     <body>
         <a href="reinit.html">Re-Initialization</a></br>
+        <br /><a href="login.html">LogIn</a>
         <h2>$user_name</h2></br>
         <h2>$session_id</h2>
     </body>

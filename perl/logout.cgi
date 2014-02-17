@@ -10,7 +10,7 @@ use strict;
 use CGI;
 use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 
-my $CGI_O = CGI->new();
+my $CGI_o = CGI->new();
 
 print "$CGI_o->header()";
 print <<__html_file__;
@@ -18,6 +18,7 @@ print <<__html_file__;
 	<body>
 		<title>LogOut</title>
 		<p>LogOut</p>
+        <a href="login.html">LogIn</a>
 	</body>
 </html>
 __html_file__
