@@ -46,7 +46,7 @@ sub db_disconnect
 	$db_handler->disconnect() or die $DBI::errstr;
 }
 
-sub db_execute	#usage: query($query, \@result, \$row_len)
+sub db_execute	#usage: db_execute($query, \@result, \$row_len) or db_execute($query)
                 #parameter ($query) is the SQL query
                 #parameter (\@result) is the array used to store the data get from database
                 #parameter (\$row_len) records the number of attributes in one row
@@ -160,8 +160,6 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     my $description = shift @_;
     my $flag_ptr = shift @_;
     
-    print "`$CGI_o_ptr` `$user_name` `$file_name` `$description` `$flag_ptr`";
-    
     if(!(-d "$upload_dir$user_name$img_dir")) #dir not found
     {
         #create dir
@@ -176,6 +174,14 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     ###TODO:check file size in an easy way...no can do
     
     ###TODO:check file existence
+    my @result = ();
+    my $row_len = "";
+    my $query = "SELECT file_name FROM file WHERE file_name='$file_name'";
+    db_execute($query, \@result, \$row_len);
+    if(@result) #exist
+    {
+        print "FILE EXIST";
+    }
     
     #file not exist, upload picture
     if(!open(OUTFILE, ">", "$upload_dir$user_name$img_dir/$file_name"))    #can't open file for writing
@@ -227,7 +233,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     #upload description and other attributes to the database
     my $img_path = "$upload_dir$user_name$img_dir/$file_name";
     my $shortcut_path = "$upload_dir$user_name$shortcut_dir/$file_name";
-    my $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$file_name', '$totalBytes', 0, '$description', '$img_path', '$shortcut_path');";
+    $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$file_name', '$totalBytes', 0, '$description', '$img_path', '$shortcut_path');";  #remember the ' ' of SQL
     db_execute($query);
     
     $$flag_ptr = 1;
