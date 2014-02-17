@@ -8,10 +8,12 @@ require "./lib.pl";
 
 my $CGI_o = CGI->new();
 
-my $user_name = $CGI_o->param("user_name");
-my $file_name = $CGI_o->param("file_name");
-my $description = $CGI_o->param("description");
 my $old_CGI_o = $CGI_o->param("old_CGI_o");
+my $user_name = $CGI_o->param("user_name");
+
+my $file_name = $old_CGI_o->param("photo");
+my $description = $old_CGI_o->param("description");
+
 
 print $CGI_o->header();
 print <<__html_file__;

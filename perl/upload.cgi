@@ -74,10 +74,8 @@ if($name && $ext)
                 <input type="radio" name="duplicate" value="rename"/>Rename the uploading file. New filename
                 <input type="text" name="new_filename" maxlength="255" size="15"/><br/><br/>
                 <input type="radio" name="duplicate" value="cancle"/>Cancle the current upload.<br/><br/>
-                <input type="hidden" name="user_name" value="$user_name"/>
-                <input type="hidden" name="file_name" value="$file_name"/>
-                <input type="hidden" name="description" value="$description"/>
-                <input type="hidden" name="old_CGI_o" value="$CGI_o"/>
+                <input type="hidden" name="user_name" value="$user_name"/>  #############################################
+                <input type="hidden" name="old_CGI_o" value="$CGI_o"/>  #############################################
                 <input type="submit" value="Proceed"/>
             </form>
 __html_file__
