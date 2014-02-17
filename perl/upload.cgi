@@ -57,41 +57,36 @@ if($name && $ext)
         upload_pic(\$CGI_o, $user_name, $file_name, $description, \$flag);
         if($flag eq 1)    #upload sucessfully
         {
-            print "<br/><p>name = $name, ext = $ext</p>";
+            print "<title>Upload Successed</title><p>Upload Successed.<br/><br/><a href="file_picking.html">Back to File Picking Interface</a></p><br/>";
         }
         elsif($flag eq 2)   #file existed
         {
-            print "<br/><p>name = $name, ext = $ext</p>";
         }
         elsif($flag eq 3)   #file size too large
         {
             print "<title>Upload Failed</title><p>Upload Failed.<br/>The maximun file size of each photo is 1 MB.</p>";
-            print "<br/><p>name = $name, ext = $ext</p>";
         }
         elsif($flag eq 4)   #can't open dir
         {
             print "<title>Upload Failed</title><p>Upload Failed.<br/>Can't open file for writing.</p>";
-            print "<br/><p>name = $name, ext = $ext</p>";
         }
         else    #unknown error
         {
             print "<title>Upload Failed</title><p>Upload Failed.<br/>Unknown ERROR.</p>";
-            print "<br/><p>name = $name, ext = $ext</p>";
         }
     }
     else    #invalid extension
     {
         print "<title>Upload Failed</title><p>Upload Failed.<br/>Only [.jpg .jpeg .png .gif] file is allowed.</p>";
-        print "<br/><p>name = $name, ext = $ext</p>";
     }
 }
 else    #ivalid file name and file extension
 {
-    print "<title>Upload Failed</title><p>Upload Failed.<br/>You file name is invalid.</p>";
-    print "<br/><p>name = $name, ext = $ext</p>";
+    print "<title>Upload Failed</title><p>Upload Failed.<br/>You file name is invalid.</p>";;
 }
 
 print <<__html_file__;
+        <a href="display_panel.html">Back to Display Panel</a>
     </body>
 </html>
 __html_file__

@@ -188,8 +188,8 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     
     binmode($file_name);
     
-    my $out3 = `cd "$upload_dir$user_name$img_dir" && ls -a`;
-    print "<h4>$out3</h4></br>";
+    #my $out3 = `cd "$upload_dir$user_name$img_dir" && ls -a`;
+    #print "<h4>$out3</h4></br>";
     
     while($ret = read($$CGI_o_ptr->upload("photo"), $buffer, 1024))
     {
@@ -200,9 +200,6 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
             close(OUTFILE);
             `rm "$upload_dir$user_name$img_dir/$file_name"`;
             $$flag_ptr = 3;
-            
-            my $out3 = `cd "$upload_dir$user_name$img_dir" && ls -a`;
-            print "<h4>$out3</h4></br>";
             
             return;
         }
@@ -216,9 +213,6 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     ###TODO: upload description and other attributes to the database
     
     $$flag_ptr = 1;
-
-    my $out3 = `cd "$upload_dir$user_name$img_dir" && ls -a`;
-    print "<h4>$out3</h4></br>";
 }
 
 return 1;	#for header file, it must return 1, otherwise perl will exit with default value 0
