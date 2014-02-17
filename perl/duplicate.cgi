@@ -17,10 +17,12 @@ print $CGI_o->header();
 
 print "$user_name $file_name $description<br/>";
 
+###TODO: get back the uploaded file. how? old query? or sotre in the tmp file first?
+###########################
 my $buffer;
 my $ret = read($CGI_o->upload("file_name"), $buffer, 1024);
 print "<br/>ret = $ret<br/>";
-
+###########################
 print <<__html_file__;
 <html>
     <body>
