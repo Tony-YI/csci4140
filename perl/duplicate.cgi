@@ -16,6 +16,10 @@ my $description = $CGI_o->param("description");
 print $CGI_o->header();
 
 print "$user_name $file_name $description<br/>";
+
+my $ret = read($CGI_o->upload("photo"), $buffer, 1024);
+print "<br/>ret = $ret<br/>";
+
 print <<__html_file__;
 <html>
     <body>
