@@ -58,7 +58,7 @@ if($name && $ext)
     if($ext eq "png" || $ext eq "jpg" || $ext eq "jpeg" || $ext eq "gif")
     {
         #check file size, check file existence and upload photo/description
-        my $flag;   #1 is sucessful, 2 is file exited, 3 is file too large, 4 is can't open dir
+        my $flag;   #1 is sucessful, 2 is file exited, 3 is file too large, 4 is can't open dir, 5 is invalid extension
         upload_pic(\$CGI_o, $user_name, $file_name, $description, \$flag);
         if($flag eq 1)    #upload sucessfully
         {
@@ -74,6 +74,10 @@ if($name && $ext)
         elsif($flag eq 4)   #can't open dir
         {
             print "<title>Upload Failed</title><p>Upload Failed.<br/>Can't open file for writing.</p>";
+        }
+        elsif($flag eq 5)   #invalid extension
+        {
+            print "<title>Upload Failed</title><p>Upload Failed.<br/>Only [.jpg .jpeg .png .gif] file is allowed.</p>";
         }
         else    #unknown error
         {

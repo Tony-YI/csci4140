@@ -152,7 +152,7 @@ my $upload_dir = $ENV{"OPENSHIFT_DATA_DIR"};    #equals to $data_dir
 sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, create it
                 #usage: upload_pic(\$CGI_o, $user_name, $file_name, $description, \$flag)
                 #run this every time when upload
-                #$flag = 1 if sucessful, 2 if file exited, 3 if file too large, 4 if can't open dir
+                #$flag = 1 if sucessful, 2 if file exited, 3 if file too large, 4 if can't open dir, 5 if invalid extension
 {
     my $CGI_o_ptr = shift @_;
     my $user_name = shift @_;
@@ -204,9 +204,17 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     
     close(OUTFILE); #file uploaded
     
-    ###TODO: indentify the file
+    #indentify the file
     my $identity = `identify -verbose "$upload_dir$user_name$img_dir/$file_name" | grep Format:`;
-    print "<br/><h2>$identity</h2><br/>";
+    my @temp_array = split(/\n/, $identity);
+    print "@temp_array";
+    $_ = $identity;
+    if(!/JPEG/ && !/GIF/ && !/PNG/)
+    {
+        #not match
+        $$flag_ptr = 5;
+        return;
+    }
     ###TODO: generate a shortcut
     
     ###TODO: upload description and other attributes to the database
