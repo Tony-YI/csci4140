@@ -69,6 +69,14 @@ if($name && $ext)
         {
             #############################################
             #############################################
+            #convert description into viewable
+            $_ = $description;
+            $description =~ s/&/&amp;/g;
+            $description =~ s/</&lt;/g;
+            $description =~ s/>/&gt;/g;
+            $description =~ s/\"/&quot;/g;
+            $description =~ s/\'/&#39;/g;
+            
             print <<__html_file__;
             <title>Duplication Handling Interface</title>
             <form action="duplicate.cgi" method="POST">
@@ -78,7 +86,7 @@ if($name && $ext)
                 <input type="radio" name="duplicate" value="cancle"/>Cancle the current upload.<br/><br/>
                 <input type="hidden" name="user_name" value="$user_name"/>
                 <input type="hidden" name="file_name" value="$file_name"/>
-                <input type="hidden" name="description" value=$description/>
+                <input type="hidden" name="description" value="$description"/>
                 <input type="submit" value="Proceed"/>
             </form>
 __html_file__
