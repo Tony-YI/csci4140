@@ -45,7 +45,7 @@ if(!$file_name) #no file selected
 #user selected a file
 $file_name =~ tr/A-Z/a-z/;  #convert uppercase to lowercase
 $_ = $file_name;
-my ($name, $ext) = /([a-z0-9-_]+).([a-z0-9-_]+)/;
+my ($name, $ext) = /([a-z0-9-_]+)\.([a-z0-9-_]+)/;
 
 #check whether the file name and file ext is valided
 if($name && $ext)
