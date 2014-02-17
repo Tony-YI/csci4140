@@ -180,7 +180,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     db_execute($query, \@result, \$row_len);
     if(@result) #exist
     {
-        print "FILE EXIST";
+        print "@result, FILE EXIST";
     }
     
     #file not exist, upload picture
