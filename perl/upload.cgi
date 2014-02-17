@@ -53,19 +53,36 @@ if($name && $ext)
     if($ext eq "png" || $ext eq "jpg" || $ext eq "jpeg" || $ext eq "gif")
     {
         #check file size, check file existence and upload photo/description
+        my $flag;   #1 is sucessful, 2 is file exited, 3 is file too large, 4 is can't open dir
+        upload_pic(\$CGI_o, $user_name, $file_name, $description, \$flag)
+        if($flag eq 1)    #upload sucessfully
+        {
+            
+        }
+        elsif($flag eq 2)   #file existed
+        {
+        }
+        elsif($flag eq 3)   #file size too large
+        {
+            print "<title>Upload Failed</title><p>Upload Failed.<br/>The maximun file size of each photo is 1 MB.</p>";
+        }
+        elsif($flag eq 4)   #can't open dir
+        {
+            print "<title>Upload Failed</title><p>Upload Failed.<br/>Can't open file for writing.</p>";
+        }
+        else    #unknown error
+        {
+            print "<title>Upload Failed</title><p>Upload Failed.<br/>Unknown ERROR.</p>";
+        }
     }
     else    #invalid extension
     {
-        print "<title>Upload Failed</title><p>Upload Failed.<br/>Only [.jpg .jpeg .png .gif] file is allowed.</p></body></html>";
-        
-        exit 0;
+        print "<title>Upload Failed</title><p>Upload Failed.<br/>Only [.jpg .jpeg .png .gif] file is allowed.</p>";
     }
 }
 else    #ivalid file name and file extension
 {
-    print "<title>Upload Failed</title><p>Upload Failed.<br/>You file name is invalid.</p></body></html>";
-    
-    exit 0;
+    print "<title>Upload Failed</title><p>Upload Failed.<br/>You file name is invalid.</p>";
 }
 
 print <<__html_file__;

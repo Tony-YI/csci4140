@@ -149,45 +149,61 @@ sub clean_storage
 
 my $upload_dir = $ENV{"OPENSHIFT_DATA_DIR"};    #equals to $data_dir
 
-
 sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, create it
-                #usage: upload_pic($user_name, $file_name, $description)
+                #usage: upload_pic(\$CGI_o, $user_name, $file_name, $description, \$flag)
                 #run this every time when upload
+                #$flag = 1 if sucessful, 2 if file exited, 3 if file too large, 4 if can't open dir
 {
+    my $CGI_o_ptr = shift @_;
     my $user_name = shift @_;
     my $file_name = shift @_;
     my $description = shift @_;
+    my $flag_ptr = shift @_;
     
-    if(!(-d "$upload_dir$user_name$img_dir")) #dir not found
+    if(!(-d "$upload_dir$user_name$img_dir") || !(-d "$upload_dir$user_name$shortcut_dir")) #dir not found
     {
-        #print "create dir and upload pic<br/>";
         #create dir
-        `cd "$upload_dir" && mkdir "$user_name$img_dir"`;
-        
-        #upload pictur
-    }
-    else
-    {
-        #print "upload pic<br/>";
-        #upload picture
-        
+        `cd "$upload_dir" && mkdir "$user_name$img_dir && mkdir "$user_name$shortcut_dir"`;
     }
     
-    if(!(-d "$upload_dir$user_name$shortcut_dir"))    #dir not found
+    ###TODO:check file existence
+    
+    #file not exist, upload picture
+    if(!open(OUTFILE, "> $upload_dir$user_name$img_dir/$file_name"))    #can't open file for writing
     {
-        #print "create dir and upload pic<br/>";
-        #create dir
-        `cd "$upload_dir" && mkdir "$user_name$shortcut_dir"`;
-        
-        #upload picture
-    }
-    else
-    {
-        #print "upload pic<br/>";
-        #upload picture
-        
+        $$flag_ptr = 4;
+        return;
     }
     
+    #open file sucessfully
+    #upload file
+    my $ret = 0;
+    my $totalBytes = 0;
+    my $buffer = "";
+    
+    binmode($file_name);
+    
+    while($ret = read($$CGI_o_ptr->upload("photo"), $buffer, 1024))
+    {
+        print OUTFILE $buffer;
+        $totalBytes += $ret;
+        if($totalBytes > 1024*1024) #1 MB
+        {
+            close(OUTFILE);
+            `rm "$upload_dir$user_name$img_dir/$file_name"`;
+            $$flag_ptr = 3;
+            return;
+        }
+    }
+    
+    close(OUTFILE); #file uploaded
+    
+    ###TODO: generate a shortcut
+    
+    ###TODO: upload description and other attributes to the database
+    
+    $$flag_ptr = 1;
+
     #my $out3 = `cd "$data_dir" && ls -a`;
     #print "<h4>$out3</h4></br>";
 }
