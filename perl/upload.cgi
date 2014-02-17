@@ -78,6 +78,7 @@ if($name && $ext)
     else    #invalid extension
     {
         print "<title>Upload Failed</title><p>Upload Failed.<br/>Only [.jpg .jpeg .png .gif] file is allowed.</p>";
+        print "<br/><p>name = $name, ext = $ext</p>";
     }
 }
 else    #ivalid file name and file extension
