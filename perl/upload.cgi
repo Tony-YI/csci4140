@@ -67,6 +67,7 @@ if($name && $ext)
         }
         elsif($flag eq 2)   #file existed
         {
+            my $CGI_o_ptr = "\$CGI_o";
             print <<__html_file__;
             <title>Duplication Handling Interface</title>
             <form action="duplicate.cgi" method="POST">
@@ -77,7 +78,7 @@ if($name && $ext)
                 <input type="hidden" name="user_name" value="$user_name"/>
                 <input type="hidden" name="file_name" value="$file_name"/>
                 <input type="hidden" name="description" value="$description"/>
-                <input type="hidden" name="CGI_o_ptr" value="\$CGI_o"/>
+                <input type="hidden" name="CGI_o_ptr" value="$CGI_o_ptr"/>
                 <input type="submit" value="Proceed"/>
             </form>
 __html_file__

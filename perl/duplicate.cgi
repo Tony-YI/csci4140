@@ -21,6 +21,7 @@ print <<__html_file__;
         "$file_name"<br/>
         "$description"<br/>
         "$CGI_o_ptr"<br>
+        "$$CGI_o_ptr"<br>
     </body>
 </html>
 __html_file__
