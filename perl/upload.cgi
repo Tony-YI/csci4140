@@ -56,7 +56,7 @@ if($name && $ext)
     }
     else    #invalid extension
     {
-        print "<title>Upload Failed</title><p>Upload Failed.<br/>Only [.jpg .jpeg .png .gif] file is allowed.</p></body></html>"
+        print "<title>Upload Failed</title><p>Upload Failed.<br/>Only [.jpg .jpeg .png .gif] file is allowed.</p></body></html>";
         
         exit 0;
     }
