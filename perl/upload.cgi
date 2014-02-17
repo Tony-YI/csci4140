@@ -45,7 +45,7 @@ if(!$file_name) #no file selected
 #user selected a file
 $file_name =~ tr/A-Z/a-z/;  #convert uppercase to lowercase
 $_ = $file_name;
-my ($name, $ext) = /([a-z0-9-_]+)\.([a-z0-9-_]+)/;
+my ($name, $ext) = /([a-z0-9_]+)\.([a-z0-9_]+)/;
 
 #check whether the file name and file ext is valided
 if($name && $ext)
@@ -61,18 +61,22 @@ if($name && $ext)
         }
         elsif($flag eq 2)   #file existed
         {
+            print "<br/><p>name = $name, ext = $ext</p>";
         }
         elsif($flag eq 3)   #file size too large
         {
             print "<title>Upload Failed</title><p>Upload Failed.<br/>The maximun file size of each photo is 1 MB.</p>";
+            print "<br/><p>name = $name, ext = $ext</p>";
         }
         elsif($flag eq 4)   #can't open dir
         {
             print "<title>Upload Failed</title><p>Upload Failed.<br/>Can't open file for writing.</p>";
+            print "<br/><p>name = $name, ext = $ext</p>";
         }
         else    #unknown error
         {
             print "<title>Upload Failed</title><p>Upload Failed.<br/>Unknown ERROR.</p>";
+            print "<br/><p>name = $name, ext = $ext</p>";
         }
     }
     else    #invalid extension
@@ -84,6 +88,7 @@ if($name && $ext)
 else    #ivalid file name and file extension
 {
     print "<title>Upload Failed</title><p>Upload Failed.<br/>You file name is invalid.</p>";
+    print "<br/><p>name = $name, ext = $ext</p>";
 }
 
 print <<__html_file__;

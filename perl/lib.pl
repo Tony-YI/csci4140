@@ -188,15 +188,15 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     
     binmode($file_name);
     
+    my $out3 = `cd "$upload_dir$user_name$img_dir" && ls -a`;
+    print "<h4>$out3</h4></br>";
+    
     while($ret = read($$CGI_o_ptr->upload("photo"), $buffer, 1024))
     {
         print OUTFILE $buffer;
         $totalBytes += $ret;
         if($totalBytes > 1024*1024) #1 MB
         {
-            my $out3 = `cd "$upload_dir$user_name$img_dir" && ls -a`;
-            print "<h4>$out3</h4></br>";
-            
             close(OUTFILE);
             `rm "$upload_dir$user_name$img_dir/$file_name"`;
             $$flag_ptr = 3;
@@ -210,13 +210,14 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     
     close(OUTFILE); #file uploaded
     
+    
     ###TODO: generate a shortcut
     
     ###TODO: upload description and other attributes to the database
     
     $$flag_ptr = 1;
 
-    my $out3 = `cd "$upload_dir" && ls -a`;
+    my $out3 = `cd "$upload_dir$user_name$img_dir" && ls -a`;
     print "<h4>$out3</h4></br>";
 }
 
