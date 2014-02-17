@@ -37,22 +37,22 @@ sub reinit
 __html_file__
     
     db_drop();  #drop the MYSQL database
-    print "Drop database...Done</br>";
+    print "Drop database...Done<br />";
     
     db_create();    #create a database name as APP_NAME
-    print "Create database...Done</br>";
+    print "Create database...Done<br />";
     
     db_create_table();  #create all tables we need
-    print "Create Table...Done</br>";
+    print "Create Table...Done<br />";
     
     db_init();   #initialize the tables
-    print "Initialize Table...Done</br>";
+    print "Initialize Table...Done<br />";
     
     clean_storage();
-    print "Clean storage...Done</br>";
+    print "Clean storage...Done<br />";
         
     print <<__html_file__;
-        Task Finshed!</br>
+        <br />Task Finshed!<br />
         <a href="login.cgi">Bcak to Login Interface</a>
         </p>
     </body>
