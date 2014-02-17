@@ -173,7 +173,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     
     #check file size
     my $len = -s "$file_name";
-    if( $len gt 1024*1024)
+    if( $len > 1024*1024)
     {
         $$flag_ptr = 3;
         print "<h1>$len</h1></br>";
@@ -204,7 +204,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         {
             close(OUTFILE);
             `rm "$upload_dir$user_name$img_dir/$file_name"`;
-            $$flag_ptr = 5;
+            $$flag_ptr = 3;
             return;
         }
     }
