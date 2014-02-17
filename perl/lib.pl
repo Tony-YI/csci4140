@@ -207,15 +207,18 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     #indentify the file
     my $identity = `identify -verbose "$upload_dir$user_name$img_dir/$file_name" | grep Format:`;
     my @temp_array = split(/\n/, $identity);
-    print "@temp_array";
+    
     $_ = $identity;
     if(!/JPEG/ && !/GIF/ && !/PNG/)
     {
         #not match
+        `rm "$upload_dir$user_name$img_dir/$file_name"`;
         $$flag_ptr = 5;
         return;
     }
-    ###TODO: generate a shortcut
+    
+    #generate a shortcut, convert only when larger than 100x100
+    `convert "$upload_dir$user_name$img_dir/$file_name" -resize 100x100\> "$upload_dir$user_name$shortcut_dir/$file_name"`;
     
     ###TODO: upload description and other attributes to the database
     
