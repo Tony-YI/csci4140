@@ -14,6 +14,14 @@ my $description = $CGI_o->param("description");
 
 
 print $CGI_o->header();
+
+$_ = $description;
+$description =~ s/&/&amp;/g;
+$description =~ s/</&lt;/g;
+$description =~ s/>/&gt;/g;
+$description =~ s/\"/&quot;/g;
+$description =~ s/\'/&#39;/g;
+
 print "$user_name $file_name $description\n";
 print <<__html_file__;
 <html>
