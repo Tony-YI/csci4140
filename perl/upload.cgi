@@ -66,6 +66,15 @@ if($name && $ext)
         }
         elsif($flag eq 2)   #file existed
         {
+            print <<__html_file__;
+            <title>Duplication Handling Interface</title>
+            <form action="duplicate.cgi" method="POST">
+                <input type="radio" name="duplicate" value="overwrite"/>Overwrite the existing file "$file_name".<br/><br/>
+                <input type="radio" name="duplicate" value="rename"/>Rename the uploading file. New filename
+                <input type="text" name="new_filename" maxlength="255" size="15"/><br/><br/>
+                <input type="radio" name="duplicate" value="cancle"/>Cancle the current upload.<br/><br/>
+                <input type="submit" value="Proceed"/>
+            </form>
         }
         elsif($flag eq 3)   #file size too large
         {

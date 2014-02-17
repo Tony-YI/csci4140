@@ -181,7 +181,8 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     if(@result) #exist
     {
         ###TODO: Duplication handle interface
-        print "@result, FILE EXIST";
+        $$flag_ptr = 2;
+        return;
     }
     
     #file not exist, upload picture
@@ -238,6 +239,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     $description =~ s/\'/&#39;/g;
     
     #upload description and other attributes to the database
+    ###TODO: add time stamp
     my $img_path = "$upload_dir$user_name$img_dir/$file_name";
     my $shortcut_path = "$upload_dir$user_name$shortcut_dir/$file_name";
     $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$file_name', '$totalBytes', 0, '$description', '$img_path', '$shortcut_path');";  #remember the ' ' of SQL
