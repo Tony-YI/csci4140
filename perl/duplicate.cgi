@@ -61,7 +61,7 @@ if($duplicate_option eq "overwrite")
     <br/><br/><a href="display_panel.html">Back to Display Panel</a>
 __html_file__
 }
-elsif($duplicate_option = "rename")
+elsif($duplicate_option eq "rename")
 {
     #check $new_file_name validation and no change ext
     $_ = $old_file_name;
