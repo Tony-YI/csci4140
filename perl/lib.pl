@@ -80,7 +80,7 @@ sub db_create_table   #create all tables we need
     $query = "CREATE TABLE session (user_name CHAR(30), session_id CHAR(255), PRIMARY KEY(user_name, session_id));";
     db_execute($query);
     
-    $query = "CREATE TABLE file (user_name CHAR(30), file_name CHAR(255), file_size INT, upload_time INT, img_description CHAR(50), img_path CHAR(255), shortcut_path CHAR(255), PRIMARY KEY(user_name, file_name));";
+    $query = "CREATE TABLE file (user_name CHAR(30), file_name CHAR(255), file_size INT, upload_time TIMESTAMP(14), img_description CHAR(50), img_path CHAR(255), shortcut_path CHAR(255), PRIMARY KEY(user_name, file_name));";
     db_execute($query);
 }
 
