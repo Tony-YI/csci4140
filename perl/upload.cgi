@@ -127,7 +127,7 @@ my $temp_dir = "temp";  #GLOBAL VARIABLE
 my $out3 = `cd "$upload_dir" && ls -A`;
 print "<h4>'upload_dir' = $out3</h4></br>";
 
-$out3 = `cd "$upload_dir$user_name$temp_dir" && ls -A`;
+$out3 = `cd "$upload_dir$temp_dir" && ls -A`;
 print "<h4>'temp_dir' = $out3</h4></br>";
 
 $out3 = `cd "$upload_dir$user_name$img_dir" && ls -A`;

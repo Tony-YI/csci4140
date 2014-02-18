@@ -171,16 +171,16 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         #create shortcut dir
         `cd "$upload_dir"&& mkdir "$user_name$shortcut_dir"`;
     }
-    if(!(-d "$upload_dir$user_name$temp_dir"))
+    if(!(-d "$upload_dir$temp_dir"))
     {
         #create temp dir
-        `cd "$upload_dir"&& mkdir "$user_name$temp_dir"`;
+        `cd "$upload_dir"&& mkdir "$temp_dir"`;
     }
     
     ###TODO:check file size in an easy way...no can do
     
     #upload picture to $temp_dir
-    if(!open(OUTFILE, ">", "$upload_dir$user_name$temp_dir/$file_name"))    #can't open file for writing
+    if(!open(OUTFILE, ">", "$upload_dir$temp_dir/$file_name"))    #can't open file for writing
     {
         $$flag_ptr = 4;
         return;
@@ -200,7 +200,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         if($totalBytes > 1024*1024) #1 MB, check file size
         {
             close(OUTFILE);
-            `rm "$upload_dir$user_name$temp_dir/$file_name"`;
+            `rm "$upload_dir$temp_dir/$file_name"`;
             $$flag_ptr = 3;
             return;
         }
@@ -221,20 +221,20 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     }
     
     #indentify the file
-    my $identity = `identify -verbose "$upload_dir$user_name$temp_dir/$file_name" | grep Format:`;
+    my $identity = `identify -verbose "$upload_dir$temp_dir/$file_name" | grep Format:`;
     my @temp_array = split(/\n/, $identity);
     
     $_ = $identity;
     if(!/JPEG/ && !/GIF/ && !/PNG/)
     {
         #not match
-        `rm "$upload_dir$user_name$temp_dir/$file_name"`;
+        `rm "$upload_dir$temp_dir/$file_name"`;
         $$flag_ptr = 5;
         return;
     }
     
     #move the temp file to $img_dir
-    `mv "$upload_dir$user_name$temp_dir/$file_name" $upload_dir$user_name$img_dir/$file_name"`;
+    `mv "$upload_dir$temp_dir/$file_name" $upload_dir$user_name$img_dir/$file_name"`;
     #generate a shortcut, convert only when larger than 100x100
     `convert "$upload_dir$user_name$img_dir/$file_name" -resize 100x100\> "$upload_dir$user_name$shortcut_dir/$file_name"`;
     
