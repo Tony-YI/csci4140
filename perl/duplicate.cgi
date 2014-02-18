@@ -81,7 +81,7 @@ elsif($duplicate_option eq "rename")
         my $temp_dir;
         get_dir(\$upload_dir, \$temp_dir);
         
-        if(!(-e "$upload_dir$user_name$temp_dir/$new_file_name"))    #$new_file_name not exists in dir
+        if(!(-e "$upload_dir$user_name$img_dir/$new_file_name"))    #$new_file_name not exists in dir
         {
             duplication_upload_pic($user_name, $description, $old_file_name, $new_file_name);
             
