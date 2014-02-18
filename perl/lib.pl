@@ -199,7 +199,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     db_execute($query, \@result, \$row_len);
     if(@result || (-e "$upload_dir$user_name$img_dir/$file_name")) #exist
     {
-        ###TODO: Duplication handle interface, after all remove the file in $temp_dir
+        #Duplication handle interface, after all remove the file in $temp_dir
         $$flag_ptr = 2;
         return;
     }
@@ -222,19 +222,47 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
 ###################################################
 ###      Setup Duplication Upload Interface     ###
 ###################################################
-sub duplication_upload_pic  #usage: duplication_upload_pic($old_file_name, $new_file_name)  RENAME
-                            #   or: duplication_upload_pic($old_file_name)  OVERWRITE
+sub duplication_upload_pic  #usage: duplication_upload_pic($user_name, $description, $old_file_name, $new_file_name)  RENAME
+                            #   or: duplication_upload_pic($user_name, $description, $old_file_name)  OVERWRITE
 {
+    my $user_name = shift @_;
+    my $description = shift @_;
     my $old_file_name = shift @_;
     my $new_file_name = shift @_;
     
-    if($old_file_name && $new_file_name)    #RENAME
+    my $totalBytes = -s "$upload_dir$user_name$temp_dir/$old_file_name";    #get filesize of $old_file_name
+    
+    if($old_file_name && $new_file_name)    #RENAME and upload
     {
-        ###TODO: rename the uploading file and upload it
+        #fornow, the new_file_name file must not exist
+        #rename the uploading file and upload it
+        
+        #move the temp file to $img_dir
+        `mv "$upload_dir$user_name$temp_dir/$old_file_name" "$upload_dir$user_name$img_dir/$new_file_name"`;
+        #generate a shortcut, convert it to 100x100
+        `convert "$upload_dir$user_name$img_dir/$new_file_name" -resize 100x100 "$upload_dir$user_name$shortcut_dir/$new_file_name"`;
+        
+        #upload description and other attributes to the database
+        #add time stamp
+        my $img_path = "$upload_dir$user_name$img_dir/$new_file_name";
+        my $shortcut_path = "$upload_dir$user_name$shortcut_dir/$new_file_name";
+        $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$new_file_name', '$totalBytes', CURRENT_TIMESTAMP, '$description', '$img_path', '$shortcut_path');";  #remember the ' ' of SQL
+        db_execute($query);
     }
     elsif($old_file_name && !$new_file_name) #OVERWRITE
     {
-        ###TODO: delete existing file in database, img_dir and shortcut_dir and upload the new file
+        #update existing file record in database, file in img_dir and shortcut_dir
+        #move the temp file to $img_dir
+        `mv "$upload_dir$user_name$temp_dir/$old_file_name" "$upload_dir$user_name$img_dir/$old_file_name"`;
+        #generate a shortcut, convert it to 100x100
+        `convert "$upload_dir$user_name$img_dir/$old_file_name" -resize 100x100 "$upload_dir$user_name$shortcut_dir/$old_file_name"`;
+        
+        #upload description and other attributes to the database
+        #add time stamp
+        my $img_path = "$upload_dir$user_name$img_dir/$old_file_name";
+        my $shortcut_path = "$upload_dir$user_name$shortcut_dir/$old_file_name";
+        $query = "UPDATE file SET file_size='$totalBytes', upload_time=CURRENT_TIMESTAMP, img_description='$description' WHERE user_name='$user_name';";  #remember the ' ' of SQL
+        db_execute($query);
     }
 }
 

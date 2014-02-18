@@ -30,11 +30,12 @@ my $duplicate_option = $CGI_o->param("duplicate");
 #check option
 if($duplicate_option eq "overwrite")
 {
-    ###TODO: delete existing file in database, img_dir and shortcut_dir and upload the new file
+    duplication_upload_pic($user_name, $description, $old_file_name);
+    ###TODO: update existing file record in database, file in img_dir and shortcut_dir
 }
 elsif($duplicate_option = "rename")
 {
-    ###TODO: rename the uploading file and upload it
+    ###TODO: rename the uploading file and upload it if new_file_name file is not exst
     if($new_file_name)  #new_file_name not empty
 }
 elsif($duplicate_option = "cancel")
@@ -50,6 +51,7 @@ print $CGI_o->header();
 print <<__html_file__;
 <html>
     <body>
+    hahahaha
     </body>
 </html>
 __html_file__
