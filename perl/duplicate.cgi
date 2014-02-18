@@ -34,7 +34,7 @@ sub print_form
     <input type="radio" name="duplicate" value="overwrite"/>Overwrite the existing file "$old_file_name".<br/><br/>
     <input type="radio" name="duplicate" value="rename"/>Rename the uploading file. New filename
     <input type="text" name="new_filename" maxlength="255" size="35"/><br/><br/>
-    <input type="radio" name="duplicate" value="cancel"/>cancel the current upload.<br/><br/>
+    <input type="radio" name="duplicate" value="cancel"/>Cancel the current upload.<br/><br/>
     <input type="hidden" name="file_name" value="$old_file_name"/>
     <input type="hidden" name="description" value="$description"/>
     <input type="submit" value="Proceed"/>
@@ -122,7 +122,12 @@ elsif($duplicate_option eq "cancel")
     {
         `rm "$upload_dir$user_name$temp_dir/$old_file_name"`;
     }
-    print "<title>Duplication Handling Interface</title><p>Upload Canceled.</p><br/>";
+    print <<__html_file__;
+<title>Duplication Handling Interface</title>
+    <p>Upload Canceled.</p><br/>
+    <br/><a href="file_picking.html">Back to File Picking Interface</a>
+    <br/><br/><a href="display_panel.html">Back to Display Panel</a>
+__html_file__
 }
 else    #nothing has been selected
 {
