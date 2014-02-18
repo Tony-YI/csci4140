@@ -23,23 +23,44 @@ my $CGI_o = CGI->new();
 
 my $user_name = "admin";    ###TODO: get the $user_name from cookies
 my $old_file_name = $CGI_o->param("file_name");
-my $new_file_name = $CGI_o->param("new_filename");  ###TODO: check filename validation and no change ext
+my $new_file_name = $CGI_o->param("new_filename");
 my $description = $CGI_o->param("description");
 my $duplicate_option = $CGI_o->param("duplicate");
 
 #check option
 if($duplicate_option eq "overwrite")
 {
+    #update existing file record in database, file in img_dir and shortcut_dir
     duplication_upload_pic($user_name, $description, $old_file_name);
-    ###TODO: update existing file record in database, file in img_dir and shortcut_dir
 }
 elsif($duplicate_option = "rename")
 {
-    ###TODO: rename the uploading file and upload it if new_file_name file is not exst
-    if($new_file_name)  #new_file_name not empty
+    ###TODO: check $new_file_name validation and no change ext
+    $_ = $old_file_name;
+    my ($old_name, $ext) = /([a-z0-9_]+)\.([a-z0-9_]+)/;
+    $new_file_name =~ tr/A-Z/a-z/;  #convert uppercase to lowercase
+    my @new_name = split('\.', $new_file_name);
+    $_ = $new_name[0];
+    @new_name = /([a-z0-9_]+)/;
+    
+    #rename the uploading file and upload it if new_file_name file is not exst
+    if($new_name[0])   #$new_file_name is not empty or valid
     {
-        ###TODO: check whether $new_file_name is valid or not
-        duplication_upload_pic($user_name, $description, $old_file_name, $new_file_name);
+        $new_file_name = $new_name[0].'.'.$ext;
+        
+        ###TODO: check $new_file_existence
+        if()    #$new_file_name not exists in dir
+        {
+            duplication_upload_pic($user_name, $description, $old_file_name, $new_file_name);
+        }
+        else    ##$new_file_name exists in dir
+        {
+            
+        }
+    }
+    else    #$new_file_name is empty or invalid
+    {
+        
     }
 }
 elsif($duplicate_option = "cancel")
