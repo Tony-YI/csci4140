@@ -78,8 +78,8 @@ elsif($duplicate_option eq "rename")
         
         #check $new_file_existence
         my $upload_dir;
-        my $temp_dir;
-        get_dir(\$upload_dir, \$temp_dir);
+        my $img_dir;
+        get_img_dir(\$upload_dir, \$img_dir);
         
         if(!(-e "$upload_dir$user_name$img_dir/$new_file_name"))    #$new_file_name not exists in dir
         {
@@ -115,7 +115,7 @@ elsif($duplicate_option eq "cancel")
     #cancel upload process and delete the file in temp_dir
     my $upload_dir;
     my $temp_dir;
-    get_dir(\$upload_dir, \$temp_dir);
+    get_temp_dir(\$upload_dir, \$temp_dir);
     if(-e "$upload_dir$user_name$temp_dir/$old_file_name")
     {
         `rm "$upload_dir$user_name$temp_dir/$old_file_name"`;
