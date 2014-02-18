@@ -37,6 +37,9 @@ elsif($duplicate_option = "rename")
 {
     ###TODO: rename the uploading file and upload it if new_file_name file is not exst
     if($new_file_name)  #new_file_name not empty
+    {
+        
+    }
 }
 elsif($duplicate_option = "cancel")
 {
