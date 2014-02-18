@@ -246,7 +246,7 @@ sub duplication_upload_pic  #usage: duplication_upload_pic($user_name, $descript
         #add time stamp
         my $img_path = "$upload_dir$user_name$img_dir/$new_file_name";
         my $shortcut_path = "$upload_dir$user_name$shortcut_dir/$new_file_name";
-        $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$new_file_name', '$totalBytes', CURRENT_TIMESTAMP, '$description', '$img_path', '$shortcut_path');";  #remember the ' ' of SQL
+        my $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$new_file_name', '$totalBytes', CURRENT_TIMESTAMP, '$description', '$img_path', '$shortcut_path');";  #remember the ' ' of SQL
         db_execute($query);
     }
     elsif($old_file_name && !$new_file_name) #OVERWRITE
@@ -261,7 +261,7 @@ sub duplication_upload_pic  #usage: duplication_upload_pic($user_name, $descript
         #add time stamp
         my $img_path = "$upload_dir$user_name$img_dir/$old_file_name";
         my $shortcut_path = "$upload_dir$user_name$shortcut_dir/$old_file_name";
-        $query = "UPDATE file SET file_size='$totalBytes', upload_time=CURRENT_TIMESTAMP, img_description='$description' WHERE user_name='$user_name';";  #remember the ' ' of SQL
+        my $query = "UPDATE file SET file_size='$totalBytes', upload_time=CURRENT_TIMESTAMP, img_description='$description' WHERE user_name='$user_name';";  #remember the ' ' of SQL
         db_execute($query);
     }
 }
