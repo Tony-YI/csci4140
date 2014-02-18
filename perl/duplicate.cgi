@@ -64,11 +64,11 @@ elsif($duplicate_option = "rename")
 {
     #check $new_file_name validation and no change ext
     $_ = $old_file_name;
-    my ($old_name, $ext) = /([a-z0-9_- ]+)\.([a-z0-9_- ]+)/;
+    my ($old_name, $ext) = /([-a-z0-9_ ]+)\.([-a-z0-9_ ]+)/;
     $new_file_name =~ tr/A-Z/a-z/;  #convert uppercase to lowercase
     my @new_name = split('\.', $new_file_name);
     $_ = $new_name[0];
-    @new_name = /([a-z0-9_- ]+)/;
+    @new_name = /([-a-z0-9_ ]+)/;
     
     #rename the uploading file and upload it if new_file_name file is not existed
     if($new_name[0])   #$new_file_name is not empty and valid
