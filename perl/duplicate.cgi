@@ -88,14 +88,14 @@ elsif($duplicate_option = "rename")
 <html>
     <body>
         <title>Upload Successed</title>
-        <p>File '"$old_file_name"' Renamed to '"$new_file_name"' and Upload Successed.</p><br/>
+        <p>File "$old_file_name" Renamed to "$new_file_name" and Upload Successed.</p><br/>
         <br/><a href="file_picking.html">Back to File Picking Interface</a>
         <br/><br/><a href="display_panel.html">Back to Display Panel</a>
 __html_file__
         }
         else    #$new_file_name exists in dir
         {
-            print "<title>Duplication Handling Interface</title><p>New File Name '$new_file_name' existed.</p><br/>";
+            print "<title>Duplication Handling Interface</title><p>New File Name "$new_file_name" existed.</p><br/>";
             print_form();
         }
     }
@@ -119,6 +119,25 @@ else    #nothing has been selected
     print "<title>Duplication Handling Interface</title><p>You must select one of these options.</p><br/>";
     print_form();
 }
+
+#######################################################
+my $upload_dir = $ENV{"OPENSHIFT_DATA_DIR"};
+my $img_dir = "_img";  #GLOBAL VARIABLE
+my $shortcut_dir = "_shortcut";    #GLOBAL VARIABLE
+my $temp_dir = "_temp";  #GLOBAL VARIABLE
+
+my $out3 = `cd "$upload_dir" && ls -A`;
+print "<h4>'upload_dir' = $out3</h4></br>";
+
+$out3 = `cd "$upload_dir$user_name$temp_dir" && ls -A`;
+print "<h4>'temp_dir' = $out3</h4></br>";
+
+$out3 = `cd "$upload_dir$user_name$img_dir" && ls -A`;
+print "<h4>'img_dir' = $out3</h4></br>";
+
+$out3 = `cd "$upload_dir$user_name$shortcut_dir" && ls -A`;
+print "<h4>'shortcut_dir' = $out3</h4></br>";
+#######################################################
 
 print <<__html_file__;
     </body>

@@ -71,7 +71,7 @@ if($name && $ext)
             print <<__html_file__;
             <title>Duplication Handling Interface</title>
             <form enctype="multipart/form-data" action="duplicate.cgi" method="POST">
-                <input type="radio" name="duplicate" value="overwrite"/>Overwrite the existing file '"$file_name"'.<br/><br/>
+                <input type="radio" name="duplicate" value="overwrite"/>Overwrite the existing file "$file_name".<br/><br/>
                 <input type="radio" name="duplicate" value="rename"/>Rename the uploading file. New filename
                 <input type="text" name="new_filename" maxlength="255" size="35"/><br/><br/>
                 <input type="radio" name="duplicate" value="cancel"/>Cancle the current upload.<br/><br/>
