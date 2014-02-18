@@ -179,18 +179,6 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     
     close(OUTFILE); #file uploaded
     
-    #check file existence
-    my @result = ();
-    my $row_len = "";
-    my $query = "SELECT user_name, file_name FROM file WHERE user_name='$user_name' AND file_name='$file_name';";
-    db_execute($query, \@result, \$row_len);
-    if(@result || (-e "$upload_dir$user_name$img_dir/$file_name")) #exist
-    {
-        ###TODO: Duplication handle interface, after all remove the file in $temp_dir
-        $$flag_ptr = 2;
-        return;
-    }
-    
     #indentify the file
     my $identity = `identify -verbose "$upload_dir$user_name$temp_dir/$file_name" | grep Format:`;
     my @temp_array = split(/\n/, $identity);
@@ -201,6 +189,18 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         #not match
         `rm "$upload_dir$user_name$temp_dir/$file_name"`;
         $$flag_ptr = 5;
+        return;
+    }
+    
+    #check file existence
+    my @result = ();
+    my $row_len = "";
+    my $query = "SELECT user_name, file_name FROM file WHERE user_name='$user_name' AND file_name='$file_name';";
+    db_execute($query, \@result, \$row_len);
+    if(@result || (-e "$upload_dir$user_name$img_dir/$file_name")) #exist
+    {
+        ###TODO: Duplication handle interface, after all remove the file in $temp_dir
+        $$flag_ptr = 2;
         return;
     }
     
@@ -240,7 +240,7 @@ sub duplication_upload_pic  #usage: duplication_upload_pic($old_file_name, $new_
     {
         ###TODO: rename the uploading file and upload it
     }
-    elsif($old_file_name && !new_file_name) #OVERWRITE
+    elsif($old_file_name && !$new_file_name) #OVERWRITE
     {
         ###TODO: delete existing file in database, img_dir and shortcut_dir and upload the new file
     }
