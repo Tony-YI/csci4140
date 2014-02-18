@@ -95,7 +95,11 @@ __html_file__
         }
         else    #$new_file_name exists in dir
         {
-            print "<title>Duplication Handling Interface</title><p>New File Name "$new_file_name" existed.</p><br/>";
+            print <<__html_file__;
+            <title>Duplication Handling Interface</title>
+            <p>New File Name "$new_file_name" existed.</p><br/>
+__html_file__
+            
             print_form();
         }
     }
