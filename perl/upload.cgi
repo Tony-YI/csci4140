@@ -48,8 +48,9 @@ __html_file__
 }
 
 #user selected a file
-
-
+$file_name =~ tr/A-Z/a-z/;  #convert uppercase to lowercase
+$_ = $file_name;
+my ($name, $ext) = /([a-z0-9_]+)\.([a-z0-9_]+)/;
 
 my $flag;   #1 is sucessful, 2 is file exited, 3 is file too large, 4 is can't open dir, 5 is invalid extension
 
@@ -108,7 +109,7 @@ else    #ivalid file name and file extension
 }
 
 #######################################################
-$upload_dir = $ENV{"OPENSHIFT_DATA_DIR"};
+my $upload_dir = $ENV{"OPENSHIFT_DATA_DIR"};
 my $img_dir = "_img";  #GLOBAL VARIABLE
 my $shortcut_dir = "_shortcut";    #GLOBAL VARIABLE
 my $temp_dir = "_temp";  #GLOBAL VARIABLE
