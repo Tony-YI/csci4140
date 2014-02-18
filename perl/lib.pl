@@ -240,7 +240,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     
     my $temp_1 = `identify "$upload_dir$user_name$img_dir/$file_name"`;
     print "'temp1' = $temp_1 <br/>";
-    my $temp_2 = `identify "$upload_dir$user_name$img_dir/$file_name"`;
+    my $temp_2 = `identify "$upload_dir$user_name$shortcut_dir/$file_name"`;
     print "'temp2' = $temp_2 <br/>";
     
     #convert description into viewable
