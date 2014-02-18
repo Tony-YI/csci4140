@@ -108,7 +108,7 @@ else    #ivalid file name and file extension
 }
 
 #######################################################
-my $upload_dir = $ENV{"OPENSHIFT_DATA_DIR"};
+$upload_dir = $ENV{"OPENSHIFT_DATA_DIR"};
 my $img_dir = "_img";  #GLOBAL VARIABLE
 my $shortcut_dir = "_shortcut";    #GLOBAL VARIABLE
 my $temp_dir = "_temp";  #GLOBAL VARIABLE
