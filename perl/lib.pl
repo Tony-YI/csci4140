@@ -238,11 +238,6 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     #generate a shortcut, convert it to 100x100
     `convert "$upload_dir$user_name$img_dir/$file_name" -resize 100x100 "$upload_dir$user_name$shortcut_dir/$file_name"`;
     
-    my $temp_1 = `identify "$upload_dir$user_name$img_dir/$file_name"`;
-    print "'temp1' = $temp_1 <br/>";
-    my $temp_2 = `identify "$upload_dir$user_name$shortcut_dir/$file_name"`;
-    print "'temp2' = $temp_2 <br/>";
-    
     #convert description into viewable
     $_ = $description;
     $description =~ s/&/&amp;/g;
@@ -255,7 +250,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     ###TODO: add time stamp
     my $img_path = "$upload_dir$user_name$img_dir/$file_name";
     my $shortcut_path = "$upload_dir$user_name$shortcut_dir/$file_name";
-    $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$file_name', '$totalBytes', 0, '$description', '$img_path', '$shortcut_path');";  #remember the ' ' of SQL
+    $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$file_name', '$totalBytes', CURRENT_TIMESTAMP, '$description', '$img_path', '$shortcut_path');";  #remember the ' ' of SQL
     db_execute($query);
     
     $$flag_ptr = 1;
