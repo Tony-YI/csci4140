@@ -34,7 +34,7 @@ sub print_form
     <input type="radio" name="duplicate" value="overwrite"/>Overwrite the existing file "$old_file_name".<br/><br/>
     <input type="radio" name="duplicate" value="rename"/>Rename the uploading file. New filename
     <input type="text" name="new_filename" maxlength="255" size="35"/><br/><br/>
-    <input type="radio" name="duplicate" value="cancel"/>Cancle the current upload.<br/><br/>
+    <input type="radio" name="duplicate" value="cancel"/>cancel the current upload.<br/><br/>
     <input type="hidden" name="file_name" value="$old_file_name"/>
     <input type="hidden" name="description" value="$description"/>
     <input type="submit" value="Proceed"/>
@@ -53,9 +53,10 @@ if($duplicate_option eq "overwrite")
 {
     #update existing file record in database, file in img_dir and shortcut_dir
     duplication_upload_pic($user_name, $description, $old_file_name);
+    
     print <<__html_file__;
     <title>Upload Successed</title>
-    <p>File '"$old_file_name"' Overwriting Successed.</p><br/>
+    <p>File "$old_file_name" Overwriting Successed.</p><br/>
     <br/><a href="file_picking.html">Back to File Picking Interface</a>
     <br/><br/><a href="display_panel.html">Back to Display Panel</a>
 __html_file__
@@ -109,13 +110,16 @@ __html_file__
         print_form();
     }
 }
-elsif($duplicate_option = "cancel")
+elsif($duplicate_option eq "cancel")
 {
     #cancel upload process and delete the file in temp_dir
     my $upload_dir;
     my $temp_dir;
     get_dir(\$upload_dir, \$temp_dir);
-    `rm "$upload_dir$user_name$temp_dir/$old_file_name"`;
+    if(-e "$upload_dir$user_name$temp_dir/$old_file_name")
+    {
+        `rm "$upload_dir$user_name$temp_dir/$old_file_name"`;
+    }
     print "<title>Duplication Handling Interface</title><p>Upload Canceled.</p><br/>";
 }
 else    #nothing has been selected

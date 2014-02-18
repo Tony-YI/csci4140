@@ -171,7 +171,10 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         if($totalBytes > 1024*1024) #1 MB, check file size
         {
             close(OUTFILE);
-            `rm "$upload_dir$user_name$temp_dir/$file_name"`;
+            if(-e "$upload_dir$user_name$temp_dir/$file_name")
+            {
+                `rm "$upload_dir$user_name$temp_dir/$file_name"`;
+            }
             $$flag_ptr = 3;
             return;
         }
@@ -187,7 +190,10 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     if(!/JPEG/ && !/GIF/ && !/PNG/)
     {
         #not match
-        `rm "$upload_dir$user_name$temp_dir/$file_name"`;
+        if(-e "$upload_dir$user_name$temp_dir/$file_name")
+        {
+            `rm "$upload_dir$user_name$temp_dir/$file_name"`;
+        }
         $$flag_ptr = 5;
         return;
     }
@@ -205,9 +211,15 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     }
     
     #move the temp file to $img_dir
-    `mv "$upload_dir$user_name$temp_dir/$file_name" "$upload_dir$user_name$img_dir/$file_name"`;
+    if(-e "$upload_dir$user_name$temp_dir/$file_name")
+    {
+        `mv "$upload_dir$user_name$temp_dir/$file_name" "$upload_dir$user_name$img_dir/$file_name"`;
+    }
     #generate a shortcut, convert it to 100x100
-    `convert "$upload_dir$user_name$img_dir/$file_name" -resize 100x100 "$upload_dir$user_name$shortcut_dir/$file_name"`;
+    if(-e "$upload_dir$user_name$img_dir/$file_name")
+    {
+        `convert "$upload_dir$user_name$img_dir/$file_name" -resize 100x100 "$upload_dir$user_name$shortcut_dir/$file_name"`;
+    }
     
     #convert description into viewable
     $_ = $description;
@@ -265,10 +277,15 @@ sub duplication_upload_pic  #usage: duplication_upload_pic($user_name, $descript
         #rename the uploading file and upload it
         
         #move the temp file to $img_dir
-        `mv "$upload_dir$user_name$temp_dir/$old_file_name" "$upload_dir$user_name$img_dir/$new_file_name"`;
+        if(-e "$upload_dir$user_name$temp_dir/$old_file_name")
+        {
+            `mv "$upload_dir$user_name$temp_dir/$old_file_name" "$upload_dir$user_name$img_dir/$new_file_name"`;
+        }
         #generate a shortcut, convert it to 100x100
-        `convert "$upload_dir$user_name$img_dir/$new_file_name" -resize 100x100 "$upload_dir$user_name$shortcut_dir/$new_file_name"`;
-        
+        if(-e "$upload_dir$user_name$img_dir/$new_file_name")
+        {
+            `convert "$upload_dir$user_name$img_dir/$new_file_name" -resize 100x100 "$upload_dir$user_name$shortcut_dir/$new_file_name"`;
+        }
         #upload description and other attributes to the database
         #add time stamp
         my $img_path = "$upload_dir$user_name$img_dir/$new_file_name";
@@ -279,10 +296,17 @@ sub duplication_upload_pic  #usage: duplication_upload_pic($user_name, $descript
     elsif($old_file_name && !$new_file_name) #OVERWRITE
     {
         #update existing file record in database, file in img_dir and shortcut_dir
-        #move the temp file to $img_dir
-        `mv "$upload_dir$user_name$temp_dir/$old_file_name" "$upload_dir$user_name$img_dir/$old_file_name"`;
-        #generate a shortcut, convert it to 100x100
-        `convert "$upload_dir$user_name$img_dir/$old_file_name" -resize 100x100 "$upload_dir$user_name$shortcut_dir/$old_file_name"`;
+        
+        if(-e "$upload_dir$user_name$temp_dir/$old_file_name")
+        {
+            #move the temp file to $img_dir
+            `mv "$upload_dir$user_name$temp_dir/$old_file_name" "$upload_dir$user_name$img_dir/$old_file_name"`;
+        }
+        if(-e "$upload_dir$user_name$img_dir/$old_file_name")
+        {
+            #generate a shortcut, convert it to 100x100
+            `convert "$upload_dir$user_name$img_dir/$old_file_name" -resize 100x100 "$upload_dir$user_name$shortcut_dir/$old_file_name"`;
+        }
         
         #upload description and other attributes to the database
         #add time stamp
