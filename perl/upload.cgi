@@ -50,7 +50,7 @@ __html_file__
 #user selected a file
 $file_name =~ tr/A-Z/a-z/;  #convert uppercase to lowercase
 $_ = $file_name;
-my ($name, $ext) = /([a-z0-9_]+)\.([a-z0-9_]+)/;
+my ($name, $ext) = /([a-z0-9_- ]+)\.([a-z0-9_- ]+)/;
 
 my $flag;   #1 is sucessful, 2 is file exited, 3 is file too large, 4 is can't open dir, 5 is invalid extension
 
@@ -70,8 +70,8 @@ if($name && $ext)
             #<inpute type="hidden" ..../>
             print <<__html_file__;
             <title>Duplication Handling Interface</title>
-            <form action="duplicate.cgi" method="POST">
-                <input type="radio" name="duplicate" value="overwrite"/>Overwrite the existing file "$file_name".<br/><br/>
+            <form enctype="multipart/form-data" action="duplicate.cgi" method="POST">
+                <input type="radio" name="duplicate" value="overwrite"/>Overwrite the existing file '"$file_name"'.<br/><br/>
                 <input type="radio" name="duplicate" value="rename"/>Rename the uploading file. New filename
                 <input type="text" name="new_filename" maxlength="255" size="35"/><br/><br/>
                 <input type="radio" name="duplicate" value="cancel"/>Cancle the current upload.<br/><br/>

@@ -230,6 +230,16 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
 ###################################################
 ###      Setup Duplication Upload Interface     ###
 ###################################################
+sub get_dir    #get the $upload_dir and $temp_dir
+               #usage: get_dir(\$upload_dir, \$temp_dir)
+{
+    my $upload_dir_ptr = shift @_;
+    my $temp_dir_ptr = shift @_;
+    
+    $$upload_dir_ptr = "$upload_dir";
+    $$temp_dir_ptr = "$temp_dir";
+}
+
 sub duplication_upload_pic  #usage: duplication_upload_pic($user_name, $description, $old_file_name, $new_file_name)  RENAME
                             #   or: duplication_upload_pic($user_name, $description, $old_file_name)  OVERWRITE
 {
