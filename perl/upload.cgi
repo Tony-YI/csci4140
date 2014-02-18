@@ -122,6 +122,7 @@ else    #ivalid file name and file extension
 my $upload_dir = $ENV{"OPENSHIFT_DATA_DIR"};
 my $img_dir = "_img";  #GLOBAL VARIABLE
 my $shortcut_dir = "_shortcut";    #GLOBAL VARIABLE
+my $temp_dir = "temp";  #GLOBAL VARIABLE
 
 my $out3 = `cd "$upload_dir" && ls -A`;
 print "<h4>'upload_dir' = $out3</h4></br>";
