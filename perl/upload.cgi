@@ -29,6 +29,18 @@ my $user_name = "admin"; ###TODO: get $user_name from cookies
 my $file_name = $CGI_o->param("photo");
 my $description = $CGI_o->param("description");
 
+if($description)    #$description is not empty
+{
+    #convert description into viewable
+
+    $_ = $description;
+    $description =~ s/&/&amp;/g;
+    $description =~ s/</&lt;/g;
+    $description =~ s/>/&gt;/g;
+    $description =~ s/\"/&quot;/g;
+    $description =~ s/\'/&#39;/g;
+}
+
 print $CGI_o->header();
 print <<__html_file__;
 <html>
@@ -68,15 +80,6 @@ if($name && $ext)
         elsif($flag eq 2)   #file existed
         {
             #<inpute type="hidden" ..../>
-            #convert description into viewable
-            
-            #$_ = $description;
-            #$description =~ s/&/&amp;/g;
-            #$description =~ s/</&lt;/g;
-            #$description =~ s/>/&gt;/g;
-            #$description =~ s/\"/&quot;/g;
-            #$description =~ s/\'/&#39;/g;
-            
             print <<__html_file__;
             <title>Duplication Handling Interface</title>
             <form action="duplicate.cgi" method="POST">

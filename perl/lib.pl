@@ -209,14 +209,6 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     #generate a shortcut, convert it to 100x100
     `convert "$upload_dir$user_name$img_dir/$file_name" -resize 100x100 "$upload_dir$user_name$shortcut_dir/$file_name"`;
     
-    #convert description into viewable
-    $_ = $description;
-    $description =~ s/&/&amp;/g;
-    $description =~ s/</&lt;/g;
-    $description =~ s/>/&gt;/g;
-    $description =~ s/\"/&quot;/g;
-    $description =~ s/\'/&#39;/g;
-    
     #upload description and other attributes to the database
     #add time stamp
     my $img_path = "$upload_dir$user_name$img_dir/$file_name";
