@@ -100,6 +100,7 @@ sub db_init #insert seed data
 my $data_dir = $ENV{"OPENSHIFT_DATA_DIR"};
 my $img_dir = "_img";  #GLOBAL VARIABLE
 my $shortcut_dir = "_shortcut";    #GLOBAL VARIABLE
+my $temp_dir = "temp";  #GLOBAL VARIABLE
 
 sub clean_storage
 {
@@ -162,31 +163,24 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     
     if(!(-d "$upload_dir$user_name$img_dir")) #dir not found
     {
-        #create dir
+        #create img dir
         `cd "$upload_dir" && mkdir "$user_name$img_dir"`;
     }
     if(!(-d "$upload_dir$user_name$shortcut_dir"))
     {
-        #create dir
+        #create shortcut dir
         `cd "$upload_dir"&& mkdir "$user_name$shortcut_dir"`;
+    }
+    if(!(-d "$upload_dir$user_name$temp_dir"))
+    {
+        #create temp dir
+        `cd "$upload_dir"&& mkdir "$user_name$temp_dir"`;
     }
     
     ###TODO:check file size in an easy way...no can do
     
-    #check file existence
-    my @result = ();
-    my $row_len = "";
-    my $query = "SELECT user_name, file_name FROM file WHERE user_name='$user_name' AND file_name='$file_name';";
-    db_execute($query, \@result, \$row_len);
-    if(@result) #exist
-    {
-        ###TODO: Duplication handle interface
-        $$flag_ptr = 2;
-        return;
-    }
-    
-    #file not exist, upload picture
-    if(!open(OUTFILE, ">", "$upload_dir$user_name$img_dir/$file_name"))    #can't open file for writing
+    #upload picture to $temp_dir
+    if(!open(OUTFILE, ">", "$upload_dir$user_name$temp_dir/$file_name"))    #can't open file for writing
     {
         $$flag_ptr = 4;
         return;
@@ -206,7 +200,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         if($totalBytes > 1024*1024) #1 MB, check file size
         {
             close(OUTFILE);
-            `rm "$upload_dir$user_name$img_dir/$file_name"`;
+            `rm "$upload_dir$user_name$temp_dir/$file_name"`;
             $$flag_ptr = 3;
             return;
         }
@@ -214,19 +208,33 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     
     close(OUTFILE); #file uploaded
     
+    #check file existence
+    my @result = ();
+    my $row_len = "";
+    my $query = "SELECT user_name, file_name FROM file WHERE user_name='$user_name' AND file_name='$file_name';";
+    db_execute($query, \@result, \$row_len);
+    if(@result || (-e "$upload_dir$user_name$img_dir/$file_name")) #exist
+    {
+        ###TODO: Duplication handle interface, after all remove the file in $temp_dir
+        $$flag_ptr = 2;
+        return;
+    }
+    
     #indentify the file
-    my $identity = `identify -verbose "$upload_dir$user_name$img_dir/$file_name" | grep Format:`;
+    my $identity = `identify -verbose "$upload_dir$user_name$temp_dir/$file_name" | grep Format:`;
     my @temp_array = split(/\n/, $identity);
     
     $_ = $identity;
     if(!/JPEG/ && !/GIF/ && !/PNG/)
     {
         #not match
-        `rm "$upload_dir$user_name$img_dir/$file_name"`;
+        `rm "$upload_dir$user_name$temp_dir/$file_name"`;
         $$flag_ptr = 5;
         return;
     }
     
+    #move the temp file to $img_dir
+    `mv "$upload_dir$user_name$temp_dir/$file_name" $upload_dir$user_name$img_dir/$file_name"`;
     #generate a shortcut, convert only when larger than 100x100
     `convert "$upload_dir$user_name$img_dir/$file_name" -resize 100x100\> "$upload_dir$user_name$shortcut_dir/$file_name"`;
     

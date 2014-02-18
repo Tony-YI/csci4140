@@ -24,8 +24,6 @@ use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 require "./lib.pl";
 
 my $CGI_o = CGI->new();
-$CGI_o::POST_MAX = 2*1024;
-$cgi_lib'maxdata = 500;
 
 my $user_name = "admin"; ###############################################
 my $file_name = $CGI_o->param("photo");
@@ -126,13 +124,16 @@ my $img_dir = "_img";  #GLOBAL VARIABLE
 my $shortcut_dir = "_shortcut";    #GLOBAL VARIABLE
 
 my $out3 = `cd "$upload_dir" && ls -A`;
-print "<h4>$out3</h4></br>";
+print "<h4>'upload_dir' = $out3</h4></br>";
+
+$out3 = `cd "$upload_dir$user_name$temp_dir" && ls -A`;
+print "<h4>'temp_dir' = $out3</h4></br>";
 
 $out3 = `cd "$upload_dir$user_name$img_dir" && ls -A`;
-print "<h4>$out3</h4></br>";
+print "<h4>'img_dir' = $out3</h4></br>";
 
 $out3 = `cd "$upload_dir$user_name$shortcut_dir" && ls -A`;
-print "<h4>$out3</h4></br>";
+print "<h4>'shortcut_dir' = $out3</h4></br>";
 #######################################################
 
 if($flag != 2)
