@@ -25,7 +25,7 @@ require "./lib.pl";
 
 my $CGI_o = CGI->new();
 
-my $user_name = "admin"; ###############################################
+my $user_name = "admin"; ###TODO: get $user_name from cookies
 my $file_name = $CGI_o->param("photo");
 my $description = $CGI_o->param("description");
 
@@ -67,24 +67,23 @@ if($name && $ext)
         }
         elsif($flag eq 2)   #file existed
         {
-            #############################################
-            #############################################
+            #<inpute type="hidden" ..../>
             #convert description into viewable
-            $_ = $description;
-            $description =~ s/&/&amp;/g;
-            $description =~ s/</&lt;/g;
-            $description =~ s/>/&gt;/g;
-            $description =~ s/\"/&quot;/g;
-            $description =~ s/\'/&#39;/g;
+            
+            #$_ = $description;
+            #$description =~ s/&/&amp;/g;
+            #$description =~ s/</&lt;/g;
+            #$description =~ s/>/&gt;/g;
+            #$description =~ s/\"/&quot;/g;
+            #$description =~ s/\'/&#39;/g;
             
             print <<__html_file__;
             <title>Duplication Handling Interface</title>
             <form action="duplicate.cgi" method="POST">
                 <input type="radio" name="duplicate" value="overwrite"/>Overwrite the existing file "$file_name".<br/><br/>
                 <input type="radio" name="duplicate" value="rename"/>Rename the uploading file. New filename
-                <input type="text" name="new_filename" maxlength="255" size="15"/><br/><br/>
-                <input type="radio" name="duplicate" value="cancle"/>Cancle the current upload.<br/><br/>
-                <input type="hidden" name="user_name" value="$user_name"/>
+                <input type="text" name="new_filename" maxlength="255" size="35"/><br/><br/>
+                <input type="radio" name="duplicate" value="cancel"/>Cancle the current upload.<br/><br/>
                 <input type="hidden" name="file_name" value="$file_name"/>
                 <input type="hidden" name="description" value="$description"/>
                 <input type="submit" value="Proceed"/>
@@ -122,12 +121,12 @@ else    #ivalid file name and file extension
 my $upload_dir = $ENV{"OPENSHIFT_DATA_DIR"};
 my $img_dir = "_img";  #GLOBAL VARIABLE
 my $shortcut_dir = "_shortcut";    #GLOBAL VARIABLE
-my $temp_dir = "temp";  #GLOBAL VARIABLE
+my $temp_dir = "_temp";  #GLOBAL VARIABLE
 
 my $out3 = `cd "$upload_dir" && ls -A`;
 print "<h4>'upload_dir' = $out3</h4></br>";
 
-$out3 = `cd "$upload_dir$temp_dir" && ls -A`;
+$out3 = `cd "$upload_dir$user_name$temp_dir" && ls -A`;
 print "<h4>'temp_dir' = $out3</h4></br>";
 
 $out3 = `cd "$upload_dir$user_name$img_dir" && ls -A`;

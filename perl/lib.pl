@@ -101,49 +101,19 @@ sub db_init #insert seed data
 my $data_dir = $ENV{"OPENSHIFT_DATA_DIR"};
 my $img_dir = "_img";  #GLOBAL VARIABLE
 my $shortcut_dir = "_shortcut";    #GLOBAL VARIABLE
-my $temp_dir = "temp";  #GLOBAL VARIABLE
+my $temp_dir = "_temp";  #GLOBAL VARIABLE
 
 sub clean_storage
 {
     my $wanted_dir_name = `cd "$data_dir" && ls`;   #do not use `ls -A` since we don't want to delete directory start with .*
     my @wanted_dir_name_array = split(/\n/, $wanted_dir_name);
-    #print "@wanted_dir_name_array";
     
     foreach my $i (@wanted_dir_name_array)
     {
         #delete directory
         `cd "$data_dir" && rm -r "$i"`;
     }
-    
-    #my $out = `cd "$data_dir" && ls -a`;    #remember the "" inside ``
-    #print "<h4>$out</h4></br>";
 }
-
-#sub init_storage    #used in "sub create_dir"
-#{
-#    my $user_name = shift @_;
-    #my $query = "SELECT $user_name FROM user where 1;";  #select all the username
-    #my @result  = ();
-    #my $row_len;
-    #db_execute($query, \@result, \$row_len);
-    #print "@result";
-    #print "$row_len";
-    
-    #foreach my $i (@result)
-    #{
-    #    `cd "$data_dir" && mkdir "$i$img_dir" && mkdir "$i$shortcut_dir"`;
-    #}
-    
-#    `cd "$data_dir" && mkdir "$user_name$img_dir" && mkdir "$user_name$shortcut_dir"`;
-
-#    my $out3 = `cd "$data_dir" && ls -a`;
-#    print "<h4>$out3</h4></br>";
-#}
-
-###################################################
-###           Setup LogIn Interface             ###
-###################################################
-
 
 ###################################################
 ###           Setup Upload Interface            ###
@@ -172,16 +142,16 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         #create shortcut dir
         `cd "$upload_dir"&& mkdir "$user_name$shortcut_dir"`;
     }
-    if(!(-d "$upload_dir$temp_dir"))
+    if(!(-d "$upload_dir$user_name$temp_dir"))
     {
         #create temp dir
-        `cd "$upload_dir"&& mkdir "$temp_dir"`;
+        `cd "$upload_dir"&& mkdir "$user_name$temp_dir"`;
     }
     
     ###TODO:check file size in an easy way...no can do
     
     #upload picture to $temp_dir
-    if(!open(OUTFILE, ">", "$upload_dir$temp_dir/$file_name"))    #can't open file for writing
+    if(!open(OUTFILE, ">", "$upload_dir$user_name$temp_dir/$file_name"))    #can't open file for writing
     {
         $$flag_ptr = 4;
         return;
@@ -201,7 +171,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         if($totalBytes > 1024*1024) #1 MB, check file size
         {
             close(OUTFILE);
-            `rm "$upload_dir$temp_dir/$file_name"`;
+            `rm "$upload_dir$user_name$temp_dir/$file_name"`;
             $$flag_ptr = 3;
             return;
         }
@@ -222,20 +192,20 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     }
     
     #indentify the file
-    my $identity = `identify -verbose "$upload_dir$temp_dir/$file_name" | grep Format:`;
+    my $identity = `identify -verbose "$upload_dir$user_name$temp_dir/$file_name" | grep Format:`;
     my @temp_array = split(/\n/, $identity);
     
     $_ = $identity;
     if(!/JPEG/ && !/GIF/ && !/PNG/)
     {
         #not match
-        `rm "$upload_dir$temp_dir/$file_name"`;
+        `rm "$upload_dir$user_name$temp_dir/$file_name"`;
         $$flag_ptr = 5;
         return;
     }
     
     #move the temp file to $img_dir
-    `mv "$upload_dir$temp_dir/$file_name" "$upload_dir$user_name$img_dir/$file_name"`;
+    `mv "$upload_dir$user_name$temp_dir/$file_name" "$upload_dir$user_name$img_dir/$file_name"`;
     #generate a shortcut, convert it to 100x100
     `convert "$upload_dir$user_name$img_dir/$file_name" -resize 100x100 "$upload_dir$user_name$shortcut_dir/$file_name"`;
     
@@ -248,7 +218,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     $description =~ s/\'/&#39;/g;
     
     #upload description and other attributes to the database
-    ###TODO: add time stamp
+    #add time stamp
     my $img_path = "$upload_dir$user_name$img_dir/$file_name";
     my $shortcut_path = "$upload_dir$user_name$shortcut_dir/$file_name";
     $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$file_name', '$totalBytes', CURRENT_TIMESTAMP, '$description', '$img_path', '$shortcut_path');";  #remember the ' ' of SQL
@@ -256,5 +226,28 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     
     $$flag_ptr = 1;
 }
+
+###################################################
+###      Setup Duplication Upload Interface     ###
+###################################################
+sub duplication_upload_pic  #usage: duplication_upload_pic($old_file_name, $new_file_name)  RENAME
+                            #   or: duplication_upload_pic($old_file_name)  OVERWRITE
+{
+    my $old_file_name = shift @_;
+    my $new_file_name = shift @_;
+    
+    if($old_file_name && $new_file_name)    #RENAME
+    {
+        ###TODO: rename the uploading file and upload it
+    }
+    elsif($old_file_name && !new_file_name) #OVERWRITE
+    {
+        ###TODO: delete existing file in database, img_dir and shortcut_dir and upload the new file
+    }
+}
+
+###################################################
+###           Setup LogIn Interface             ###
+###################################################
 
 return 1;	#for header file, it must return 1, otherwise perl will exit with default value 0
