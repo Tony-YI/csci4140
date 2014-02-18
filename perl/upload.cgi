@@ -24,7 +24,8 @@ use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 require "./lib.pl";
 
 my $CGI_o = CGI->new();
-$CGI_o::POST_MAX = 500;
+$CGI_o::POST_MAX = 2*1024;
+$cgi_lib'maxdata = 500;
 
 my $user_name = "admin"; ###############################################
 my $file_name = $CGI_o->param("photo");
