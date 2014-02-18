@@ -37,7 +37,7 @@ __html_file__
 
 if(!$file_name) #no file selected
 {
-    print "<title>Upload Failed</title><p>Upload Failed.<br/>You must select a file.</p></body></html>";
+    print "<title>Upload Failed</title><p>Upload Failed.<br/>File not selected or file too large.</p></body></html>";
     print <<__html_file__;
     <br/><a href="file_picking.html">Back to File Picking Interface</a>
     <br/><br/><a href="display_panel.html">Back to Display Panel</a>
