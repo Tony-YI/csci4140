@@ -79,7 +79,9 @@ elsif($duplicate_option eq "rename")
         #check $new_file_existence
         my $upload_dir;
         my $img_dir;
+        my $temp_dir;
         get_img_dir(\$upload_dir, \$img_dir);
+        get_temp_dir(\$upload_dir, \$temp_dir);
         
         if(!(-e "$upload_dir$user_name$img_dir/$new_file_name"))    #$new_file_name not exists in dir
         {
