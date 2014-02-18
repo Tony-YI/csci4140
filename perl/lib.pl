@@ -235,10 +235,8 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     
     #move the temp file to $img_dir
     `mv "$upload_dir$temp_dir/$file_name" "$upload_dir$user_name$img_dir/$file_name"`;
-    #generate a shortcut, convert only when larger than 100x100
-    my $larger = ">";
-    $larger =~ s/>/&gt;/g;
-    `convert "$upload_dir$user_name$img_dir/$file_name" -resize 100x100\"$larger" "$upload_dir$user_name$shortcut_dir/$file_name"`;
+    #generate a shortcut, convert it to 100x100
+    `convert "$upload_dir$user_name$img_dir/$file_name" -resize 100x100 "$upload_dir$user_name$shortcut_dir/$file_name"`;
     
     my $temp_1 = `identify "$upload_dir$user_name$img_dir/$file_name"`;
     print "'temp1' = $temp_1 <br/>";
