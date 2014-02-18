@@ -278,7 +278,7 @@ sub duplication_upload_pic  #usage: duplication_upload_pic($user_name, $descript
         #add time stamp
         my $img_path = "$upload_dir$user_name$img_dir/$old_file_name";
         my $shortcut_path = "$upload_dir$user_name$shortcut_dir/$old_file_name";
-        my $query = "UPDATE file SET file_size='$totalBytes', upload_time=CURRENT_TIMESTAMP, img_description='$description' WHERE user_name='$user_name';";  #remember the ' ' of SQL
+        my $query = "UPDATE file SET file_size='$totalBytes', upload_time=CURRENT_TIMESTAMP, img_description='$description' WHERE user_name='$user_name' AND file_name='$old_file_name';";  #remember the ' ' of SQL
         db_execute($query);
     }
 }
