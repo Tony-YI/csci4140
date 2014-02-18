@@ -35,16 +35,16 @@ if($duplicate_option eq "overwrite")
 }
 elsif($duplicate_option = "rename")
 {
-    ###TODO: check $new_file_name validation and no change ext
+    #check $new_file_name validation and no change ext
     $_ = $old_file_name;
     my ($old_name, $ext) = /([a-z0-9_]+)\.([a-z0-9_]+)/;
     $new_file_name =~ tr/A-Z/a-z/;  #convert uppercase to lowercase
     my @new_name = split('\.', $new_file_name);
     $_ = $new_name[0];
-    @new_name = /([a-z0-9_]+)/;
+    @new_name = /([a-z0-9_ ]+)/;
     
-    #rename the uploading file and upload it if new_file_name file is not exst
-    if($new_name[0])   #$new_file_name is not empty or valid
+    #rename the uploading file and upload it if new_file_name file is not existed
+    if($new_name[0])   #$new_file_name is not empty and valid
     {
         $new_file_name = $new_name[0].'.'.$ext;
         
@@ -53,7 +53,7 @@ elsif($duplicate_option = "rename")
         {
             duplication_upload_pic($user_name, $description, $old_file_name, $new_file_name);
         }
-        else    ##$new_file_name exists in dir
+        else    #$new_file_name exists in dir
         {
             
         }
