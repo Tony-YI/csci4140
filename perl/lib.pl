@@ -238,6 +238,10 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     #generate a shortcut, convert only when larger than 100x100
     `convert "$upload_dir$user_name$img_dir/$file_name" -resize 100x100\> "$upload_dir$user_name$shortcut_dir/$file_name"`;
     
+    my $temp1 = `identify "$upload_dir$user_name$img_dir/$file_name"`;
+    my $temp2 = `identify "$upload_dir$user_name$shortcut_dir/$file_name"`;
+    print "'temp1' = $temp1 <br/> 'temp2' = $temp2 <br/>";
+    
     #convert description into viewable
     $_ = $description;
     $description =~ s/&/&amp;/g;
