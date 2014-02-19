@@ -157,7 +157,7 @@ __html_file__
 
 print <<__html_file__;
             <input type="hidden" name="last_option_r" value="$last_option_r">
-            <input type="hidden" name="last_option_c" value="$last_option_C">
+            <input type="hidden" name="last_option_c" value="$last_option_c">
             <input type="hidden" name="last_option_sort" value="$last_option_sort">
             <input type="hidden" name="last_option_order" value="$last_option_order">
             <input type="hidden" name="last_option_page" value="$last_option_page">
