@@ -87,7 +87,7 @@ print <<__html_file__;
             <select name="option_page" autofocus>
 __html_file__
 
-for($1 = 1; $i < 4; $i++)
+for($i = 1; $i < 4; $i++)
 {
     print "<option value=$i>$i</option>";
 }
