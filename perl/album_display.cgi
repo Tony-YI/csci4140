@@ -28,17 +28,7 @@ print $CGI_o->header();
 
 print "hhhhhh";
 
-print <<__html_file__;
-<html>
-    <body>
-        <title>Album Display Interface</title>
-        <p>Album Display Interface</p>
-        <form method="POST" action="album_display.cgi">
-            <fieldset>
-            <legend>Album Display Interface:</legend><br/>
-            Dimension
-            <select name="option_r" autofocus>
-__html_file___
+
 
 #my $i;
 #for($i = 1; $i < 10; $i++)
