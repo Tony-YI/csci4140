@@ -26,8 +26,6 @@ my $option_order = $CGI_o->param("option_order");
 
 print $CGI_o->header();
 
-print "hhhhhh";
-
 print <<__html_file__;
 <html>
     <body>
@@ -61,8 +59,6 @@ print <<__html_file__;
             </select>
             &nbsp;&nbsp;&nbsp;&nbsp;Sort By
             <select name="option_sort" autofocus>
-            &nbsp;&nbsp;&nbsp;&nbsp;Sort By
-            <select name="option_sort" autofocus>
             <option value="1">File Size</option>
             <option value="2">Name</option>
             <option value="3">Upload Time</option>
@@ -76,7 +72,7 @@ print <<__html_file__;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="change" value="change"/>
 __html_file__
 
-print "option_r = $option_r<br/>option_c = $option_c<br/>option_sort = $option_sort<br/>option_order = $option_order";
+print "<br/>option_r = $option_r<br/>option_c = $option_c<br/>option_sort = $option_sort<br/>option_order = $option_order";
 
 print <<__html_file__;
             </fieldset>
