@@ -69,10 +69,37 @@ print <<__html_file__;
             <option value="2">Descending</option>
             </select>
 
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="change" value="change"/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="change" value="Change"/>
 __html_file__
 
 print "<br/>option_r = $option_r<br/>option_c = $option_c<br/>option_sort = $option_sort<br/>option_order = $option_order";
+
+
+
+
+print <<__html_file__;
+            <input type="submit" name="remove" value="Remove Selected"/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Page
+            <select name="option_page" autofocus>
+__html_file__
+
+for($1 = 1; $i < 4; $i++)
+{
+    print "<option value=$i>$i</option>&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;&nbsp;&nbsp;&nbsp;4";
+}
+
+print <<__html_file__;
+            </select>
+            <input type="submit" value="Go to Page"/>
+__html_file__
+
+print <<__html_file__;
+            #<input type="hidden" name="last_option_r" value="">
+            #<input type="hidden" name="last_option_c" value="">
+            #<input type="hidden" name="last_option_sort" value="">
+            #<input type="hidden" name="last_option_order" value="">
+            #<input type="hidden" name="last_option_page" value="">
+__html_file__
 
 print <<__html_file__;
             </fieldset>
