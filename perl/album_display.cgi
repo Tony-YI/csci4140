@@ -47,7 +47,7 @@ for($i = 1; $i < 10; $i++)
 print <<__html_file__;
             </select>
             X
-            <select>
+            <select name="option_c" autofocus>
 __html_file__
 
 for($i = 1; $i < 10; $i++)
