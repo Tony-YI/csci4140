@@ -19,11 +19,67 @@ use CGI;
 use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 
 my $CGI_o = CGI->new();
-my $option_r = $CGI_o->param('option_r');
-my $option_c = $CGI_o->param('option_c');
-my $option_sort = $CGI_o->param('option_sort');
-my $option_order = $CGI_o->param('option_order');
-my $option_page = $CGI_o->param('option_page');
+
+my $change = $CGI_o->param('change');
+my $remove = $CGI_o->param('remove');
+my $page = $CGI_o->param('page');
+
+my $option_r;
+my $option_c;
+my $option_sort;
+my $option_order;
+my $option_page;
+#my $option_remove_photo ###TODO
+
+my $last_option_r;
+my $last_option_c;
+my $last_option_sort;
+my $last_option_order;
+my $last_option_page;
+
+if($change == "Change")
+{
+    #submitted by "change" button
+    $option_r = $CGI_o->param('option_r');
+    $option_c = $CGI_o->param('option_c');
+    $option_sort = $CGI_o->param('option_sort');
+    $option_order = $CGI_o->param('option_order');
+    $option_page = 1;
+}
+elsif($remove == "Remove Selected")
+{
+    #submitted by "Remove Selected" button
+    $option_r = $last_option_r;
+    $option_c = $last_option_c;
+    $option_sort = $last_option_sort;
+    $option_order = $last_option_order;
+    $option_page = 1;
+}
+elsif($page == "Go to Page")
+{
+    #submitted by "Go to Page" button
+    $option_r = $last_option_r;
+    $option_c = $last_option_c;
+    $option_sort = $last_option_sort;
+    $option_order = $last_option_order;
+    $option_page = $CGI_o->param('option_page');
+}
+else
+{
+    #first load
+    #default values
+    $option_r = 5;
+    $option_c = 10;
+    $option_sort = 1;
+    $option_order = 1;
+    $option_page = 1;
+}
+
+$last_option_r = $option_r;
+$last_option_c = $option_c;
+$last_option_sort = $option_sort;
+$last_option_order = $option_order;
+$last_option_page = $option_page;
 
 print $CGI_o->header();
 
@@ -77,7 +133,7 @@ print "<br/>option_r = $option_r<br/>option_c = $option_c<br/>option_sort = $opt
 
 
 
-###TODO
+###TODO: show photos
 
 
 
@@ -98,12 +154,13 @@ print <<__html_file__;
             <input type="submit" name="page" value="Go to Page"/>
 __html_file__
 
+
 print <<__html_file__;
-            #<input type="hidden" name="last_option_r" value="">
-            #<input type="hidden" name="last_option_c" value="">
-            #<input type="hidden" name="last_option_sort" value="">
-            #<input type="hidden" name="last_option_order" value="">
-            #<input type="hidden" name="last_option_page" value="">
+            <input type="hidden" name="last_option_r" value="$last_option_r">
+            <input type="hidden" name="last_option_c" value="$last_option_C">
+            <input type="hidden" name="last_option_sort" value="$last_option_sort">
+            <input type="hidden" name="last_option_order" value="$last_option_order">
+            <input type="hidden" name="last_option_page" value="$last_option_page">
 __html_file__
 
 print <<__html_file__;
