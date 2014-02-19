@@ -283,6 +283,10 @@ sub duplication_upload_pic  #usage: duplication_upload_pic($user_name, $descript
     
     if($old_file_name && $new_file_name)    #RENAME and upload
     {
+        my $img_path = "$upload_dir$user_name$img_dir/$new_file_name";
+        my $shortcut_path = "$upload_dir$user_name$shortcut_dir/$new_file_name";
+        my $query;
+        
         #fornow, the new_file_name file must not exist
         #rename the uploading file and upload it
         
@@ -293,21 +297,24 @@ sub duplication_upload_pic  #usage: duplication_upload_pic($user_name, $descript
             #generate a shortcut, convert it to 100x100
             `convert "$upload_dir$user_name$img_dir/$new_file_name" -resize 100x100 "$upload_dir$user_name$shortcut_dir/$new_file_name"`;
             
-        #upload description and other attributes to the database
-        #add time stamp
-        my $img_path = "$upload_dir$user_name$img_dir/$new_file_name";
-        my $shortcut_path = "$upload_dir$user_name$shortcut_dir/$new_file_name";
-        my $query;
-        $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$new_file_name', '$totalBytes', CURRENT_TIMESTAMP, '$description', '$img_path', '$shortcut_path');";  #remember the ' ' of SQL
-        db_execute($query);
+            #upload description and other attributes to the database
+            #add time stamp
+            $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$new_file_name', '$totalBytes', CURRENT_TIMESTAMP, '$description', '$img_path', '$shortcut_path');";  #remember the ' ' of SQL
+            db_execute($query);
         }
         else    #file not exists in temp_dir
         {
             #do nothing
+            $query = "UPDATE file SET upload_time=CURRENT_TIMESTAMP, file_name='$new_file_name' WHERE user_name='$user_name' AND file_name='$old_file_name';";  #remember the ' ' of SQL
+            db_execute($query);
         }
     }
     elsif($old_file_name && !$new_file_name) #OVERWRITE
     {
+        my $img_path = "$upload_dir$user_name$img_dir/$old_file_name";
+        my $shortcut_path = "$upload_dir$user_name$shortcut_dir/$old_file_name";
+        my $query;
+        
         #update existing file record in database, file in img_dir and shortcut_dir
         
         if(-e "$upload_dir$user_name$temp_dir/$old_file_name")
@@ -319,14 +326,14 @@ sub duplication_upload_pic  #usage: duplication_upload_pic($user_name, $descript
             
             #upload description and other attributes to the database
             #add time stamp
-            my $img_path = "$upload_dir$user_name$img_dir/$old_file_name";
-            my $shortcut_path = "$upload_dir$user_name$shortcut_dir/$old_file_name";
-            my $query = "UPDATE file SET file_size='$totalBytes', upload_time=CURRENT_TIMESTAMP, img_description='$description' WHERE user_name='$user_name' AND file_name='$old_file_name';";  #remember the ' ' of SQL
+            $query = "UPDATE file SET file_size='$totalBytes', upload_time=CURRENT_TIMESTAMP, img_description='$description' WHERE user_name='$user_name' AND file_name='$old_file_name';";  #remember the ' ' of SQL
             db_execute($query);
         }
         else    #file not exists in temp_dir
         {
             #do nothing
+            $query = "UPDATE file SET upload_time=CURRENT_TIMESTAMP WHERE user_name='$user_name' AND file_name='$old_file_name';";  #remember the ' ' of SQL
+            db_execute($query);
         }
     }
 }
