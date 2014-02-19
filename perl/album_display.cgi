@@ -39,11 +39,12 @@ print <<__html_file__;
             Dimension
             <select name="option_r" autofocus>
 __html_file__
-#my $i;
-#for($i = 1; $i < 10; $i++)
-#{
-#    print "<option value=$i>$i</option>";
-#}
+
+my $i;
+for($i = 1; $i < 10; $i++)
+{
+    print "<option value=$i>$i</option>";
+}
 
 print <<__html_file__;
             </select>
@@ -51,10 +52,10 @@ print <<__html_file__;
             <select>
 __html_file__
 
-#for($i = 1; $i < 10; $i++)
-#{
-#    print "<option value=$i>$i</option>";
-#}
+for($i = 1; $i < 10; $i++)
+{
+    print "<option value=$i>$i</option>";
+}
 
 print <<__html_file__;
             </select>
