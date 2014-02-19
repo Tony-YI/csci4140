@@ -19,12 +19,14 @@ use CGI;
 use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 
 my $CGI_o = CGI->new();
-#my $option_r = $CGI_o->param("option_r");
-#my $option_c = $CGI_o->param("option_c");
-#my $option_sort = $CGI_o->param("option_sort");
-#my $option_order = $CGI_o->param("option_order");
+my $option_r = $CGI_o->param("option_r");
+my $option_c = $CGI_o->param("option_c");
+my $option_sort = $CGI_o->param("option_sort");
+my $option_order = $CGI_o->param("option_order");
 
 print $CGI_o->header();
+
+print "hhhhhh";
 
 print <<__html_file__;
 <html>
