@@ -38,7 +38,8 @@ print <<__html_file__;
             <select name="option_r" autofocus>
 --html_file___
 
-for(my $i = 1; $i < 10; $i++)
+my $i;
+for($i = 1; $i < 10; $i++)
 {
     print "<option value=$i>$i</option>";
 }
@@ -49,7 +50,7 @@ print <<__html_file__;
             <select>
 __html_file__
 
-for(my $i = 1; $i < 10; $i++)
+for($i = 1; $i < 10; $i++)
 {
     print "<option value=$i>$i</option>";
 }
