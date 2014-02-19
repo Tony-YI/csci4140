@@ -16,9 +16,47 @@
 	<body>
 		<title>Album Display Interface</title>
 		<p>Album Display Interface</p>
-        <form>
+        <form method="POST" action="album_display.cgi">
             <fieldset>
-            <legend>Album Display Interface</legend>
+                <legend>Album Display Interface:</legend><br/>
+                Dimension
+                <select name="option_r" autofocus>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
+                X
+                <select name="option_c" autofocus>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
+                &nbsp;&nbsp;&nbsp;&nbsp;Sort By
+                <select name="option_sort" autofocus>
+                    <option value="1">File Size</option>
+                    <option value="2">Name</option>
+                    <option value="3">Upload Time</option>
+                </select>
+                &nbsp;&nbsp;&nbsp;&nbsp;Order
+                <select name="option_order" autofocus required>
+                    <option value="1">Ascending</option>
+                    <option value="2">Descending</option>
+                </select>
+                
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="change" value="change"/>
+                
             </fieldset>
         </form>
 	</body>
