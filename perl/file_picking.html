@@ -14,6 +14,8 @@
 	<body>
 		<title>File Picking Interface</title>
 		<form enctype="multipart/form-data" action="upload.cgi" method="POST">
+            <fieldset>
+            <legend>File Picking Interface:</legend>
             <input type="file" name="photo" accept="image/gif, image/jpeg, image/png" />
             <br/><br/>
             Description (50 characters max)
@@ -23,6 +25,7 @@
             <br/>
             <input type="hidden" name="duplication_flag" value="NO"/>
             <input type="submit" value="Upload"/>
+            </fieldset>
         </form>
         <br/>
         <a href="display_panel.html">Back to Display Panel</a>

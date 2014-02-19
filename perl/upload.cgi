@@ -30,6 +30,8 @@ sub print_form  #usage: print_form($file_name, $description)
     
     print <<__html_file__;
     <form enctype="multipart/form-data" action="upload.cgi" method="POST">
+    <fieldset>
+    <legend>Duplication Handle Interface:</legend>
     <input type="radio" name="duplicate" value="overwrite"/>Overwrite the existing file "$file_name".<br/><br/>
     <input type="radio" name="duplicate" value="rename"/>Rename the uploading file. New filename
     <input type="text" name="new_filename" maxlength="255" size="35"/><br/><br/>
@@ -38,6 +40,7 @@ sub print_form  #usage: print_form($file_name, $description)
     <input type="hidden" name="description" value="$description"/>
     <input type="hidden" name="duplication_flag" value="YES"/>
     <input type="submit" value="Proceed"/>
+    </fieldset>
     </form>
 __html_file__
 }
