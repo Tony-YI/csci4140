@@ -19,10 +19,11 @@ use CGI;
 use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 
 my $CGI_o = CGI->new();
-my $option_r = $CGI_o->param("option_r");
-my $option_c = $CGI_o->param("option_c");
-my $option_sort = $CGI_o->param("option_sort");
-my $option_order = $CGI_o->param("option_order");
+my $option_r = $CGI_o->param('option_r');
+my $option_c = $CGI_o->param('option_c');
+my $option_sort = $CGI_o->param('option_sort');
+my $option_order = $CGI_o->param('option_order');
+my $option_page = $CGI_o->param('option_page');
 
 print $CGI_o->header();
 
@@ -72,8 +73,11 @@ print <<__html_file__;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="change" value="Change"/>
 __html_file__
 
-print "<br/>option_r = $option_r<br/>option_c = $option_c<br/>option_sort = $option_sort<br/>option_order = $option_order";
+print "<br/>option_r = $option_r<br/>option_c = $option_c<br/>option_sort = $option_sort<br/>option_order = $option_order<br/>option_page=$option_page<br/>";
 
+
+
+###TODO
 
 
 
@@ -90,7 +94,7 @@ for($1 = 1; $i < 4; $i++)
 
 print <<__html_file__;
             </select>
-            <input type="submit" value="Go to Page"/>
+            <input type="submit" name="page" value="Go to Page"/>
 __html_file__
 
 print <<__html_file__;
