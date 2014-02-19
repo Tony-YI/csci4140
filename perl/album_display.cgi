@@ -89,11 +89,12 @@ __html_file__
 
 for($1 = 1; $i < 4; $i++)
 {
-    print "<option value=$i>$i</option>&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;&nbsp;&nbsp;&nbsp;4";
+    print "<option value=$i>$i</option>";
 }
 
 print <<__html_file__;
             </select>
+            &nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;&nbsp;&nbsp;&nbsp;4
             <input type="submit" name="page" value="Go to Page"/>
 __html_file__
 
