@@ -378,7 +378,7 @@ sub get_photo   #usage: get_photo($user_name, $amount,\@result, \$row_len)
     
     $query = "SELECT file_name, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' LIMIT 0, 81;";
     @$result_ptr = ();
-    $$reow_len_ptr = "";
+    $$row_len_ptr = "";
     db_execute($query, $result_ptr, $row_len_ptr);
     
     
