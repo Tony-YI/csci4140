@@ -348,7 +348,7 @@ sub duplication_upload_pic  #usage: duplication_upload_pic($user_name, $descript
 ###################################################
 ###        Setup Album Display Interface        ###
 ###################################################
-my $public_data_dir = "$ENV{OPENSHIFT_REPO_DIR}/data";  #since the photos are store in the presistent storage
+my $public_data_dir = "$ENV{OPENSHIFT_REPO_DIR}data/";  #since the photos are store in the presistent storage
                                                         #are not accessable by the browser.
                                                         #we must create a symbolic link of the presisten dir
                                                         #so that we can get back the photo using browser
