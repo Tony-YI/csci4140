@@ -369,12 +369,16 @@ sub get_photo   #usage: get_photo($user_name, $amount,\@result, \$row_len)
     my $query = "SELECT COUNT(*) FROM file WHERE user_name='$user_name';";
     db_execute($query, $result_ptr, $row_len_ptr);
     my $count = (scalar @$result_ptr) / $$row_len_ptr;
+    print "<br/>count = $count";
+    
     if($count < $amount)
     {
         $amount = $count;
     }
     
     $query = "SELECT file_name, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' LIMIT 0, 81;";
+    @$result_ptr = ();
+    $$reow_len_ptr = "";
     db_execute($query, $result_ptr, $row_len_ptr);
     
     
