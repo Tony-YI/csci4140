@@ -191,6 +191,8 @@ get_photo($user_name, $amount, $option_sort, $option_order, \@result, \$row_len,
 print "<br/>@result<br/>";
 
 ###TODO: show photos
+my $total_page = $count / $amount;
+
 print <<__html_file__;
             <img src="$result[3]" height="100" width="100"/>
 __html_file__
@@ -207,7 +209,7 @@ print <<__html_file__;
             <select name="option_page" autofocus>
 __html_file__
 
-for($i = 1; $i <= 4; $i++)
+for($i = 1; $i <= $total_page; $i++)
 {
     if($i eq $last_option_page)
     {
@@ -224,7 +226,7 @@ print <<__html_file__;
             &nbsp;&nbsp;
             of
             &nbsp;&nbsp;
-            4
+            "$total_page"
             &nbsp;&nbsp;&nbsp;&nbsp;
             <input type="submit" name="submit" value="Go to Page"/>
 __html_file__
