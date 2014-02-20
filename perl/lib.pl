@@ -376,7 +376,7 @@ sub get_photo   #usage: get_photo($user_name, $amount,\@result, \$row_len)
         }
         if(($i % $row_len_ptr) eq 3)
         {
-            my $shortcut_path_for_show = "$public_data_dir$user_name$img_dir/$$result_ptr[$i - 3]";
+            my $shortcut_path_for_show = "$public_data_dir$user_name$shortcut_dir/$$result_ptr[$i - 3]";
             $$result_ptr[$i] = $shortcut_path_for_show;
         }
     }
