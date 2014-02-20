@@ -29,13 +29,14 @@ my $last_option_c = $CGI_o->param('last_option_c');
 my $last_option_sort = $CGI_o->param('last_option_sort');
 my $last_option_order = $CGI_o->param('last_option_order');
 my $last_option_page = $CGI_o->param('last_option_page');
+my @last_option_remove = $CGI_o->param('last_option_remove');  ###TODO
 
 my $option_r;
 my $option_c;
 my $option_sort;
 my $option_order;
 my $option_page;
-#my $option_remove_photo                                    ###TODO
+my @option_remove;  ###TODO
 
 print $CGI_o->header();
 
@@ -48,6 +49,7 @@ if($submit eq "Change") #string can't use == must use eq
     $option_sort = $CGI_o->param('option_sort');
     $option_order = $CGI_o->param('option_order');
     $option_page = 1;
+    @option_remove = @last_option_remove;
 }
 elsif($submit eq "Remove Selected")
 {
@@ -58,6 +60,7 @@ elsif($submit eq "Remove Selected")
     $option_sort = $last_option_sort;
     $option_order = $last_option_order;
     $option_page = 1;
+    @option_remove = $CGI_o->param('option_remove');
 }
 elsif($submit eq "Go to Page")
 {
@@ -68,6 +71,7 @@ elsif($submit eq "Go to Page")
     $option_sort = $last_option_sort;
     $option_order = $last_option_order;
     $option_page = $CGI_o->param('option_page');
+    @option_remove = @last_option_remove;
 }
 else
 {
@@ -79,6 +83,7 @@ else
     $option_sort = 3;
     $option_order = 2	;
     $option_page = 1;
+    @option_remove = ();
 }
 
 $last_option_r = $option_r;
@@ -86,6 +91,7 @@ $last_option_c = $option_c;
 $last_option_sort = $option_sort;
 $last_option_order = $option_order;
 $last_option_page = $option_page;
+@last_option_remove = @option_remove;
 
 print <<__html_file__;
 <html>
@@ -180,6 +186,8 @@ print <<__html_file__;
             <input type="submit" name="submit" value="Change"/>
 __html_file__
 
+###TODO: remove photo
+
 #get photos
 my $amount = $option_r * $option_c;
 my @result;
@@ -220,9 +228,12 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
         my $title = $result[ ($row_len*$i)-2 + ($option_page-1)*($row_len*$photo_in_one_page) - 1 ];
         my $photo_name = $result[ ($row_len*$i)-4 + ($option_page-1)*($row_len*$photo_in_one_page) - 1 ];
         print <<__html_file__;
-                <td height="130" width="150">
+                <td height="130" width="145">
                 <img title="$title" src="$src" height="100" width="100"/>
-                <br/>$photo_name<br/>
+                <br/>
+                <input type="checkbox" name="option_remove" value="$photo_name"/>
+                $photo_name
+                <br/>
                 </td>
 __html_file__
     }
@@ -272,6 +283,7 @@ print <<__html_file__;
             <input type="hidden" name="last_option_sort" value="$last_option_sort">
             <input type="hidden" name="last_option_order" value="$last_option_order">
             <input type="hidden" name="last_option_page" value="$last_option_page">
+            <input type="hidden" name="last_option_remove" value="@last_option_remove">
 __html_file__
 
 #########################
