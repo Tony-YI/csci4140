@@ -78,7 +78,7 @@ else
     $option_r = 5;
     $option_c = 4;
     $option_sort = 3;
-    $option_order = 1;
+    $option_order = 2	;
     $option_page = 1;
 }
 
