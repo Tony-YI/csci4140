@@ -1,1 +1,2 @@
+echo "creating symbolic link"
 ln -s ${OPENSHIFT_DATA_DIR} ${OPENSHIFT_REPO_DIR}/perl/data
