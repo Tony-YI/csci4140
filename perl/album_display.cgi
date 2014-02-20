@@ -40,7 +40,7 @@ my $last_option_page = $CGI_o->param('last_option_page');
 
 print $CGI_o->header();
 
-if($submit eq "Change")
+if($submit eq "Change") #string can't use == must use eq
 {
     #submitted by "change" button
     print "change<br/>";
@@ -103,7 +103,14 @@ __html_file__
 my $i;
 for($i = 1; $i < 10; $i++)
 {
-    print "<option value=$i>$i</option>";
+    if($last_option_r)
+    {
+        print "<option value=$i selected>$i</option>";
+    }
+    else
+    {
+        print "<option value=$i>$i</option>";
+    }
 }
 
 print <<__html_file__;
@@ -114,7 +121,14 @@ __html_file__
 
 for($i = 1; $i < 10; $i++)
 {
-    print "<option value=$i>$i</option>";
+    if($last_option_c)
+    {
+        print "<option value=$i selected>$i</option>";
+    }
+    else
+    {
+        print "<option value=$i>$i</option>";
+    }
 }
 
 print <<__html_file__;
@@ -148,14 +162,21 @@ print <<__html_file__;
             <select name="option_page" autofocus>
 __html_file__
 
-for($i = 1; $i < 4; $i++)
+for($i = 1; $i <= 4; $i++)
 {
-    print "<option value=$i>$i</option>";
+    if($last_option_page)
+    {
+        print "<option value=$i selected>$i</option>";
+    }
+    else
+    {
+        print "<option value=$i>$i</option>";
+    }
 }
 
 print <<__html_file__;
             </select>
-            &nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="submit" name="submit" value="Go to Page"/>
 __html_file__
 
