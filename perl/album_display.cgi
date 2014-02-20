@@ -184,6 +184,7 @@ __html_file__
 my $amount = $option_r * $option_c;
 my @result;
 my $row_len;    #number of attributes in one database result
+my $count;      #number of records in the "file" table inside database
 
 get_photo($user_name, $amount, \@result, \$row_len);
 
@@ -195,7 +196,7 @@ print <<__html_file__;
 __html_file__
 
 #########################
-print "<br/>submit = $submit<br/>option_r = $option_r<br/>option_c = $option_c<br/>amount = $amount<br/>option_sort = $option_sort<br/>option_order = $option_order<br/>option_page=$option_page<br/>";
+print "<br/>submit = $submit<br/>count = $count<br/>option_r = $option_r<br/>option_c = $option_c<br/>amount = $amount<br/>option_sort = $option_sort<br/>option_order = $option_order<br/>option_page=$option_page<br/>";
 #########################
 
 print <<__html_file__;

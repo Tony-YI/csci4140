@@ -358,31 +358,26 @@ sub duplication_upload_pic  #usage: duplication_upload_pic($user_name, $descript
 #add line into "deploy"
 #ln -s {OPENSHIFT_DATA_DIR} {OPENSHIFT_REPO_DIR}/perl/data
 
-sub get_photo   #usage: get_photo($user_name, $amount,\@result, \$row_len)
+sub get_photo   #usage: get_photo($user_name, $amount,\@result, \$row_len, \$count)
                 #then we will get $amount number of photos of $user_name and sotre the result in \@result and \$row_len
 {
     my $user_name = shift @_;
     my $amount = shift @_;
     my $result_ptr = shift @_;
     my $row_len_ptr = shift @_;
+    my $count_ptr = shift @_;
     
     my $query = "SELECT COUNT(*) FROM file WHERE user_name='$user_name';";
     db_execute($query, $result_ptr, $row_len_ptr);
-    my $count = $$result_ptr[0];
-    print "<br/>count = $count";
+    $$count_ptr = $$result_ptr[0];
     
-    if($count < $amount)
-    {
-        $amount = $count;
-    }
-    
-    $query = "SELECT file_name, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' LIMIT 0, 81;";
+    $query = "SELECT file_name, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name';";
     @$result_ptr = ();
     $$row_len_ptr = "";
     db_execute($query, $result_ptr, $row_len_ptr);
     
     
-    for(my $i = 0; $i < ($$row_len_ptr * $amount); $i++)  #($$row_len_ptr * $amount)
+    for(my $i = 0; $i < ($$row_len_ptr * $$count_ptr); $i++)  #($$row_len_ptr * $amount)
     {
         #$img_dir = '_img';
         #$shortcut_dir = '_shortcut';
