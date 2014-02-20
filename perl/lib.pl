@@ -428,9 +428,11 @@ sub get_photo   #usage: get_photo($user_name, $amount, $option_sort, $option_ord
     }
 }
 
-sub remove_photo
+sub remove_photo    #usage: remove_photo($user_name, @array_of_file_name)
 {
+    ###TODO: delete file in dir
     
+    ###TODO: delete record in database
 }
 
 return 1;	#for header file, it must return 1, otherwise perl will exit with default value 0
