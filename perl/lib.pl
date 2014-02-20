@@ -384,7 +384,7 @@ sub get_photo   #usage: get_photo($user_name, $amount, $option_sort, $option_ord
         }
         elsif($option_sort eq 2)    #sort by name
         {
-            $query = "SELECT file_name, file_size, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' ORDER BY file_name;";
+            $query = "SELECT file_name, file_size, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' ORDER BY BINARY file_name;";
         }
         elsif($option_sort eq 3)    #sort by Upload Time
         {
@@ -399,7 +399,7 @@ sub get_photo   #usage: get_photo($user_name, $amount, $option_sort, $option_ord
         }
         elsif($option_sort eq 2)    #sort by name
         {
-            $query = "SELECT file_name, file_size, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' ORDER BY file_name DESC;";
+            $query = "SELECT file_name, file_size, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' ORDER BY BINARY file_name DESC;";
         }
         elsif($option_sort eq 3)    #sort by Upload Time
         {

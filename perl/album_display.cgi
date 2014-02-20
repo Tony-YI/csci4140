@@ -216,7 +216,7 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
     
     print <<__html_file__;
             <td>
-            <img src="$result[ (5*$i)-1 ]" height="100" width="100"/>
+            <img src="$result[ ($row_len*$i)-1 + ($option_page-1)*($row_len*$photo_in_one_page)-1]" height="100" width="100"/>
             </td>
 __html_file__
     
