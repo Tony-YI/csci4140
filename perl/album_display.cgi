@@ -291,6 +291,9 @@ __html_file__
 print <<__html_file__;
             </fieldset>
         </form>
+        <br/><br/>
+        <a href="file_picking.html">Go to File Packing Interface</a>
+        <a href="display_panel.html">Back to Display Panel</a>
     </body>
 </html>
 __html_file__
