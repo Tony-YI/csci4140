@@ -185,7 +185,7 @@ print <<__html_file__;
             </select>
 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="submit" name="submit" value="Change"/>
+            <input type="submit" name="submit" value="Change"/><br/>
 __html_file__
 
 #get photos
@@ -293,8 +293,6 @@ print <<__html_file__;
             </fieldset>
         </form>
         <br/><br/>
-        <a href="file_picking.html">Go to File Packing Interface</a>
-        <br/>
         <a href="display_panel.html">Back to Display Panel</a>
     </body>
 </html>
