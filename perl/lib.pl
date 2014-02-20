@@ -361,7 +361,7 @@ sub get_photo   #usage: get_photo($user_name, $amount,\@result, \$row_len)
     my $result_ptr = shift @_;
     my $row_len_ptr = shift @_;
     
-    my $query = "SELECT * FROM file WHERE user_name='$user_name';";
+    my $query = "SELECT file_name, description, img_path, shortcut_path FROM file WHERE user_name='$user_name';";
     db_execute($query, $result_ptr, $row_len_ptr);
 }
 

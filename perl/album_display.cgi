@@ -187,9 +187,12 @@ my $row_len;    #number of attributes in one database result
 
 get_photo($user_name, $amount, \@result, \$row_len);
 
-print "@result<br/>";
+print "<br/>@result<br/>";
 
 ###TODO: show photos
+print <<__html_file__;
+            <img src="$result[3]" height="100" width="100"/>
+__html_file__
 
 #########################
 print "<br/>submit = $submit<br/>option_r = $option_r<br/>option_c = $option_c<br/>amount = $amount<br/>option_sort = $option_sort<br/>option_order = $option_order<br/>option_page=$option_page<br/>";
