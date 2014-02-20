@@ -380,34 +380,33 @@ sub get_photo   #usage: get_photo($user_name, $amount, $option_sort, $option_ord
     {
         if($option_sort eq 1)   #sort by file size
         {
-            
+            $query = "SELECT file_name, file_size, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' ORDER BY BINARY file_size;";
         }
         elsif($option_sort eq 2)    #sort by name
         {
-            
+            $query = "SELECT file_name, file_size, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' ORDER BY BINARY file_name;";
         }
         elsif($option_sort eq 3)    #sort by Upload Time
         {
-            
+            $query = "SELECT file_name, file_size, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' ORDER BY BINARY upload_time;";
         }
     }
     elsif($option_order eq 2)   #Decending
     {
         if($option_sort eq 1)   #sort by file size
         {
-            
+            $query = "SELECT file_name, file_size, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' ORDER BY BINARY file_size DESC;";
         }
         elsif($option_sort eq 2)    #sort by name
         {
-            
+            $query = "SELECT file_name, file_size, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' ORDER BY BINARY file_name DESC;";
         }
         elsif($option_sort eq 3)    #sort by Upload Time
         {
-            
+            $query = "SELECT file_name, file_size, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' ORDER BY BINARY upload_time DESC;";
         }
     }
     
-    $query = "SELECT file_name, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name';";
     db_execute($query, $result_ptr, $row_len_ptr);
     
     
@@ -416,14 +415,14 @@ sub get_photo   #usage: get_photo($user_name, $amount, $option_sort, $option_ord
         #$img_dir = '_img';
         #$shortcut_dir = '_shortcut';
         
-        if(($i % $$row_len_ptr) eq 2)
-        {
-            my $img_path_for_show = "./data/$user_name$img_dir/$$result_ptr[$i - 2]";
-            $$result_ptr[$i] = $img_path_for_show;
-        }
         if(($i % $$row_len_ptr) eq 3)
         {
-            my $shortcut_path_for_show = "./data/$user_name$shortcut_dir/$$result_ptr[$i - 3]";
+            my $img_path_for_show = "./data/$user_name$img_dir/$$result_ptr[$i - 3]";
+            $$result_ptr[$i] = $img_path_for_show;
+        }
+        if(($i % $$row_len_ptr) eq 4)
+        {
+            my $shortcut_path_for_show = "./data/$user_name$shortcut_dir/$$result_ptr[$i - 4]";
             $$result_ptr[$i] = $shortcut_path_for_show;
         }
     }
