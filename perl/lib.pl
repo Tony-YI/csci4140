@@ -8,6 +8,13 @@ use CGI;
 #use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 use strict;
 
+
+###################################################
+###           Setup LogIn Interface             ###
+###################################################
+
+
+
 ###################################################
 ###            Setup MySQL database             ###
 ###################################################
@@ -339,7 +346,23 @@ sub duplication_upload_pic  #usage: duplication_upload_pic($user_name, $descript
 }
 
 ###################################################
-###           Setup LogIn Interface             ###
+###        Setup Album Display Interface        ###
 ###################################################
+my $public_data_dir = "$ENV{OPENSHIFT_REPO_DIR}/data";  #since the photos are store in the presistent storage
+                                                        #are not accessable by the browser.
+                                                        #we must create a symbolic link of the presisten dir
+                                                        #so that we can get back the photo using browser
+
+sub get_photo   #usage: get_photo($user_name, $amount,\@result, \$row_len)
+                #then we will get $amount number of photos of $user_name and sotre the result in \@result and \$row_len
+{
+    my $user_name = shift @_;
+    my $amount = shift @_;
+    my $result_ptr = shift @_;
+    my $row_len_ptr = shift @_;
+    
+    my $query = "SELECT * FROM file WHERE user_name='$user_name';";
+    db_execute($query, $result_ptr, $row_len_ptr);
+}
 
 return 1;	#for header file, it must return 1, otherwise perl will exit with default value 0

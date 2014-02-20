@@ -14,29 +14,26 @@
 ### 9. Click and display the target photo                            ###
 ### 10. For un-authorized user, the album is read only               ###
 
-
-####### Wrong direction, split into 3 forms #################
-
 use strict;
 use CGI;
 use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 
 my $CGI_o = CGI->new();
 
+my $user_name = 'admin';                                    ###TODO: get $user_name from cookies
 my $submit = $CGI_o->param('submit');
+my $last_option_r = $CGI_o->param('last_option_r');
+my $last_option_c = $CGI_o->param('last_option_c');
+my $last_option_sort = $CGI_o->param('last_option_sort');
+my $last_option_order = $CGI_o->param('last_option_order');
+my $last_option_page = $CGI_o->param('last_option_page');
 
 my $option_r;
 my $option_c;
 my $option_sort;
 my $option_order;
 my $option_page;
-#my $option_remove_photo ###TODO
-
-my $last_option_r = $CGI_o->param('last_option_r');
-my $last_option_c = $CGI_o->param('last_option_c');
-my $last_option_sort = $CGI_o->param('last_option_sort');
-my $last_option_order = $CGI_o->param('last_option_order');
-my $last_option_page = $CGI_o->param('last_option_page');
+#my $option_remove_photo                                    ###TODO
 
 print $CGI_o->header();
 
@@ -181,13 +178,20 @@ print <<__html_file__;
             <input type="submit" name="submit" value="Change"/>
 __html_file__
 
-print "<br/>submit = $submit<br/>option_r = $option_r<br/>option_c = $option_c<br/>option_sort = $option_sort<br/>option_order = $option_order<br/>option_page=$option_page<br/>";
+###TODO: get photos
+my $amount = $option_r * $option_c;
+my @result;
+my $row_len;    #number of attributes in one database result
 
+get_photo($user_name, $amount, \@result, \$row_len);
 
+print "@result<br/>";
 
 ###TODO: show photos
 
-
+#########################
+print "<br/>submit = $submit<br/>option_r = $option_r<br/>option_c = $option_c<br/>amount = $amount<br/>option_sort = $option_sort<br/>option_order = $option_order<br/>option_page=$option_page<br/>";
+#########################
 
 print <<__html_file__;
             <input type="submit" name="submit" value="Remove Selected"/>
