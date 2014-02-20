@@ -369,7 +369,7 @@ sub get_photo   #usage: get_photo($user_name, $amount,\@result, \$row_len)
     my $query = "SELECT file_name, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name';";
     db_execute($query, $result_ptr, $row_len_ptr);
     
-    for(my $i = 0; $i < $$row_len_ptr * $amount; $i++)
+    for(my $i = 0; $i < ($$row_len_ptr * $amount); $i++)
     {
         #$img_dir = '_img';
         #$shortcut_dir = '_shortcut';
