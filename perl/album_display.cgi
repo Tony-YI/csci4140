@@ -138,7 +138,7 @@ print <<__html_file__;
             <select name="option_sort" autofocus>
 __html_file__
 
-my @sort_type = ('File Size', 'Name', 'Upload');
+my @sort_type = ('File Size', 'Name', 'Upload Time');
 
 for($i = 1; $i <= 3; $i++)
 {
