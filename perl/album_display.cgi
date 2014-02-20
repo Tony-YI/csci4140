@@ -32,11 +32,11 @@ my $option_order;
 my $option_page;
 #my $option_remove_photo ###TODO
 
-my $last_option_r;
-my $last_option_c;
-my $last_option_sort;
-my $last_option_order;
-my $last_option_page;
+my $last_option_r = $CGI_o->param('option_r');
+my $last_option_c = $CGI_o->param('option_c');
+my $last_option_sort = $CGI_o->param('option_sort');
+my $last_option_order = $CGI_o->param('option_order');
+my $last_option_page = $CGI_o->param('option_page');
 
 if($submit == "Change")
 {
