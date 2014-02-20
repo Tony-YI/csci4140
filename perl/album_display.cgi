@@ -231,8 +231,7 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
                 <td height="130" width="145">
                 <img title="$title" src="$src" height="100" width="100"/>
                 <br/>
-                <input type="checkbox" name="option_remove" value="$photo_name"/>
-                $photo_name
+                <input type="checkbox" name="option_remove" value="$photo_name" checked>$photo_name</input>
                 <br/>
                 </td>
 __html_file__
