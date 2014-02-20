@@ -76,7 +76,7 @@ else
     #default values
     print "default<br/>";
     $option_r = 5;
-    $option_c = 10;
+    $option_c = 4;
     $option_sort = 1;
     $option_order = 1;
     $option_page = 1;
@@ -145,7 +145,8 @@ print <<__html_file__;
             <option value="2">Descending</option>
             </select>
 
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="submit" value="Change"/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="submit" name="submit" value="Change"/>
 __html_file__
 
 print "<br/>submit = $submit<br/>option_r = $option_r<br/>option_c = $option_c<br/>option_sort = $option_sort<br/>option_order = $option_order<br/>option_page=$option_page<br/>";
@@ -158,7 +159,8 @@ print "<br/>submit = $submit<br/>option_r = $option_r<br/>option_c = $option_c<b
 
 print <<__html_file__;
             <input type="submit" name="submit" value="Remove Selected"/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Page
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Page
             <select name="option_page" autofocus>
 __html_file__
 
@@ -176,7 +178,11 @@ for($i = 1; $i <= 4; $i++)
 
 print <<__html_file__;
             </select>
-            &nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            of
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            4
+            &nbsp;&nbsp;&nbsp;&nbsp;
             <input type="submit" name="submit" value="Go to Page"/>
 __html_file__
 
