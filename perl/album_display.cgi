@@ -180,7 +180,7 @@ print <<__html_file__;
             <input type="submit" name="submit" value="Change"/>
 __html_file__
 
-###TODO: get photos
+#get photos
 my $amount = $option_r * $option_c;
 my @result;
 my $row_len;    #number of attributes in one database result
@@ -197,15 +197,37 @@ if($count % $amount)
     $total_page++;
 }
 
+my $photo_in_one_page = $amount;
+if($count < $amount)
+{
+    $photo_in_one_page = $count;
+}
+
 print <<__html_file__;
-            <img src="$result[3]" height="100" width="100"/>
+            <table>
 __html_file__
 
-#########################
-print "<br/>submit = $submit<br/>count = $count<br/>option_r = $option_r<br/>option_c = $option_c<br/>amount = $amount<br/>option_sort = $option_sort<br/>option_order = $option_order<br/>option_page=$option_page<br/>";
-#########################
+for($i = 1; $i <= $photo_in_one_page; $i++)
+{
+    if(($i % $option_c) eq 1)   #start of an row
+    {
+        print "<tr>";
+    }
+    
+    print <<__html_file__;
+            <td>
+            <img src="$result[3]" height="100" width="100"/>
+            </td>
+__html_file__
+    
+    if(($i % $option_c) eq 0)    #end of a row
+    {
+        print "</tr>";
+    }
+}
 
 print <<__html_file__;
+            </table>
             <input type="submit" name="submit" value="Remove Selected"/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Page
@@ -243,6 +265,10 @@ print <<__html_file__;
             <input type="hidden" name="last_option_order" value="$last_option_order">
             <input type="hidden" name="last_option_page" value="$last_option_page">
 __html_file__
+
+#########################
+print "<br/>submit = $submit<br/>count = $count<br/>option_r = $option_r<br/>option_c = $option_c<br/>amount = $amount<br/>option_sort = $option_sort<br/>option_order = $option_order<br/>option_page=$option_page<br/>";
+#########################
 
 print <<__html_file__;
             </fieldset>
