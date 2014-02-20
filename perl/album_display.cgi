@@ -133,16 +133,48 @@ for($i = 1; $i < 10; $i++)
 
 print <<__html_file__;
             </select>
+
             &nbsp;&nbsp;&nbsp;&nbsp;Sort By
             <select name="option_sort" autofocus>
-            <option value="1">File Size</option>
-            <option value="2">Name</option>
-            <option value="3">Upload Time</option>
+__html_file__
+
+my @sort_type = ('File Size', 'Name', 'Upload');
+
+for($i = 1; $i <= 3; $i++)
+{
+    if($i eq $option_sort)
+    {
+        print "<option value=$i selected>$sort_type[$i]</option>\n";
+    }
+    else
+    {
+        print "<option value=$i>$sort_type[$i]</option>\n";
+    }
+}
+
+print <<__html_file__;
             </select>
-            &nbsp;&nbsp;&nbsp;&nbsp;Order
+
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            Order
             <select name="option_order" autofocus required>
-            <option value="1">Ascending</option>
-            <option value="2">Descending</option>
+__html_file__
+
+my @order_type = ('Ascending', 'Descending');
+
+for($i = 1; $i <= 2; $i++)
+{
+    if($i eq $option_order)
+    {
+        print "<option value=$i selected>$order_type[$i]</option>\n";
+    }
+    else
+    {
+        print "<option value=$i>$order_type[$i]</option>\n";
+    }
+}
+
+print <<__html_file__;
             </select>
 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -161,6 +193,7 @@ print <<__html_file__;
             <input type="submit" name="submit" value="Remove Selected"/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Page
+            &nbsp;&nbsp;
             <select name="option_page" autofocus>
 __html_file__
 
@@ -178,9 +211,9 @@ for($i = 1; $i <= 4; $i++)
 
 print <<__html_file__;
             </select>
-            &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
             of
-            &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
             4
             &nbsp;&nbsp;&nbsp;&nbsp;
             <input type="submit" name="submit" value="Go to Page"/>
