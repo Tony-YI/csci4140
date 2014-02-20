@@ -368,7 +368,7 @@ sub get_photo   #usage: get_photo($user_name, $amount,\@result, \$row_len)
     
     my $query = "SELECT COUNT(*) FROM file WHERE user_name='$user_name';";
     db_execute($query, $result_ptr, $row_len_ptr);
-    my $count = (scalar @$result_ptr) / $$row_len_ptr;
+    my $count = (scalar @$result_ptr);
     print "<br/>count = $count";
     
     if($count < $amount)
