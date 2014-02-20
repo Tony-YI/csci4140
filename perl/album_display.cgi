@@ -230,7 +230,7 @@ print <<__html_file__;
             &nbsp;&nbsp;
             of
             &nbsp;&nbsp;
-            "$total_page"
+            $total_page
             &nbsp;&nbsp;&nbsp;&nbsp;
             <input type="submit" name="submit" value="Go to Page"/>
 __html_file__
