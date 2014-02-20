@@ -430,6 +430,10 @@ sub get_photo   #usage: get_photo($user_name, $amount, $option_sort, $option_ord
 
 sub remove_photo    #usage: remove_photo($user_name, @array_of_file_name)
 {
+    $user_name = shift @_;
+    $array_file_name = @_;
+    
+    print "<br/>user_name = $user_name<br/>array_file_name = @array_file_name<br/>";
     ###TODO: delete file in dir
     
     ###TODO: delete record in database
