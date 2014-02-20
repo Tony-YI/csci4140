@@ -29,7 +29,6 @@ my $last_option_c = $CGI_o->param('last_option_c');
 my $last_option_sort = $CGI_o->param('last_option_sort');
 my $last_option_order = $CGI_o->param('last_option_order');
 my $last_option_page = $CGI_o->param('last_option_page');
-my @last_option_remove = $CGI_o->param('last_option_remove');  ###TODO
 
 my $option_r;
 my $option_c;
@@ -282,7 +281,7 @@ print <<__html_file__;
             <input type="hidden" name="last_option_sort" value="$last_option_sort">
             <input type="hidden" name="last_option_order" value="$last_option_order">
             <input type="hidden" name="last_option_page" value="$last_option_page">
-            <input type="hidden" name="last_option_remove" value="@last_option_remove">
+            <input type="hidden" name="option_remove" value="@option_remove">
 __html_file__
 
 #########################
