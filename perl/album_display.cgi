@@ -195,7 +195,7 @@ print <<__html_file__;
 __html_file__
 
 #########################
-my $public_data_dir = "$ENV{OPENSHIFT_REPO_DIR}";
+my $public_data_dir = "$ENV{OPENSHIFT_REPO_DIR}perl";
 my $out = `cd "$public_data_dir" && ls -A`;
 print "<br/>$public_data_dir<br/>$out<br/>";
 
