@@ -195,10 +195,6 @@ print <<__html_file__;
 __html_file__
 
 #########################
-my $public_data_dir = "$ENV{OPENSHIFT_REPO_DIR}perl";
-my $out = `cd "$public_data_dir/data" && ls -A`;
-print "<br/>$public_data_dir<br/>$out<br/>";
-
 print "<br/>submit = $submit<br/>option_r = $option_r<br/>option_c = $option_c<br/>amount = $amount<br/>option_sort = $option_sort<br/>option_order = $option_order<br/>option_page=$option_page<br/>";
 #########################
 
