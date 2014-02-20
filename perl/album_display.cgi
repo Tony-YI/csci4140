@@ -14,15 +14,16 @@
 ### 9. Click and display the target photo                            ###
 ### 10. For un-authorized user, the album is read only               ###
 
+
+####### Wrong direction, split into 3 forms #################
+
 use strict;
 use CGI;
 use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 
 my $CGI_o = CGI->new();
 
-my $change = $CGI_o->param('change');
-my $remove = $CGI_o->param('remove');
-my $page = $CGI_o->param('page');
+my $submit = $CGI_o->param('submit');
 
 my $option_r;
 my $option_c;
@@ -37,7 +38,7 @@ my $last_option_sort;
 my $last_option_order;
 my $last_option_page;
 
-if($change == "Change")
+if($submit == "Change")
 {
     #submitted by "change" button
     $option_r = $CGI_o->param('option_r');
@@ -46,7 +47,7 @@ if($change == "Change")
     $option_order = $CGI_o->param('option_order');
     $option_page = 1;
 }
-elsif($remove == "Remove Selected")
+elsif($submit == "Remove Selected")
 {
     #submitted by "Remove Selected" button
     $option_r = $last_option_r;
@@ -55,7 +56,7 @@ elsif($remove == "Remove Selected")
     $option_order = $last_option_order;
     $option_page = 1;
 }
-elsif($page == "Go to Page")
+elsif($submit == "Go to Page")
 {
     #submitted by "Go to Page" button
     $option_r = $last_option_r;
@@ -126,7 +127,7 @@ print <<__html_file__;
             <option value="2">Descending</option>
             </select>
 
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="change" value="Change"/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="submit" value="Change"/>
 __html_file__
 
 print "<br/>option_r = $option_r<br/>option_c = $option_c<br/>option_sort = $option_sort<br/>option_order = $option_order<br/>option_page=$option_page<br/>";
@@ -138,7 +139,7 @@ print "<br/>option_r = $option_r<br/>option_c = $option_c<br/>option_sort = $opt
 
 
 print <<__html_file__;
-            <input type="submit" name="remove" value="Remove Selected"/>
+            <input type="submit" name="submit" value="Remove Selected"/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Page
             <select name="option_page" autofocus>
 __html_file__
@@ -150,8 +151,8 @@ for($i = 1; $i < 4; $i++)
 
 print <<__html_file__;
             </select>
-            &nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;&nbsp;&nbsp;&nbsp;4
-            <input type="submit" name="page" value="Go to Page"/>
+            &nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;
+            <input type="submit" name="submit" value="Go to Page"/>
 __html_file__
 
 
