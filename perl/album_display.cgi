@@ -221,8 +221,10 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
         my $photo_name = $result[ ($row_len*$i)-4 + ($option_page-1)*($row_len*$photo_in_one_page) - 1 ];
         print <<__html_file__;
                 <td>
-                <img title="$title" src="$src" height="120" width="120"/>
+                <div height="130" width="150">
+                <img title="$title" src="$src" height="100" width="100"/>
                 <br/>$photo_name<br/>
+                <div>
                 </td>
 __html_file__
     }
