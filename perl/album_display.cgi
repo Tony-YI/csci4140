@@ -212,6 +212,7 @@ if($count < $amount)
 }
 
 print <<__html_file__;
+            <br/>
             <table>
 __html_file__
 
@@ -245,7 +246,7 @@ __html_file__
 
 #print the remain form
 print <<__html_file__;
-            </table>
+            </table><br/>
             <input type="submit" name="submit" value="Remove Selected"/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Page
@@ -293,6 +294,7 @@ print <<__html_file__;
         </form>
         <br/><br/>
         <a href="file_picking.html">Go to File Packing Interface</a>
+        <br/>
         <a href="display_panel.html">Back to Display Panel</a>
     </body>
 </html>
