@@ -37,6 +37,8 @@ my $option_order;
 my $option_page;
 my @option_remove;  ###TODO
 
+push(@option_remove, $CGI_o->param('option_remove'));
+
 print $CGI_o->header();
 
 if($submit eq "Change") #string can't use == must use eq
@@ -48,7 +50,6 @@ if($submit eq "Change") #string can't use == must use eq
     $option_sort = $CGI_o->param('option_sort');
     $option_order = $CGI_o->param('option_order');
     $option_page = 1;
-    @last_option_remove = ();
 }
 elsif($submit eq "Remove Selected")
 {
@@ -59,8 +60,6 @@ elsif($submit eq "Remove Selected")
     $option_sort = $last_option_sort;
     $option_order = $last_option_order;
     $option_page = 1;
-    @option_remove = $CGI_o->param('option_remove');
-    @last_option_remove = ();
 }
 elsif($submit eq "Go to Page")
 {
@@ -71,7 +70,6 @@ elsif($submit eq "Go to Page")
     $option_sort = $last_option_sort;
     $option_order = $last_option_order;
     $option_page = $CGI_o->param('option_page');
-    push(@last_option_remove,$CGI_o->param('option_remove'));
 }
 else
 {
@@ -230,7 +228,7 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
                 <td height="130" width="145">
                 <img title="$title" src="$src" height="100" width="100"/>
                 <br/>
-                <input type="checkbox" name="option_remove" value="$photo_name" checked>$photo_name</input>
+                <input type="checkbox" name="option_remove" value="$photo_name">$photo_name</input>
                 <br/>
                 </td>
 __html_file__
@@ -285,7 +283,7 @@ print <<__html_file__;
 __html_file__
 
 #########################
-print "<br/>submit = $submit<br/>count = $count<br/>option_r = $option_r<br/>option_c = $option_c<br/>amount = $amount<br/>option_sort = $option_sort<br/>option_order = $option_order<br/>option_page=$option_page<br/>option_remove = @option_remove<br/>last_option_remove = @last_option_remove";
+print "<br/>submit = $submit<br/>count = $count<br/>option_r = $option_r<br/>option_c = $option_c<br/>amount = $amount<br/>option_sort = $option_sort<br/>option_order = $option_order<br/>option_page=$option_page<br/>option_remove = @option_remove<br/>;
 #########################
 
 print <<__html_file__;
