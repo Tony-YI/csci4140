@@ -199,7 +199,7 @@ get_photo($user_name, $amount, $option_sort, $option_order, \@result, \$row_len,
 
 print "<br/>@result<br/>";
 
-###TODO: show photos
+#show photos
 my $total_page = int($count / $amount);
 if($count % $amount)
 {

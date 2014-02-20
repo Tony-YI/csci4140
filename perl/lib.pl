@@ -433,10 +433,35 @@ sub remove_photo    #usage: remove_photo($user_name, @array_of_file_name)
     my $user_name = shift @_;
     my @array_file_name = @_;
     
-    print "<br/>user_name = $user_name<br/>array_file_name = @array_file_name<br/>";
-    ###TODO: delete file in dir
+    #print "<br/>user_name = $user_name<br/>array_file_name = @array_file_name<br/>";
     
+    ###TODO: delete file in dir
     ###TODO: delete record in database
+    
+    #my $data_dir = $ENV{"OPENSHIFT_DATA_DIR"};
+    #my $img_dir = "_img";  #GLOBAL VARIABLE
+    #my $shortcut_dir = "_shortcut";    #GLOBAL VARIABLE
+    #my $temp_dir = "_temp";  #GLOBAL VARIABLE
+    foreach my $i (@array_file_name)
+    {
+        if(-e "$upload_dir$user_name$img_dir/$i")
+        {
+            `rm "$upload_dir$user_name$img_dir/$i"`;
+            my $out = `cd "$upload_dir$user_name$img_dir" && ls`;
+            print "<br/>out = $out<br/>"
+            
+            my $query = "DELETE FROM file WHERE user_name='$user_name' AND file_name='$i';";
+            db_execute($query);
+        }
+        else{}
+        if(-e "$upload_dir$user_name$shortcut_dir/$i")
+        {
+            `rm "$upload_dir$user_name$shortcut_dir/$i"`;
+            my $out = `cd "$upload_dir$user_name$shortcut_dir" && ls`;
+            print "<br/>out = $out<br/>"
+        }
+        else{}
+    }
 }
 
 return 1;	#for header file, it must return 1, otherwise perl will exit with default value 0
