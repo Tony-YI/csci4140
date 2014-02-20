@@ -40,7 +40,7 @@ my $last_option_page = $CGI_o->param('last_option_page');
 
 print $CGI_o->header();
 
-if($submit == "Change")
+if($submit eq "Change")
 {
     #submitted by "change" button
     print "change<br/>";
@@ -50,7 +50,7 @@ if($submit == "Change")
     $option_order = $CGI_o->param('option_order');
     $option_page = 1;
 }
-elsif($submit == "Remove Selected")
+elsif($submit eq "Remove Selected")
 {
     #submitted by "Remove Selected" button
     print "remove<br/>";
@@ -60,7 +60,7 @@ elsif($submit == "Remove Selected")
     $option_order = $last_option_order;
     $option_page = 1;
 }
-elsif($submit == "Go to Page")
+elsif($submit eq "Go to Page")
 {
     #submitted by "Go to Page" button
     print "page<br/>";
