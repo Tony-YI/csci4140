@@ -197,7 +197,7 @@ __html_file__
 #########################
 my $public_data_dir = "$ENV{OPENSHIFT_REPO_DIR}data/";
 my $out = `cd "$public_data_dir" && ls -A`;
-print "<br/>$out<br/>"
+print "<br/>$out<br/>";
 
 print "<br/>submit = $submit<br/>option_r = $option_r<br/>option_c = $option_c<br/>amount = $amount<br/>option_sort = $option_sort<br/>option_order = $option_order<br/>option_page=$option_page<br/>";
 #########################
