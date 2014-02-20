@@ -214,11 +214,14 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
         print "<tr>";
     }
     
-    print <<__html_file__;
-            <td>
-            <img src="$result[ ($row_len*$i)-1 + ($option_page-1)*($row_len*$photo_in_one_page)-1]" height="100" width="100"/>
-            </td>
+    if($result[ ($row_len*$i)-1 + ($option_page-1)*($row_len*$photo_in_one_page)-1])
+    {
+        print <<__html_file__;
+                <td>
+                <img src="$result[ ($row_len*$i)-1 + ($option_page-1)*($row_len*$photo_in_one_page)-1]" height="100" width="100"/>
+                </td>
 __html_file__
+    }
     
     if(($i % $option_c) eq 0)    #end of a row
     {
