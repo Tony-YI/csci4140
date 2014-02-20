@@ -82,8 +82,8 @@ else
     #first load
     #default values
     #print "default<br/>";
-    $option_r = 5;
-    $option_c = 4;
+    $option_r = 3;
+    $option_c = 8;
     $option_sort = 3;
     $option_order = 2	;
     $option_page = 1;
@@ -196,7 +196,7 @@ my $count;      #number of records in the "file" table inside database
 
 get_photo($user_name, $amount, $option_sort, $option_order, \@result, \$row_len, \$count);
 
-print "<br/>@result<br/>";
+#print "<br/>@result<br/>";
 
 #show photos
 my $total_page = int($count / $amount);
