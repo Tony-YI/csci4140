@@ -380,7 +380,7 @@ sub get_photo   #usage: get_photo($user_name, $amount, $option_sort, $option_ord
     {
         if($option_sort eq 1)   #sort by file size
         {
-            $query = "SELECT file_name, file_size, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' ORDER BY BINARY file_size;";
+            $query = "SELECT file_name, file_size, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' ORDER BY file_size;";
         }
         elsif($option_sort eq 2)    #sort by name
         {
@@ -388,14 +388,14 @@ sub get_photo   #usage: get_photo($user_name, $amount, $option_sort, $option_ord
         }
         elsif($option_sort eq 3)    #sort by Upload Time
         {
-            $query = "SELECT file_name, file_size, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' ORDER BY BINARY upload_time;";
+            $query = "SELECT file_name, file_size, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' ORDER BY upload_time;";
         }
     }
     elsif($option_order eq 2)   #Decending
     {
         if($option_sort eq 1)   #sort by file size
         {
-            $query = "SELECT file_name, file_size, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' ORDER BY BINARY file_size DESC;";
+            $query = "SELECT file_name, file_size, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' ORDER BY file_size DESC;";
         }
         elsif($option_sort eq 2)    #sort by name
         {
@@ -403,7 +403,7 @@ sub get_photo   #usage: get_photo($user_name, $amount, $option_sort, $option_ord
         }
         elsif($option_sort eq 3)    #sort by Upload Time
         {
-            $query = "SELECT file_name, file_size, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' ORDER BY BINARY upload_time DESC;";
+            $query = "SELECT file_name, file_size, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name' ORDER BY upload_time DESC;";
         }
     }
     
