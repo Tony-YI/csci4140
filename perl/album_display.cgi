@@ -18,6 +18,8 @@ use strict;
 use CGI;
 use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 
+require "./lib.pl";
+
 my $CGI_o = CGI->new();
 
 my $user_name = 'admin';                                    ###TODO: get $user_name from cookies
