@@ -363,6 +363,23 @@ sub get_photo   #usage: get_photo($user_name, $amount,\@result, \$row_len)
     
     my $query = "SELECT file_name, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name';";
     db_execute($query, $result_ptr, $row_len_ptr);
+    
+    for(my $i = 0; $i < $$row_len_ptr * $amount; $i++)
+    {
+        #$img_dir = '_img';
+        #$shortcut_dir = '_shortcut';
+        
+        if(($i % $row_len_ptr) eq 2)
+        {
+            my $img_path_for_show = "$public_data_dir$user_name$img_dir/$$result_ptr[$i - 2]";
+            $$result_ptr[$i] = $img_path_for_show;
+        }
+        if(($i % $row_len_ptr) eq 3)
+        {
+            my $shortcut_path_for_show = "$public_data_dir$user_name$img_dir/$$result_ptr[$i - 3]";
+            $$result_ptr[$i] = $shortcut_path_for_show;
+        }
+    }
 }
 
 return 1;	#for header file, it must return 1, otherwise perl will exit with default value 0
