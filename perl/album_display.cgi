@@ -103,13 +103,13 @@ __html_file__
 my $i;
 for($i = 1; $i < 10; $i++)
 {
-    if($last_option_r)
+    if($i eq $last_option_r)
     {
-        print "<option value=$i selected>$i</option>";
+        print "<option value=$i selected>$i</option>\n";
     }
     else
     {
-        print "<option value=$i>$i</option>";
+        print "<option value=$i>$i</option>\n";
     }
 }
 
@@ -121,13 +121,13 @@ __html_file__
 
 for($i = 1; $i < 10; $i++)
 {
-    if($last_option_c)
+    if($i eq $last_option_c)
     {
-        print "<option value=$i selected>$i</option>";
+        print "<option value=$i selected>$i</option>\n";
     }
     else
     {
-        print "<option value=$i>$i</option>";
+        print "<option value=$i>$i</option>\n";
     }
 }
 
@@ -164,13 +164,13 @@ __html_file__
 
 for($i = 1; $i <= 4; $i++)
 {
-    if($last_option_page)
+    if($i eq $last_option_page)
     {
-        print "<option value=$i selected>$i</option>";
+        print "<option value=$i selected>$i</option>\n";
     }
     else
     {
-        print "<option value=$i>$i</option>";
+        print "<option value=$i>$i</option>\n";
     }
 }
 
