@@ -35,9 +35,7 @@ my $option_c;
 my $option_sort;
 my $option_order;
 my $option_page;
-my @option_remove;  ###TODO
-
-push(@option_remove, $CGI_o->param('option_remove'));
+my @option_remove;
 
 print $CGI_o->header();
 
@@ -50,6 +48,7 @@ if($submit eq "Change") #string can't use == must use eq
     $option_sort = $CGI_o->param('option_sort');
     $option_order = $CGI_o->param('option_order');
     $option_page = 1;
+    @option_remove = ();
 }
 elsif($submit eq "Remove Selected")
 {
@@ -60,6 +59,12 @@ elsif($submit eq "Remove Selected")
     $option_sort = $last_option_sort;
     $option_order = $last_option_order;
     $option_page = 1;
+    #remove photo
+    @option_remove = $CGI_o->param('option_remove');
+    if(@option_remove)
+    {
+        remove_photo($user_name, @option_remove);
+    }
 }
 elsif($submit eq "Go to Page")
 {
@@ -70,6 +75,7 @@ elsif($submit eq "Go to Page")
     $option_sort = $last_option_sort;
     $option_order = $last_option_order;
     $option_page = $CGI_o->param('option_page');
+    @option_remove = ();
 }
 else
 {
@@ -183,8 +189,6 @@ print <<__html_file__;
             <input type="submit" name="submit" value="Change"/>
 __html_file__
 
-###TODO: remove photo
-
 #get photos
 my $amount = $option_r * $option_c;
 my @result;
@@ -279,7 +283,6 @@ print <<__html_file__;
             <input type="hidden" name="last_option_sort" value="$last_option_sort">
             <input type="hidden" name="last_option_order" value="$last_option_order">
             <input type="hidden" name="last_option_page" value="$last_option_page">
-            <input type="hidden" name="option_remove" value="@option_remove">
 __html_file__
 
 #########################
