@@ -72,6 +72,7 @@ elsif($submit eq "Go to Page")
     $option_order = $last_option_order;
     $option_page = $CGI_o->param('option_page');
     @option_remove = @last_option_remove;
+    print "@last_option_remove<br/>";
 }
 else
 {
