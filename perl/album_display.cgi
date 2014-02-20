@@ -191,7 +191,11 @@ get_photo($user_name, $amount, $option_sort, $option_order, \@result, \$row_len,
 print "<br/>@result<br/>";
 
 ###TODO: show photos
-my $total_page = $count / $amount;
+my $total_page = int($count / $amount);
+if($count % $amount)
+{
+    $total_page++;
+}
 
 print <<__html_file__;
             <img src="$result[3]" height="100" width="100"/>
