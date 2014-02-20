@@ -186,7 +186,7 @@ my @result;
 my $row_len;    #number of attributes in one database result
 my $count;      #number of records in the "file" table inside database
 
-get_photo($user_name, $amount, \@result, \$row_len, \$count);
+get_photo($user_name, $amount, $option_sort, $option_order, \@result, \$row_len, \$count);
 
 print "<br/>@result<br/>";
 

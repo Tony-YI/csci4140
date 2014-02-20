@@ -358,11 +358,13 @@ sub duplication_upload_pic  #usage: duplication_upload_pic($user_name, $descript
 #add line into "deploy"
 #ln -s {OPENSHIFT_DATA_DIR} {OPENSHIFT_REPO_DIR}/perl/data
 
-sub get_photo   #usage: get_photo($user_name, $amount,\@result, \$row_len, \$count)
+sub get_photo   #usage: get_photo($user_name, $amount, $option_sort, $option_order, \@result, \$row_len, \$count)
                 #then we will get $amount number of photos of $user_name and sotre the result in \@result and \$row_len
 {
     my $user_name = shift @_;
     my $amount = shift @_;
+    my $option_sort = shift @_;
+    my $option_order = shift @_;
     my $result_ptr = shift @_;
     my $row_len_ptr = shift @_;
     my $count_ptr = shift @_;
@@ -371,9 +373,41 @@ sub get_photo   #usage: get_photo($user_name, $amount,\@result, \$row_len, \$cou
     db_execute($query, $result_ptr, $row_len_ptr);
     $$count_ptr = $$result_ptr[0];
     
+    @$result_ptr = ();  #make it back to blank otherwise it will add to the back
+    #$$row_len_ptr = "";
+    
+    if($option_order eq 1)  #Ascending
+    {
+        if($option_sort eq 1)   #sort by file size
+        {
+            
+        }
+        elsif($option_sort eq 2)    #sort by name
+        {
+            
+        }
+        elsif($option_sort eq 3)    #sort by Upload Time
+        {
+            
+        }
+    }
+    elsif($option_order eq 2)   #Decending
+    {
+        if($option_sort eq 1)   #sort by file size
+        {
+            
+        }
+        elsif($option_sort eq 2)    #sort by name
+        {
+            
+        }
+        elsif($option_sort eq 3)    #sort by Upload Time
+        {
+            
+        }
+    }
+    
     $query = "SELECT file_name, img_description, img_path, shortcut_path FROM file WHERE user_name='$user_name';";
-    @$result_ptr = ();
-    $$row_len_ptr = "";
     db_execute($query, $result_ptr, $row_len_ptr);
     
     
@@ -393,6 +427,11 @@ sub get_photo   #usage: get_photo($user_name, $amount,\@result, \$row_len, \$cou
             $$result_ptr[$i] = $shortcut_path_for_show;
         }
     }
+}
+
+sub remove_photo
+{
+    
 }
 
 return 1;	#for header file, it must return 1, otherwise perl will exit with default value 0
