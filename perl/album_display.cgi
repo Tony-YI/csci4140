@@ -49,6 +49,7 @@ if($submit eq "Change") #string can't use == must use eq
     $option_sort = $CGI_o->param('option_sort');
     $option_order = $CGI_o->param('option_order');
     $option_page = 1;
+    @last_option_remove = ();
 }
 elsif($submit eq "Remove Selected")
 {
@@ -60,6 +61,7 @@ elsif($submit eq "Remove Selected")
     $option_order = $last_option_order;
     $option_page = 1;
     @option_remove = $CGI_o->param('option_remove');
+    @last_option_remove = ();
 }
 elsif($submit eq "Go to Page")
 {
@@ -70,8 +72,7 @@ elsif($submit eq "Go to Page")
     $option_sort = $last_option_sort;
     $option_order = $last_option_order;
     $option_page = $CGI_o->param('option_page');
-    @last_option_remove = $CGI_o->param('option_remove');
-    print "@last_option_remove<br/>";
+    push(@last_option_remove,$CGI_o->param('option_remove'));
 }
 else
 {
