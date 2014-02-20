@@ -224,7 +224,7 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
                 <div height="130" width="150">
                 <img title="$title" src="$src" height="100" width="100"/>
                 <br/>$photo_name<br/>
-                <div>
+                </div>
                 </td>
 __html_file__
     }
