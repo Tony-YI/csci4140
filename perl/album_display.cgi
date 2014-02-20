@@ -42,7 +42,7 @@ print $CGI_o->header();
 if($submit eq "Change") #string can't use == must use eq
 {
     #submitted by "change" button
-    print "change<br/>";
+    #print "change<br/>";
     $option_r = $CGI_o->param('option_r');
     $option_c = $CGI_o->param('option_c');
     $option_sort = $CGI_o->param('option_sort');
@@ -53,7 +53,7 @@ if($submit eq "Change") #string can't use == must use eq
 elsif($submit eq "Remove Selected")
 {
     #submitted by "Remove Selected" button
-    print "remove<br/>";
+    #print "remove<br/>";
     $option_r = $last_option_r;
     $option_c = $last_option_c;
     $option_sort = $last_option_sort;
@@ -69,7 +69,7 @@ elsif($submit eq "Remove Selected")
 elsif($submit eq "Go to Page")
 {
     #submitted by "Go to Page" button
-    print "page<br/>";
+    #print "page<br/>";
     $option_r = $last_option_r;
     $option_c = $last_option_c;
     $option_sort = $last_option_sort;
@@ -81,7 +81,7 @@ else
 {
     #first load
     #default values
-    print "default<br/>";
+    #print "default<br/>";
     $option_r = 5;
     $option_c = 4;
     $option_sort = 3;
@@ -286,7 +286,7 @@ print <<__html_file__;
 __html_file__
 
 #########################
-print "<br/>submit = $submit<br/>count = $count<br/>option_r = $option_r<br/>option_c = $option_c<br/>amount = $amount<br/>option_sort = $option_sort<br/>option_order = $option_order<br/>option_page=$option_page<br/>option_remove = @option_remove<br/>";
+#print "<br/>submit = $submit<br/>count = $count<br/>option_r = $option_r<br/>option_c = $option_c<br/>amount = $amount<br/>option_sort = $option_sort<br/>option_order = $option_order<br/>option_page=$option_page<br/>option_remove = @option_remove<br/>";
 #########################
 
 print <<__html_file__;

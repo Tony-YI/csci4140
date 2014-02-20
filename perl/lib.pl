@@ -447,8 +447,8 @@ sub remove_photo    #usage: remove_photo($user_name, @array_of_file_name)
         if(-e "$upload_dir$user_name$img_dir/$i")
         {
             `rm "$upload_dir$user_name$img_dir/$i"`;
-            my $out = `cd "$upload_dir$user_name$img_dir" && ls`;
-            print "<br/>out = $out<br/>";
+            #my $out = `cd "$upload_dir$user_name$img_dir" && ls`;
+            #print "<br/>out = $out<br/>";
             
             my $query = "DELETE FROM file WHERE user_name='$user_name' AND file_name='$i';";
             db_execute($query);
@@ -457,8 +457,8 @@ sub remove_photo    #usage: remove_photo($user_name, @array_of_file_name)
         if(-e "$upload_dir$user_name$shortcut_dir/$i")
         {
             `rm "$upload_dir$user_name$shortcut_dir/$i"`;
-            my $out = `cd "$upload_dir$user_name$shortcut_dir" && ls`;
-            print "<br/>out = $out<br/>"
+            #my $out = `cd "$upload_dir$user_name$shortcut_dir" && ls`;
+            #print "<br/>out = $out<br/>"
         }
         else{}
     }
