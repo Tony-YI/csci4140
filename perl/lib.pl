@@ -348,10 +348,15 @@ sub duplication_upload_pic  #usage: duplication_upload_pic($user_name, $descript
 ###################################################
 ###        Setup Album Display Interface        ###
 ###################################################
-my $public_data_dir = "$ENV{OPENSHIFT_REPO_DIR}perl/data/";  #since the photos are store in the presistent storage
-                                                        #are not accessable by the browser.
-                                                        #we must create a symbolic link of the presisten dir
-                                                        #so that we can get back the photo using browser
+#since the photos are store in the presistent storage
+#are not accessable by the browser.
+#we must create a symbolic link of the presisten dir
+#so that we can get back the photo using browser
+
+#add file "deploy" in [project_name]/.openshift/action_hooks/
+#the file name must be "deploy"
+#add line into "deploy"
+#ln -s {OPENSHIFT_DATA_DIR} {OPENSHIFT_REPO_DIR}/perl/data
 
 sub get_photo   #usage: get_photo($user_name, $amount,\@result, \$row_len)
                 #then we will get $amount number of photos of $user_name and sotre the result in \@result and \$row_len
@@ -371,12 +376,12 @@ sub get_photo   #usage: get_photo($user_name, $amount,\@result, \$row_len)
         
         if(($i % $row_len_ptr) eq 2)
         {
-            my $img_path_for_show = "$public_data_dir$user_name$img_dir/$$result_ptr[$i - 2]";
+            my $img_path_for_show = "./data/$user_name$img_dir/$$result_ptr[$i - 2]";
             $$result_ptr[$i] = $img_path_for_show;
         }
         if(($i % $row_len_ptr) eq 3)
         {
-            my $shortcut_path_for_show = "$public_data_dir$user_name$shortcut_dir/$$result_ptr[$i - 3]";
+            my $shortcut_path_for_show = "./data/$user_name$shortcut_dir/$$result_ptr[$i - 3]";
             $$result_ptr[$i] = $shortcut_path_for_show;
         }
     }
