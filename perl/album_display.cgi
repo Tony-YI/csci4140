@@ -38,9 +38,12 @@ my $last_option_sort = $CGI_o->param('last_option_sort');
 my $last_option_order = $CGI_o->param('last_option_order');
 my $last_option_page = $CGI_o->param('last_option_page');
 
+print $CGI_o->header();
+
 if($submit == "Change")
 {
     #submitted by "change" button
+    print "change<br/>";
     $option_r = $CGI_o->param('option_r');
     $option_c = $CGI_o->param('option_c');
     $option_sort = $CGI_o->param('option_sort');
@@ -50,6 +53,7 @@ if($submit == "Change")
 elsif($submit == "Remove Selected")
 {
     #submitted by "Remove Selected" button
+    print "remove<br/>";
     $option_r = $last_option_r;
     $option_c = $last_option_c;
     $option_sort = $last_option_sort;
@@ -59,6 +63,7 @@ elsif($submit == "Remove Selected")
 elsif($submit == "Go to Page")
 {
     #submitted by "Go to Page" button
+    print "page<br/>";
     $option_r = $last_option_r;
     $option_c = $last_option_c;
     $option_sort = $last_option_sort;
@@ -69,6 +74,7 @@ else
 {
     #first load
     #default values
+    print "default<br/>";
     $option_r = 5;
     $option_c = 10;
     $option_sort = 1;
@@ -81,8 +87,6 @@ $last_option_c = $option_c;
 $last_option_sort = $option_sort;
 $last_option_order = $option_order;
 $last_option_page = $option_page;
-
-print $CGI_o->header();
 
 print <<__html_file__;
 <html>
