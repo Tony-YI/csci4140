@@ -204,7 +204,7 @@ if($count < $amount)
 }
 elsif($count - $amount * ($option_page-1) < $amount)
 {
-    $photo_in_one_page = $count - $amount * $option_page;
+    $photo_in_one_page = $count - $amount * ($option_page-1);
 }
 
 print <<__html_file__;
