@@ -202,7 +202,7 @@ if($count < $amount)
 {
     $photo_in_one_page = $count;
 }
-elsif($count - $amount * $option_page < $amount)
+elsif($count - $amount * ($option_page-1) < $amount)
 {
     $photo_in_one_page = $count - $amount * $option_page;
 }
