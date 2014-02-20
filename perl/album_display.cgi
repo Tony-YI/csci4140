@@ -144,11 +144,11 @@ for($i = 1; $i <= 3; $i++)
 {
     if($i eq $option_sort)
     {
-        print "<option value=$i selected>$sort_type[$i]</option>\n";
+        print "<option value=$i selected>$sort_type[$i - 1]</option>\n";
     }
     else
     {
-        print "<option value=$i>$sort_type[$i]</option>\n";
+        print "<option value=$i>$sort_type[$i - 1]</option>\n";
     }
 }
 
@@ -166,11 +166,11 @@ for($i = 1; $i <= 2; $i++)
 {
     if($i eq $option_order)
     {
-        print "<option value=$i selected>$order_type[$i]</option>\n";
+        print "<option value=$i selected>$order_type[$i - 1]</option>\n";
     }
     else
     {
-        print "<option value=$i>$order_type[$i]</option>\n";
+        print "<option value=$i>$order_type[$i - 1]</option>\n";
     }
 }
 
