@@ -283,7 +283,7 @@ print <<__html_file__;
 __html_file__
 
 #########################
-print "<br/>submit = $submit<br/>count = $count<br/>option_r = $option_r<br/>option_c = $option_c<br/>amount = $amount<br/>option_sort = $option_sort<br/>option_order = $option_order<br/>option_page=$option_page<br/>option_remove = @option_remove<br/>;
+print "<br/>submit = $submit<br/>count = $count<br/>option_r = $option_r<br/>option_c = $option_c<br/>amount = $amount<br/>option_sort = $option_sort<br/>option_order = $option_order<br/>option_page=$option_page<br/>option_remove = @option_remove<br/>";
 #########################
 
 print <<__html_file__;
