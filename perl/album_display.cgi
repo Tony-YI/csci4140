@@ -216,7 +216,7 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
     
     print <<__html_file__;
             <td>
-            <img src="$result[3]" height="100" width="100"/>
+            <img src="$result[ (5*$i)-1 ]" height="100" width="100"/>
             </td>
 __html_file__
     
@@ -226,6 +226,7 @@ __html_file__
     }
 }
 
+#print the remain form
 print <<__html_file__;
             </table>
             <input type="submit" name="submit" value="Remove Selected"/>
