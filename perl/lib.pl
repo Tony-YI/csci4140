@@ -97,8 +97,9 @@ sub db_init #insert seed data
     my $query = "INSERT INTO user (user_name, pass_word) VALUES ('admin', 'admin');";
     db_execute($query);
     
-    my $query = "INSERT INTO user (user_name, pass_word) VALUES ('wyyi', 'haha');";
-    db_execute($query);
+    #this is for multi-user, need to do something else
+    #my $query = "INSERT INTO user (user_name, pass_word) VALUES ('wyyi', 'haha');";
+    #db_execute($query);
 }
 
 ###################################################
