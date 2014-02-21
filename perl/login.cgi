@@ -11,9 +11,6 @@ my $CGI_o = CGI->new;
 
 print $CGI_o->header();
 
-print $CGI_o->popup_menu('menu_name',
-['eenie','meenie','minie'],
-'meenie');
 
 #print <<__html_file__;
 #<html>
