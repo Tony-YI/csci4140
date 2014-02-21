@@ -230,7 +230,6 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
         my $title = $result[ ($row_len*$i)-2 + ($option_page-1)*($row_len*$photo_in_one_page) - 1 ];
         my $photo_name = $result[ ($row_len*$i)-4 + ($option_page-1)*($row_len*$photo_in_one_page) - 1 ];
         print <<__html_file__;
-                <div width="142">
                 <td>
                 <div align="center" height="100" width="100">
                 <a href="$img_src">
@@ -244,7 +243,6 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
                 </p>
                 </div>
                 </td>
-                </div>
 __html_file__
     }
     
