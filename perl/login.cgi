@@ -42,7 +42,7 @@ sub print_html_tail
     print <<__html_file__;
     </body>
 </html>
-    __html_file__
+__html_file__
 }
 
 if($login eq "LogIn")   #subbmit buttom is pressed
