@@ -233,7 +233,7 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
                 <td style="width:142px">
                 <div style="align:center; height:100px; width:100px">
                 <a href="$img_src">
-                <img title="$title" src="$shortcut_src" style="max-height:100%; max-width:100%"/>
+                <img title="$title" src="$shortcut_src" style="align:center; max-height:100%; max-width:100%"/>
                 </a>
                 </div>
                 <div style="width:120px; align:center">
