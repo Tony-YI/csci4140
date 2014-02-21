@@ -47,10 +47,9 @@ __html_file__
 
 if($login eq "LogIn")   #subbmit buttom is pressed
 {
-    print $CGI_o->header();
-    
     if(!($user_name) || !($pass_word))  #user_name of pass_word is empty
     {
+        
         print_html_head();
         print "Log In Failed. User Name and PassWord can't be EMPTY.<br/><br/>";
         print_form();
