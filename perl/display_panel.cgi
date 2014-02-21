@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-### This .html file is for display panel    ###
+### This .cgi file is for display panel    ###
 
 #The display panel should contain a list of links to direct the user to
 #different components of this system.

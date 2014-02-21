@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-###   This .html file is used to pick and upload photos   ###
+###   This .cgi file is used to pick and upload photos   ###
 ###   1. Allow the user to input a text description of    ###
 ###      the photo and maximum length is 50 characters    ###
 ###   2. Guarantee a viewable verbatim output.            ###
@@ -74,7 +74,7 @@ __html_file__
     {
         print "<title>Upload Failed</title><p>Upload Failed.<br/>File not selected or file too large.</p></body></html>";
         print <<__html_file__;
-        <br/><a href="file_picking.html">Back to File Picking Interface</a>
+        <br/><a href="file_picking.cgi">Back to File Picking Interface</a>
         <br/><br/><a href="display_panel.cgi">Back to Display Panel</a>
     </body>
 </html>
@@ -158,7 +158,7 @@ __html_file__
     if($flag != 2)
     {
         print <<__html_file__;
-            <br/><a href="file_picking.html">Back to File Picking Interface</a>
+            <br/><a href="file_picking.cgi">Back to File Picking Interface</a>
             <br/><br/><a href="display_panel.cgi">Back to Display Panel</a>
         </body>
         </html>
@@ -196,7 +196,7 @@ __html_file__
         print <<__html_file__;
         <title>Upload Successed</title>
         <p>File "$old_file_name" Overwriting Successed.</p><br/>
-        <br/><a href="file_picking.html">Back to File Picking Interface</a>
+        <br/><a href="file_picking.cgi">Back to File Picking Interface</a>
         <br/><br/><a href="display_panel.cgi">Back to Display Panel</a>
 __html_file__
     }
@@ -231,7 +231,7 @@ __html_file__
                 <body>
                 <title>Upload Successed</title>
                 <p>File "$old_file_name" Renamed to "$new_file_name" and Upload Successed.</p><br/>
-                <br/><a href="file_picking.html">Back to File Picking Interface</a>
+                <br/><a href="file_picking.cgi">Back to File Picking Interface</a>
                 <br/><br/><a href="display_panel.cgi">Back to Display Panel</a>
 __html_file__
             }
@@ -264,7 +264,7 @@ __html_file__
         print <<__html_file__;
         <title>Duplication Handling Interface</title>
         <p>Upload Canceled.</p><br/>
-        <br/><a href="file_picking.html">Back to File Picking Interface</a>
+        <br/><a href="file_picking.cgi">Back to File Picking Interface</a>
         <br/><br/><a href="display_panel.cgi">Back to Display Panel</a>
 __html_file__
     }
