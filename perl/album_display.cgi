@@ -232,7 +232,7 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
         print <<__html_file__;
                     <td>
                     <div width="140" style="box-shadow:10px 10px 5px #888888; border-radius:12px;">
-                        <div style="margin-top:0px; margin-left:0px; width:12px; height:12px;">
+                        <div style="margin-top:5px; margin-left:2px; width:12px; height:12px;">
                             <input type="checkbox" name="option_remove" value="$photo_name"/>
                         </div>
                         <div style="margin-left:auto; margin-right:auto; margin-top:auto; margin-bottom:auto; height:100px; width:100px">
@@ -240,18 +240,17 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
                             <img title="$title" src="$shortcut_src" style="max-height:100%; max-width:100%;"/>
                             </a>
                         </div>
-                        <div style="word-wrap:break-word; text-align:center; width:140px; margin-left:auto; margin-right:auto; margin-top:0px">
+                        <div style="word-wrap:break-word; text-align:center; width:120px; margin-left:auto; margin-right:auto; margin-bottom:5px">
                             <br/>$photo_name
                         </div>
                     <div>
                     </td>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
 __html_file__
     }
     
     if(($i % $option_c) eq 0)    #end of a row
     {
-        print "</tr><br/><br/>";
+        print "</tr>";
     }
 }
 
