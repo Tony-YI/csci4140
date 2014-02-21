@@ -161,7 +161,7 @@ sub cookie_check    #usage: cookie_check($CGI_o)
     if($result[0])  #session exists
     {
         my $local_time = strftime("%Y-%m-%d %H:%M:%S", localtime);
-        if(str2time($local_time) - str2time($result[0]) < 60)#$expire_second)
+        if(str2time($local_time) - str2time($result[0]) < $expire_second)
         {
             #print $CGI_o->header();
             #print "$local_time<=>$result[0]<br/>";
@@ -186,7 +186,7 @@ sub cookie_check    #usage: cookie_check($CGI_o)
         db_execute($query, \@result, \$row_len);
         foreach my $i (@result)
         {
-            if(str2time($local_time) - str2time($i) >= 60)#$expire_second)
+            if(str2time($local_time) - str2time($i) >= $expire_second)
             {
                 my $query = "DELETE FROM session WHERE login_time='$i';";
                 db_execute($query);
