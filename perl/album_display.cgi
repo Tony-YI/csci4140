@@ -230,7 +230,7 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
         my $title = $result[ ($row_len*$i)-2 + ($option_page-1)*($row_len*$photo_in_one_page) - 1 ];
         my $photo_name = $result[ ($row_len*$i)-4 + ($option_page-1)*($row_len*$photo_in_one_page) - 1 ];
         print <<__html_file__;
-                <td height="130" width="145">
+                <td max-height=100% max-width=100%>
                 <a href="$img_src">
                 <img title="$title" src="$shortcut_src" height="100" width="100"/>
                 </a>
