@@ -230,7 +230,7 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
         my $photo_name = $result[ ($row_len*$i)-4 + ($option_page-1)*($row_len*$photo_in_one_page) - 1 ];
         print <<__html_file__;
                     <td>
-                    <div width="140" style="margin-left:20px; margin-top:10px; box-shadow:10px 10px 5px #888888; border-radius:10px;">
+                    <div width="140" style="padding-top:0px; padding-bottom:0px; margin-left:10px; margin-top:20px; box-shadow:10px 10px 5px #888888; border-radius:10px;">
                         <div style="padding-top:0px; padding-left:0px; width:12px; height:12px;">
                             <input type="checkbox" name="option_remove" value="$photo_name"/>
                         </div>
