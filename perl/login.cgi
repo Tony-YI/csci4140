@@ -84,6 +84,13 @@ if($login eq "LogIn")   #subbmit buttom is pressed
     }
 }
 
+else
+{
+    print $CGI_o->header();
+    print_html_head();
+    print_form();
+    print_html_tail();
+}
 
 #print <<__html_file__;
 #<html>
