@@ -243,6 +243,7 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
                 </p>
                 </div>
                 </td>
+                <br/>
 __html_file__
     }
     
