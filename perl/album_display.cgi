@@ -239,7 +239,7 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
                         </div>
                         <div style="word-wrap:break-word; text-align:center; width:120px; margin-left:auto; margin-right:auto;">
                             <input type="checkbox" name="option_remove" value="$photo_name"/>
-                            $photo_name
+                            <br/>$photo_name
                         </div>
                         </div>
                     </td>
