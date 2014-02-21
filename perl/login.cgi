@@ -13,13 +13,10 @@ my $CGI_o = CGI->new();
 my $cookie1;
 my $cookie2;
 
-print $CGI_o->header();
-cookie_check($CGI_o);
 if(cookie_check($CGI_o) eq 1) #cookie is valid
 {
     #redirect
-    exit 0;
-    #print $CGI_o->redirect('./display_panel.html');
+    print $CGI_o->redirect('./display_panel.html');
 }
 
 my $user_name = $CGI_o->param('user_name');

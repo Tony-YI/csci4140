@@ -163,7 +163,7 @@ sub cookie_check    #usage: cookie_check($CGI_o)
     if($result[0])  #session exists
     {
         my $local_time = strftime("%Y-%m-%d %H:%M:%S", localtime);
-        if(str2time($local_time) - str2time($result[0]) < 2*3600)
+        if(str2time($local_time) - str2time($result[0]) < $expire_second)
         {
             print "$local_time<=>$result[0]";
             return 1;
