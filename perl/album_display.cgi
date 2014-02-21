@@ -232,7 +232,7 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
         print <<__html_file__;
                 <td height="140" width="140">
                 <a href="$img_src">
-                <img title="$title" src="$shortcut_src" max-height=100% max-width=100% align="middle"/>
+                <img title="$title" src="$shortcut_src" max-height=100% max-width=100%/>
                 </a>
                 <br/>
                 <input type="checkbox" name="option_remove" value="$photo_name">$photo_name</input>
