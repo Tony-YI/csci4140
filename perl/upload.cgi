@@ -95,6 +95,9 @@ __html_file__
         if($ext eq "png" || $ext eq "jpg" || $ext eq "jpeg" || $ext eq "gif")
         {
             #check file size, check file existence and upload photo/description
+            
+            print "<h2>111111111111</h2><br/>";
+            
             upload_pic($CGI_o, $user_name, $file_name, $description, \$flag);
             if($flag eq 1)    #upload sucessfully
             {

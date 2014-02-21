@@ -331,7 +331,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         return;
     }
     
-    print "<h2>111111111111</h2><br/>";
+    print "<h2>222222222222222</h2><br/>";
     
     #move the temp file to $img_dir
     if(-e "$upload_dir$user_name$temp_dir/$file_name")
@@ -361,7 +361,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$file_name', '$totalBytes', CURRENT_TIMESTAMP, '$description', '$img_path', '$shortcut_path');";  #remember the ' ' of SQL
     db_execute($query);
     
-    print "<h2>333333333333</h2><br/>";
+    print "<h2>4444444444</h2><br/>";
     
     $$flag_ptr = 1;
 }
