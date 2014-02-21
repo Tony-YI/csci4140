@@ -52,7 +52,7 @@ if($login eq "LogIn")   #subbmit buttom is pressed
     if(!($user_name) || !($pass_word))  #user_name of pass_word is empty
     {
         print_html_head();
-        print "Log In Failed. User Name and PassWord can't be EMPTY.<br/><br/>"
+        print "Log In Failed. User Name and PassWord can't be EMPTY.<br/><br/>";
         print_form();
         print_html_tail();
     }
@@ -60,7 +60,7 @@ if($login eq "LogIn")   #subbmit buttom is pressed
     else    #input are valid
     {
         print_html_head();
-        print "Log In Interface.<br/>"
+        print "Log In Interface.<br/>";
         print_html_tail();
     }
 }
