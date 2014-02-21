@@ -49,7 +49,7 @@ if($login eq "LogIn")   #subbmit buttom is pressed
 {
     if(!($user_name) || !($pass_word))  #user_name of pass_word is empty
     {
-        
+        print $CGI_o->header();
         print_html_head();
         print "Log In Failed. User Name and PassWord can't be EMPTY.<br/><br/>";
         print_form();
@@ -65,10 +65,11 @@ if($login eq "LogIn")   #subbmit buttom is pressed
         if($result[0] eq $user_name && $result[1] eq $pass_word)
         {
             #valid user
-            print "valid<br/>";
+            print $CGI_o->redirect('./display_panel.html');
         }
         else
         {
+            print $CGI_o->header();
             print_html_head();
             print "Log In Failed. Please check your User Name and PassWord.<br/><br/>";
             print_form();
