@@ -231,8 +231,8 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
         my $photo_name = $result[ ($row_len*$i)-4 + ($option_page-1)*($row_len*$photo_in_one_page) - 1 ];
         print <<__html_file__;
                     <td>
-                        <div style="width:140px;">
-                        <div style="margin-left:auto; margin-right:auto; margin-top:0px; height:100px; width:100px">
+                        <div style="width:140px; margin-top:0px;">
+                        <div style="margin-left:auto; margin-right:auto; height:100px; width:100px">
                             <input type="checkbox" name="option_remove" value="$photo_name"/>
                             <a href="$img_src">
                             <img title="$title" src="$shortcut_src" style="max-height:100%; max-width:100%"/>
