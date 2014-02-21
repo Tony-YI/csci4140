@@ -241,7 +241,7 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
                     <td>
                     <div width="140" style="padding-top:0px; padding-bottom:0px; margin-left:10px; margin-top:20px; box-shadow:10px 10px 5px #888888; border-radius:10px;">
                         <div style="padding-top:0px; padding-left:0px; width:12px; height:12px;">
-                                #<input type="checkbox" name="option_remove" value="$photo_name"/>
+                                <!--input type="checkbox" name="option_remove" value="$photo_name"/-->
                         </div>
                         <div style="vertical-align:middle; text-align:center; padding-left:20px; padding-right:20px; margin-top:0px; height:100px; width:100px">
                             <a href="$img_src">
@@ -265,8 +265,8 @@ __html_file__
 #print the remain form
 print <<__html_file__;
             </table><br/>
-#<input type="submit" name="submit" value="Remove Selected"/>
-#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <!--input type="submit" name="submit" value="Remove Selected"/-->
+            <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
             Page
             &nbsp;&nbsp;
             <select name="option_page" autofocus>
