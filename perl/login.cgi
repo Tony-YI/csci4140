@@ -56,6 +56,13 @@ if($login eq "LogIn")   #subbmit buttom is pressed
         print_form();
         print_html_tail();
     }
+    
+    else    #input are valid
+    {
+        print_html_head();
+        print "Log In Interface.<br/>"
+        print_html_tail();
+    }
 }
 
 
