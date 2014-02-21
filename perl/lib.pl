@@ -98,6 +98,10 @@ sub db_init #insert seed data
 ###################################################
 ###           Setup LogIn Interface             ###
 ###################################################
+
+my $expire_time = "+2h";    # +2h means tow hours
+my $expire_second = 2 * 3600;
+
 # This function generates random strings of a given length
 sub generate_random_string
 {
@@ -115,12 +119,11 @@ sub generate_random_string
 	return $random_string;
 }
 
-sub cookie_gen  #usage: cookie_gen($CGI_o, $user_name, $expire_time, \$cookie1, \$cookie2)
+sub cookie_gen  #usage: cookie_gen($CGI_o, $user_name, \$cookie1, \$cookie2)
 # $flag = 1 is normal header, $flag = 2 is redirect header
 {
     my $CGI_o = shift @_;
     my $user_name = shift @_;
-    my $expire_time = shift @_;     # +2h means tow hours
     my $cookie1_ptr = shift @_;
     my $cookie2_ptr = shift @_;
     
@@ -143,9 +146,40 @@ sub cookie_get #usage cookie_get($CGI_o ,\$user_name, \$session_id)
     $$session_id_ptr = $CGI_o->cookie('session_id');
 }
 
-sub cookie_check    #usage: cookie_check()
+use Date::Parse;
+use POSIX qw/strftime/;
+
+sub cookie_check    #usage: cookie_check($CGI_o)
 {
+    my $CGI_o = shift @_;
     
+    my $user_name = $CGI_o->cookie('user_name');
+    my $session_id = $CGI_o->cookie('session_id');
+    
+    my $query = "SELECT login_time FROM session WHERE user_name='$user_name' AND session_id='$session_id';";
+    my @result = ();
+    my $row_len = "";
+    db_execute($query, \@result, \$row_len);
+    if($result[0])  #session exists
+    {
+        my $local_time = strftime("%Y-%m-%d %H:%M:%S", localtime);
+        if(str2time($local_time) - str2time($result[0]) < 2*3600)
+        {
+            print "$local_time<=>$result[0]";
+            return 1;
+        }
+        else
+        {
+            #remove record in database
+            my $query = "DELETE FROM session WHERE user_name='$user_name' AND session_id='$session_id';";
+            db_execute($query);
+            return 0;
+        }
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 ###################################################

@@ -9,13 +9,22 @@ use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 require "./lib.pl";
 
 my $CGI_o = CGI->new();
+
+my $cookie1;
+my $cookie2;
+
+print $CGI_o->header();
+cookie_check($CGI_o);
+if(cookie_check($CGI_o) eq 1) #cookie is valid
+{
+    #redirect
+    exit 0;
+    #print $CGI_o->redirect('./display_panel.html');
+}
+
 my $user_name = $CGI_o->param('user_name');
 my $pass_word = $CGI_o->param('pass_word');
 my $login = $CGI_o->param('login');
-
-my $expire_time = "+2h";
-my $cookie1;
-my $cookie2;
 
 sub print_form
 {
@@ -69,8 +78,8 @@ if($login eq "LogIn")   #subbmit buttom is pressed
         if($result[0] eq $user_name && $result[1] eq $pass_word)
         {
             #valid user
-            ###TODO:generate session id and store it in database
-            cookie_gen($CGI_o, $user_name, $expire_time, \$cookie1, \$cookie2);
+            #generate session id and store it in database
+            cookie_gen($CGI_o, $user_name, \$cookie1, \$cookie2);
             print $CGI_o->redirect(-cookie=>[$cookie1, $cookie2], -url=>'./display_panel.html');
         }
         else
