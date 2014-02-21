@@ -89,7 +89,6 @@ if($login eq "LogIn")   #subbmit buttom is pressed
         }
     }
 }
-
 else
 {
     print $CGI_o->header();
