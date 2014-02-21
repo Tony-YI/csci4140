@@ -77,7 +77,7 @@ if($login eq "LogIn")   #subbmit buttom is pressed
             #valid user
             #generate session id and store it in database
             cookie_gen($CGI_o, $user_name, \$cookie1, \$cookie2);
-            print $CGI_o->redirect(-cookie=>[$cookie1, $cookie2], -url=>'./display_panel.html');
+            print $CGI_o->redirect(-cookie=>[$cookie1, $cookie2], -url=>'./display_panel.cgi');
         }
         else
         {
