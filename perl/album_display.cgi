@@ -235,8 +235,8 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
                         <div style="margin-top:0px; margin-left:0px; width:12px; height:12px;">
                             <input type="checkbox" name="option_remove" value="$photo_name"/>
                         </div>
-                        <div style="text-align:center; margin-left:auto; margin-right:auto; margin-top:-10px; height:100px; width:100px">
-                            <a href="$img_src" align="middle">
+                        <div style="margin-left:auto; margin-right:auto; margin-top:-10px; height:100px; width:100px">
+                            <a href="$img_src" align="middle" style="margin-left:auto; margin-right:auto; margin-top:auto; margin-bottom:auto;">
                             <img align="middle" title="$title" src="$shortcut_src" style="max-height:100%; max-width:100%;"/>
                             </a>
                         </div>
