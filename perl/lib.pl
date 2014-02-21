@@ -447,7 +447,14 @@ sub duplication_upload_pic  #usage: duplication_upload_pic($user_name, $descript
             
             #upload description and other attributes to the database
             #add time stamp
-            $query = "UPDATE file SET file_size='$totalBytes', upload_time=CURRENT_TIMESTAMP, img_description='$description' WHERE user_name='$user_name' AND file_name='$old_file_name';";  #remember the ' ' of SQL
+            
+            ###I don't use update because there are sometime the file is in the dir but not insert into database
+            $query = "DELETE FROM file WHERE user_name='$user_name' AND file_name='$old_file_name';";
+            db_execute($query);
+            $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$old_file_name', '$totalBytes', CURRENT_TIMESTAMP, '$description', '$img_path', '$shortcut_path');";
+            db_execute($query);
+            
+            #$query = "UPDATE file SET file_size='$totalBytes', upload_time=CURRENT_TIMESTAMP, img_description='$description' WHERE user_name='$user_name' AND file_name='$old_file_name';";
             db_execute($query);
         }
         else    #file not exists in temp_dir
