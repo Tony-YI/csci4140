@@ -8,13 +8,6 @@ use CGI;
 #use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 use strict;
 
-
-###################################################
-###           Setup LogIn Interface             ###
-###################################################
-
-
-
 ###################################################
 ###            Setup MySQL database             ###
 ###################################################
@@ -85,7 +78,7 @@ sub db_create_table   #create all tables we need
     my $query = "CREATE TABLE user (user_name CHAR(30) PRIMARY KEY, pass_word CHAR(50));";
     db_execute($query);
     
-    $query = "CREATE TABLE session (user_name CHAR(30), session_id CHAR(255), PRIMARY KEY(user_name, session_id));";
+    $query = "CREATE TABLE session (user_name CHAR(30), session_id CHAR(255), login_time TIMESTAMP(14), PRIMARY KEY(user_name, session_id));";
     db_execute($query);
     
     $query = "CREATE TABLE file (user_name CHAR(30), file_name CHAR(255), file_size INT, upload_time TIMESTAMP(14), img_description CHAR(50), img_path CHAR(255), shortcut_path CHAR(255), PRIMARY KEY(user_name, file_name));";
@@ -100,6 +93,59 @@ sub db_init #insert seed data
     #this is for multi-user, need to do something else
     #my $query = "INSERT INTO user (user_name, pass_word) VALUES ('wyyi', 'haha');";
     #db_execute($query);
+}
+
+###################################################
+###           Setup LogIn Interface             ###
+###################################################
+# This function generates random strings of a given length
+sub generate_random_string
+{
+	my $length_of_randomstring=shift @_;# the length of
+    # the random string to generate
+    
+	my @chars=('a'..'z','A'..'Z','0'..'9','_');
+	my $random_string;
+	foreach (1..$length_of_randomstring)
+	{
+		# rand @chars will generate a random
+		# number between 0 and scalar @chars
+		$random_string.=$chars[rand @chars];
+	}
+	return $random_string;
+}
+
+sub cookie_gen  #usage: cookie_gen($CGI_o, $user_name, $expire_time, \$cookie1, \$cookie2)
+# $flag = 1 is normal header, $flag = 2 is redirect header
+{
+    my $CGI_o = shift @_;
+    my $user_name = shift @_;
+    my $expire_time = shift @_;     # +2h means tow hours
+    my $cookie1_ptr = shift @_;
+    my $cookie2_ptr = shift @_;
+    
+    #Generate the random string and store it into database
+    my $session_id = &generate_random_string(255);
+    my $query = "INSERT INTO session (user_name, session_id, login_time) VALUES ('$user_name', '$session_id', CURRENT_TIMESTAMP);";
+    db_execute($query);
+    
+    $$cookie1_ptr = $CGI_o->cookie(-name=>'user_name', -value=>$user_name, -expire=>$expire_time);
+    $$cookie2_ptr = $CGI_O->cookie(-name=>'session_id', -value=>$session_id, -expire=>$expire_time);
+}
+
+sub cookie_get #usage cookie_get($CGI_o ,\$user_name, \$session_id)
+{
+    my $CGI_o = shift @_;
+    my $user_name_ptr = shift @_;
+    my $session_id_ptr = shift @_;
+    
+    $$user_name_ptr = $CGI_o->cookie('user_name');
+    $$session_id_ptr = $CGI_o->cookie('session_id');
+}
+
+sub cookie_check    #usage: cookie_check()
+{
+    
 }
 
 ###################################################

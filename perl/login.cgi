@@ -13,6 +13,10 @@ my $user_name = $CGI_o->param('user_name');
 my $pass_word = $CGI_o->param('pass_word');
 my $login = $CGI_o->param('login');
 
+my $expire_time = "+2h";
+my $cookie1;
+my $cookie2;
+
 sub print_form
 {
     print <<__html_file__;
@@ -65,7 +69,9 @@ if($login eq "LogIn")   #subbmit buttom is pressed
         if($result[0] eq $user_name && $result[1] eq $pass_word)
         {
             #valid user
-            print $CGI_o->redirect('./display_panel.html');
+            ###TODO:generate session id and store it in database
+            cookie_gen($CGI_o, $user_name, $expire_time, \$cookie1, \$cookie2);
+            print $CGI_o->redirect(-cookie=>[$cookie1, $cookie2], './display_panel.html');
         }
         else
         {
