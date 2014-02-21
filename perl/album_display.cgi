@@ -236,11 +236,9 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
                 <img title="$title" src="$shortcut_src" max-height="100%" max-width="100%"/>
                 </a>
                 </div>
-                <br/>
                 <div align="center" width="120">
                 <input type="checkbox" name="option_remove" value="$photo_name"/>
-                <p width="120">$photo_name</p>
-                <br/>
+                <p max-width="120">$photo_name</p>
                 </div>
                 </td>
 __html_file__
