@@ -177,6 +177,21 @@ sub cookie_check    #usage: cookie_check($CGI_o)
     }
     else
     {
+        #clean all the time out record
+        my $local_time = strftime("%Y-%m-%d %H:%M:%S", localtime);
+        
+        my $query = "SELECT login_time FROM session WHERE 1;";
+        my @result = ();
+        my $row_len = "";
+        db_execute($query, \@result, \$row_len);
+        foreach my $i (@result)
+        {
+            if(str2time($local_time) - str2time($i) >= 60)#$expire_second)
+            {
+                my $query = "DELETE FROM session WHERE login_time='$i';";
+                db_execute($query);
+            }
+        }
         return 0;
     }
 }
