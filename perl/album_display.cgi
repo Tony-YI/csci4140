@@ -237,8 +237,10 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
                 </a>
                 </div>
                 <br/>
+                <div align="center" width="140" height="40">
                 <input type="checkbox" name="option_remove" value="$photo_name">$photo_name</input>
                 <br/>
+                </div>
                 </td>
 __html_file__
     }
