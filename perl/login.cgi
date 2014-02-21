@@ -13,9 +13,6 @@ my $CGI_o = CGI->new();
 my $cookie1;
 my $cookie2;
 
-#cookie_check($CGI_o);
-#exit 0;
-
 if(cookie_check($CGI_o) eq 1) #cookie is valid
 {
     #redirect
