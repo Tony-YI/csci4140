@@ -24,7 +24,7 @@ sub db_create		#create a database
 	my $db_source = "DBI:mysql:;host=$db_host"; #note: NO $db_name
 	$db_handler = DBI->connect($db_source, $db_username, $db_password) or die $DBI::errstr;
 	$db_handler->do("CREATE DATABASE $db_name;") or die $DBI::errstr;
-    $db_handler->do("SET GLOBAL time_zone = '-3:00';") or die $DBI::errstr;
+    $db_handler->do("SET GLOBAL time_zone = '-5:00';") or die $DBI::errstr; #openshift's time zone
 	$db_handler->disconnect() or die $DBI::errstr;
 }
 
