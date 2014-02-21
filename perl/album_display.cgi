@@ -236,7 +236,7 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
                         </div>
                         <div style="margin-left:auto; margin-right:auto; margin-top:-10; height:100px; width:100px">
                             <a href="$img_src">
-                            <img title="$title" src="$shortcut_src" style="align:center; max-height:100%; max-width:100%;"/>
+                            <img title="$title" src="$shortcut_src" style="text-align:center; align:center; max-height:100%; max-width:100%;"/>
                             </a>
                         </div>
                         <div style="word-wrap:break-word; text-align:center; width:140px; margin-left:auto; margin-right:auto; margin-top:0px">
