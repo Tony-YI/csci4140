@@ -10,16 +10,11 @@ use strict;
 use CGI;
 use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 
+require './lib.pl';
+
 my $CGI_o = CGI->new();
 
-print $CGI_o->header(); #notice: can't add ""
-print <<__html_file__;
-<html>
-	<body>
-		<title>LogOut</title>
-		<p>LogOut</p>
-        <a href="login.cgi">LogIn</a>
-	</body>
-</html>
-__html_file__
+log_out($CGI_o);
+
+print $CGI_o->redirect('./login.cgi'); #notice: can't add ""
 #in perl, after __html_file__, there must be a new line a somthing

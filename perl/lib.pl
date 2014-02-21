@@ -199,7 +199,20 @@ sub cookie_check    #usage: cookie_check($CGI_o)
 ###################################################
 ###           Setup LogOut Interface            ###
 ###################################################
-
+sub log_out #delete session_id indatabase
+            #usage: log_out($CGI_o)
+{
+    my $CGI_o = shift @_;
+    
+    my $user_name = $CGI_o->cookie('user_name');
+    my $session_id = $CGI_o->cookie('session_id');
+    
+    if($user_name && $session_id)   #not empty
+    {
+        my $query = "DELETE FROM session WHERE user_name='$user_name' AND session_id='$session_id';";
+        db_execute($query);
+    }
+}
 
 
 ###################################################
