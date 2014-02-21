@@ -59,9 +59,22 @@ if($login eq "LogIn")   #subbmit buttom is pressed
     
     else    #input are valid
     {
-        print_html_head();
-        print "Log In Interface.<br/>";
-        print_html_tail();
+        my $query = "SELECT * FROM user WHERE user_naem='$user_name';";
+        my @result = ();
+        my $row_len = "";
+        db_execute($query, \@result, \$row_len);
+        if($result[0] eq $user_name && $result[1] eq $pass_word)
+        {
+            #valid user
+            print "valid<br/>";
+        }
+        else
+        {
+            print_html_head();
+            print "Log In Failed. Please check your User Name and PassWord.<br/><br/>";
+            print_form();
+            print_html_tail();
+        }
     }
 }
 
