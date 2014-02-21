@@ -34,7 +34,7 @@ sub print_form
         <input type="submit" name="login" value="LogIn"/>
     </form>
     <br/>
-    <a href="album_display.cgi">View Album (Read Only)</a>
+    <a href="album_display_read.cgi">View Album (Read Only)</a>
 __html_file__
 }
 
