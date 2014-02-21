@@ -17,7 +17,7 @@ use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 
 require './lib.pl';
 
-my $CGI_o = CGI-new();
+my $CGI_o = CGI->new();
 
 if(cookie_check($CGI_o) eq 0) #cookie is invalid
 {
