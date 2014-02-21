@@ -59,7 +59,7 @@ if($login eq "LogIn")   #subbmit buttom is pressed
     
     else    #input are valid
     {
-        my $query = "SELECT * FROM user WHERE user_naem='$user_name';";
+        my $query = "SELECT * FROM user WHERE user_name='$user_name';";
         my @result = ();
         my $row_len = "";
         db_execute($query, \@result, \$row_len);
