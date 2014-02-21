@@ -165,7 +165,8 @@ sub cookie_check    #usage: cookie_check($CGI_o)
         my $local_time = strftime("%Y-%m-%d %H:%M:%S", localtime);
         if(str2time($local_time) - str2time($result[0]) < 60)
         {
-            print "$local_time<=>$result[0]";
+            print $CGI_o->header();
+            print "$local_time<=>$result[0]<br/>";
             return 1;
         }
         else
