@@ -212,7 +212,6 @@ if($count < $amount)
 }
 
 print <<__html_file__;
-            <br/>
             <table>
 __html_file__
 
@@ -231,16 +230,16 @@ for($i = 1; $i <= $photo_in_one_page; $i++)
         my $photo_name = $result[ ($row_len*$i)-4 + ($option_page-1)*($row_len*$photo_in_one_page) - 1 ];
         print <<__html_file__;
                     <td>
-                    <div width="140" style="box-shadow:10px 10px 5px #888888; border-radius:10px;">
-                        <div style="margin-top:0px; margin-left:0px; width:12px; height:12px;">
+                    <div width="140" style="margin-left:20px; margin-top:10px; box-shadow:10px 10px 5px #888888; border-radius:10px;">
+                        <div style="padding-top:0px; padding-left:0px; width:12px; height:12px;">
                             <input type="checkbox" name="option_remove" value="$photo_name"/>
                         </div>
-                        <div style="margin-left:auto; margin-right:auto; margin-top:auto; margin-bottom:auto; height:100px; width:100px">
+                        <div style="padding-left:20px; padding-right:20px; margin-top:0px; height:100px; width:100px">
                             <a href="$img_src">
                             <img title="$title" src="$shortcut_src" style="max-height:100%; max-width:100%;"/>
                             </a>
                         </div>
-                        <div style="word-wrap:break-word; text-align:center; width:120px; margin-left:auto; margin-right:auto; margin-bottom:10px">
+                        <div style="word-wrap:break-word; text-align:center; width:120px; padding-left:10px; padding-right:10px; padding-bottom:10px">
                             <br/>$photo_name
                         </div>
                     <div>
