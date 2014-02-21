@@ -46,7 +46,17 @@ __html_file__
 }
 
 my $CGI_o = CGI->new();
-my $user_name = "admin"; ###TODO: get $user_name from cookies
+
+if(cookie_check($CGI_o) eq 0) #cookie is invalid
+{
+    #redirect
+    print $CGI_o->redirect('./login.cgi');
+}
+
+#get $user_name from cookies
+my $user_name;
+cookie_get_user_name($CGI_o, \$user_name);
+
 my $duplication_flag = $CGI_o->param("duplication_flag");
 
 if($duplication_flag eq "NO")   #nomal upload form

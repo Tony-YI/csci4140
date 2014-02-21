@@ -136,14 +136,12 @@ sub cookie_gen  #usage: cookie_gen($CGI_o, $user_name, \$cookie1, \$cookie2)
     $$cookie2_ptr = $CGI_o->cookie(-name=>'session_id', -value=>$session_id, -expire=>$expire_time);
 }
 
-sub cookie_get #usage cookie_get($CGI_o ,\$user_name, \$session_id)
+sub cookie_get_user_name #usage cookie_get($CGI_o ,\$user_name)
 {
     my $CGI_o = shift @_;
     my $user_name_ptr = shift @_;
-    my $session_id_ptr = shift @_;
     
     $$user_name_ptr = $CGI_o->cookie('user_name');
-    $$session_id_ptr = $CGI_o->cookie('session_id');
 }
 
 use Date::Parse;
@@ -163,7 +161,7 @@ sub cookie_check    #usage: cookie_check($CGI_o)
     if($result[0])  #session exists
     {
         my $local_time = strftime("%Y-%m-%d %H:%M:%S", localtime);
-        if(str2time($local_time) - str2time($result[0]) < 60)
+        if(str2time($local_time) - str2time($result[0]) < 60)#$expire_second)
         {
             #print $CGI_o->header();
             #print "$local_time<=>$result[0]<br/>";
@@ -182,6 +180,12 @@ sub cookie_check    #usage: cookie_check($CGI_o)
         return 0;
     }
 }
+
+###################################################
+###           Setup LogOut Interface            ###
+###################################################
+
+
 
 ###################################################
 ###          Setup Permanent Storage            ###
