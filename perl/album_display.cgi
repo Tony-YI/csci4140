@@ -311,7 +311,7 @@ print <<__html_file__;
             </fieldset>
         </form>
         <br/><br/>
-        <a href="display_panel.html">Back to Display Panel</a>
+        <a href="display_panel.cgi">Back to Display Panel</a>
     </body>
 </html>
 __html_file__

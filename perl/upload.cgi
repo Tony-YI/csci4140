@@ -75,7 +75,7 @@ __html_file__
         print "<title>Upload Failed</title><p>Upload Failed.<br/>File not selected or file too large.</p></body></html>";
         print <<__html_file__;
         <br/><a href="file_picking.html">Back to File Picking Interface</a>
-        <br/><br/><a href="display_panel.html">Back to Display Panel</a>
+        <br/><br/><a href="display_panel.cgi">Back to Display Panel</a>
     </body>
 </html>
 __html_file__
@@ -159,7 +159,7 @@ __html_file__
     {
         print <<__html_file__;
             <br/><a href="file_picking.html">Back to File Picking Interface</a>
-            <br/><br/><a href="display_panel.html">Back to Display Panel</a>
+            <br/><br/><a href="display_panel.cgi">Back to Display Panel</a>
         </body>
         </html>
 __html_file__
@@ -197,7 +197,7 @@ __html_file__
         <title>Upload Successed</title>
         <p>File "$old_file_name" Overwriting Successed.</p><br/>
         <br/><a href="file_picking.html">Back to File Picking Interface</a>
-        <br/><br/><a href="display_panel.html">Back to Display Panel</a>
+        <br/><br/><a href="display_panel.cgi">Back to Display Panel</a>
 __html_file__
     }
     elsif($duplicate_option eq "rename")
@@ -232,7 +232,7 @@ __html_file__
                 <title>Upload Successed</title>
                 <p>File "$old_file_name" Renamed to "$new_file_name" and Upload Successed.</p><br/>
                 <br/><a href="file_picking.html">Back to File Picking Interface</a>
-                <br/><br/><a href="display_panel.html">Back to Display Panel</a>
+                <br/><br/><a href="display_panel.cgi">Back to Display Panel</a>
 __html_file__
             }
             else    #$new_file_name exists in dir
@@ -265,7 +265,7 @@ __html_file__
         <title>Duplication Handling Interface</title>
         <p>Upload Canceled.</p><br/>
         <br/><a href="file_picking.html">Back to File Picking Interface</a>
-        <br/><br/><a href="display_panel.html">Back to Display Panel</a>
+        <br/><br/><a href="display_panel.cgi">Back to Display Panel</a>
 __html_file__
     }
     else    #nothing has been selected

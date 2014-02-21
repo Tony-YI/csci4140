@@ -16,7 +16,7 @@ my $cookie2;
 if(cookie_check($CGI_o) eq 1) #cookie is valid
 {
     #redirect
-    print $CGI_o->redirect('./display_panel.html');
+    print $CGI_o->redirect('./display_panel.cgi');
 }
 
 my $user_name = $CGI_o->param('user_name');
