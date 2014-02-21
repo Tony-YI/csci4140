@@ -243,11 +243,11 @@ sub clean_storage
 my $upload_dir = $ENV{"OPENSHIFT_DATA_DIR"};    #equals to $data_dir
 
 sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, create it
-                #usage: upload_pic(\$CGI_o, $user_name, $file_name, $description, \$flag)
+                #usage: upload_pic($CGI_o, $user_name, $file_name, $description, \$flag)
                 #run this every time when upload
                 #$flag = 1 if sucessful, 2 if file exited, 3 if file too large, 4 if can't open dir, 5 if invalid extension
 {
-    my $CGI_o_ptr = shift @_;
+    my $CGI_o = shift @_;
     my $user_name = shift @_;
     my $file_name = shift @_;
     my $description = shift @_;
@@ -285,7 +285,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     
     binmode(OUTFILE);    #???
     
-    while($ret = read($$CGI_o_ptr->upload("photo"), $buffer, 1024))
+    while($ret = read($CGI_o->upload("photo"), $buffer, 1024))
     {
         print OUTFILE $buffer;
         $totalBytes += $ret;
