@@ -6,7 +6,7 @@ use strict;	#then every variable should have "my"
 
 my $CGI_o = CGI->new();
 
-print $CGI_o->header();
+#print $CGI_o->header();
 
-print "Hello World";
+#print "Hello World";
 
