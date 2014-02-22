@@ -23,6 +23,15 @@ use CGI::Carp qw(warningsToBrowser fatalsToBrowser);
 
 require "./lib.pl";
 
+sub print_header
+{
+    print $CGI_o->header();
+    print <<__html_file__;
+<html>
+    <body>
+__html_file__
+}
+
 sub print_form  #usage: print_form($file_name, $description)
 {
     my $file_name = shift @_;
@@ -64,14 +73,9 @@ if($duplication_flag eq "NO")   #nomal upload form
     my $file_name = $CGI_o->param("photo");
     my $description = $CGI_o->param("description");
 
-    print $CGI_o->header();
-    print <<__html_file__;
-<html>
-    <body>
-__html_file__
-
     if(!$file_name) #no file selected
     {
+        print_header();
         print "<title>Upload Failed</title><p>Upload Failed.<br/>File not selected or file too large.</p></body></html>";
         print <<__html_file__;
         <br/><a href="file_picking.cgi">Back to File Picking Interface</a>
@@ -95,12 +99,9 @@ __html_file__
         if($ext eq "png" || $ext eq "jpg" || $ext eq "jpeg" || $ext eq "gif")
         {
             #check file size, check file existence and upload photo/description
-            
-            #print "<h2>111111111111</h2><br/>";
-            
             upload_pic($CGI_o, $user_name, $file_name, $description, \$flag);
             
-            #print "<h2>8888888888888</h2><br/>";
+            print_header();
             
             if($flag eq 1)    #upload sucessfully
             {
@@ -187,18 +188,13 @@ if($duplication_flag eq "YES")  #duplication handler interface
     my $description = $CGI_o->param("description");
     my $duplicate_option = $CGI_o->param("duplicate");
     
-    print $CGI_o->header();
-    print <<__html_file__;
-    <html>
-    <body>
-__html_file__
-    
     #check option
     if($duplicate_option eq "overwrite")
     {
         #update existing file record in database, file in img_dir and shortcut_dir
         duplication_upload_pic($user_name, $description, $old_file_name);
         
+        print_header();
         print <<__html_file__;
         <title>Upload Successed</title>
         <p>File "$old_file_name" Overwriting Successed.</p><br/>
@@ -232,6 +228,7 @@ __html_file__
             {
                 duplication_upload_pic($user_name, $description, $old_file_name, $new_file_name);
                 
+                print_header();
                 print <<__html_file__;
                 <html>
                 <body>
@@ -243,6 +240,7 @@ __html_file__
             }
             else    #$new_file_name exists in dir
             {
+                print_header();
                 print <<__html_file__;
                 <title>Duplication Handling Interface</title>
                 <p>New File Name "$new_file_name" existed.</p><br/>
@@ -253,6 +251,7 @@ __html_file__
         }
         else    #$new_file_name is empty or invalid
         {
+            print_header();
             print "<title>Duplication Handling Interface</title><p>New File Name is empty or invalid.</p><br/>";
             print_form();
         }
@@ -267,6 +266,7 @@ __html_file__
         {
             `rm "$upload_dir$user_name$temp_dir/$old_file_name"`;
         }
+        print_header();
         print <<__html_file__;
         <title>Duplication Handling Interface</title>
         <p>Upload Canceled.</p><br/>
@@ -276,6 +276,7 @@ __html_file__
     }
     else    #nothing has been selected
     {
+        print_header();
         print "<title>Duplication Handling Interface</title><p>You must select one of these options.</p><br/>";
         print_form($old_file_name, $description);
     }
