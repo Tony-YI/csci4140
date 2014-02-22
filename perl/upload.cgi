@@ -100,7 +100,7 @@ __html_file__
             
             upload_pic($CGI_o, $user_name, $file_name, $description, \$flag);
             
-            print "<h2>8888888888888</h2><br/>";
+            #print "<h2>8888888888888</h2><br/>";
             
             if($flag eq 1)    #upload sucessfully
             {
