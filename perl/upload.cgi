@@ -200,9 +200,6 @@ if($duplication_flag eq "YES")  #duplication handler interface
     #check option
     if($duplicate_option eq "overwrite")
     {
-        #update existing file record in database, file in img_dir and shortcut_dir
-        duplication_upload_pic($user_name, $description, $old_file_name);
-        
         print_header();
         print <<__html_file__;
         <title>Upload Successed</title>
@@ -210,6 +207,9 @@ if($duplication_flag eq "YES")  #duplication handler interface
         <br/><a href="file_picking.cgi">Back to File Picking Interface</a>
         <br/><br/><a href="display_panel.cgi">Back to Display Panel</a>
 __html_file__
+        
+        #update existing file record in database, file in img_dir and shortcut_dir
+        duplication_upload_pic($user_name, $description, $old_file_name);
     }
     elsif($duplicate_option eq "rename")
     {
@@ -235,8 +235,6 @@ __html_file__
             
             if(!(-e "$upload_dir$user_name$img_dir/$new_file_name"))    #$new_file_name not exists in dir
             {
-                duplication_upload_pic($user_name, $description, $old_file_name, $new_file_name);
-                
                 print_header();
                 print <<__html_file__;
                 <html>
@@ -246,6 +244,7 @@ __html_file__
                 <br/><a href="file_picking.cgi">Back to File Picking Interface</a>
                 <br/><br/><a href="display_panel.cgi">Back to Display Panel</a>
 __html_file__
+                duplication_upload_pic($user_name, $description, $old_file_name, $new_file_name);
             }
             else    #$new_file_name exists in dir
             {
@@ -270,11 +269,7 @@ __html_file__
         #cancel upload process and delete the file in temp_dir
         my $upload_dir;
         my $temp_dir;
-        get_temp_dir(\$upload_dir, \$temp_dir);
-        if(-e "$upload_dir$user_name$temp_dir/$old_file_name")
-        {
-            `rm "$upload_dir$user_name$temp_dir/$old_file_name"`;
-        }
+        
         print_header();
         print <<__html_file__;
         <title>Duplication Handling Interface</title>
@@ -282,6 +277,12 @@ __html_file__
         <br/><a href="file_picking.cgi">Back to File Picking Interface</a>
         <br/><br/><a href="display_panel.cgi">Back to Display Panel</a>
 __html_file__
+        
+        get_temp_dir(\$upload_dir, \$temp_dir);
+        if(-e "$upload_dir$user_name$temp_dir/$old_file_name")
+        {
+            `rm "$upload_dir$user_name$temp_dir/$old_file_name"`;
+        }
     }
     else    #nothing has been selected
     {
