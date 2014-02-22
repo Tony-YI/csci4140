@@ -339,7 +339,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     #generate a shortcut, convert it to 100x100
     if(-e "$upload_dir$user_name$img_dir/$file_name")
     {
-        `convert "$upload_dir$user_name$img_dir/$file_name" -resize 100x100 "$upload_dir$user_name$shortcut_dir/$file_name" &`;
+        system(`convert "$upload_dir$user_name$img_dir/$file_name" -resize 100x100 "$upload_dir$user_name$shortcut_dir/$file_name" &`);
         #add & at the end of the command to make it run in background so that it will make the openshift timeout
     }
     
