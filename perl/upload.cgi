@@ -93,7 +93,6 @@ if($duplication_flag eq "NO")   #nomal upload form
     </body>
 </html>
 __html_file__
-        print_tail();
         exit 0;
     }
 
