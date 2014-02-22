@@ -342,9 +342,12 @@ sub upload_true #usage: upload_true($user_name, $file_name, $description)
     my $file_name = shift @_;
     my $description = shift @_;
     
+    my $totalBytes;
+    
     #move the temp file to $img_dir
     if(-e "$upload_dir$user_name$temp_dir/$file_name")
     {
+        $totalBytes = (-s "$upload_dir$user_name$temp_dir/$file_name");
         `mv "$upload_dir$user_name$temp_dir/$file_name" "$upload_dir$user_name$img_dir/$file_name"`;
     }
     #generate a shortcut, convert it to 100x100
