@@ -9,6 +9,7 @@ my $CGI_o = CGI->new();
 use Date::Parse;
 use POSIX qw/strftime/;
 
+print $CGI_o->header(-expires=>'+10s');
 
 my $local_time = strftime("%Y-%m-%d %H:%M:%S", localtime);
 my $local_second = str2time($local_time);
@@ -20,6 +21,6 @@ while($target_second - $local_second)
     $local_time = strftime("%Y-%m-%d %H:%M:%S", localtime);
     $local_second = str2time($local_time);
 }
-print $CGI_o->header();
+
 
 print "Hello World";
