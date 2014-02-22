@@ -132,8 +132,8 @@ sub cookie_gen  #usage: cookie_gen($CGI_o, $user_name, \$cookie1, \$cookie2)
     my $query = "INSERT INTO session (user_name, session_id, login_time) VALUES ('$user_name', '$session_id', CURRENT_TIMESTAMP);";
     db_execute($query);
     
-    $$cookie1_ptr = $CGI_o->cookie(-name=>'user_name', -value=>$user_name, -expire=>$expire_time);
-    $$cookie2_ptr = $CGI_o->cookie(-name=>'session_id', -value=>$session_id, -expire=>$expire_time);
+    $$cookie1_ptr = $CGI_o->cookie(-name=>'user_name', -value=>$user_name, -expires=>$expire_time);
+    $$cookie2_ptr = $CGI_o->cookie(-name=>'session_id', -value=>$session_id, -expires=>$expire_time);
 }
 
 sub cookie_get_user_name #usage cookie_get($CGI_o ,\$user_name)
