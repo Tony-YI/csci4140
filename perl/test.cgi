@@ -6,16 +6,13 @@ use strict;	#then every variable should have "my"
 
 my $CGI_o = CGI->new();
 
-print $CGI_o->header();
-
-
 use Date::Parse;
 use POSIX qw/strftime/;
 
 
 my $local_time = strftime("%Y-%m-%d %H:%M:%S", localtime);
 my $local_second = str2time($local_time);
-my $expire_second = 5;
+my $expire_second = 6;
 my $target_second = $local_second + $expire_second;
 
 while($target_second - $local_second)
@@ -23,5 +20,6 @@ while($target_second - $local_second)
     $local_time = strftime("%Y-%m-%d %H:%M:%S", localtime);
     $local_second = str2time($local_time);
 }
+print $CGI_o->header();
 
 print "Hello World";
