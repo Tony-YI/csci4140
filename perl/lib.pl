@@ -324,7 +324,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     }
     
     
-    #print "<h2>44444444444444</h2><br/>";
+    print "<h2>44444444444444</h2><br/>";
     
     #check file existence
     my @result = ();
