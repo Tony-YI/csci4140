@@ -365,7 +365,7 @@ sub upload_true #usage: upload_true($user_name, $file_name, $description)
     #add time stamp
     my $img_path = "$upload_dir$user_name$img_dir/$file_name";
     my $shortcut_path = "$upload_dir$user_name$shortcut_dir/$file_name";
-    $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$file_name', '$totalBytes', CURRENT_TIMESTAMP, '$description', '$img_path', '$shortcut_path');";  #remember the ' ' of SQL
+    my $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$file_name', '$totalBytes', CURRENT_TIMESTAMP, '$description', '$img_path', '$shortcut_path');";  #remember the ' ' of SQL
     db_execute($query);
 }
 ###################################################
