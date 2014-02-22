@@ -15,7 +15,7 @@ use POSIX qw/strftime/;
 
 my $local_time = strftime("%Y-%m-%d %H:%M:%S", localtime);
 my $local_second = str2time($local_time);
-my $expire_second = 8;
+my $expire_second = 7;
 my $target_second = $local_second + $expire_second;
 
 while($target_second - $local_second)
