@@ -331,6 +331,17 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         return;
     }
     
+    ########
+    
+    $$flag_ptr = 1;
+}
+
+sub upload_true #usage: upload_true($user_name, $file_name, $description)
+{
+    my $user_name = shift @_;
+    my $file_name = shift @_;
+    my $description = shift @_;
+    
     #move the temp file to $img_dir
     if(-e "$upload_dir$user_name$temp_dir/$file_name")
     {
@@ -356,10 +367,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     my $shortcut_path = "$upload_dir$user_name$shortcut_dir/$file_name";
     $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$file_name', '$totalBytes', CURRENT_TIMESTAMP, '$description', '$img_path', '$shortcut_path');";  #remember the ' ' of SQL
     db_execute($query);
-    
-    $$flag_ptr = 1;
 }
-
 ###################################################
 ###      Setup Duplication Upload Interface     ###
 ###################################################

@@ -34,6 +34,16 @@ sub print_header
 __html_file__
 }
 
+sub print_tail
+{
+    print <<__html_file__;
+        <br/><a href="file_picking.cgi">Back to File Picking Interface</a>
+        <br/><br/><a href="display_panel.cgi">Back to Display Panel</a>
+    </body>
+</html>
+__html_file__
+}
+
 sub print_form  #usage: print_form($file_name, $description)
 {
     my $file_name = shift @_;
@@ -83,6 +93,7 @@ if($duplication_flag eq "NO")   #nomal upload form
     </body>
 </html>
 __html_file__
+        print_tail();
         exit 0;
     }
 
@@ -106,6 +117,8 @@ __html_file__
             if($flag eq 1)    #upload sucessfully
             {
                 print "<title>Upload Successed</title><p>Upload Successed.<br/></p>";
+                print_tail();
+                upload_true($user_name, $file_name, $description);
             }
             elsif($flag eq 2)   #file existed
             {
@@ -119,28 +132,34 @@ __html_file__
             elsif($flag eq 3)   #file size too large
             {
                 print "<title>Upload Failed</title><p>Upload Failed.<br/>The maximun file size of each photo is 1 MB.</p>";
+                print_tail();
             }
             elsif($flag eq 4)   #can't open dir
             {
                 print "<title>Upload Failed</title><p>Upload Failed.<br/>Can't open file for writing.</p>";
+                print_tail();
             }
             elsif($flag eq 5)   #invalid extension
             {
                 print "<title>Upload Failed</title><p>Upload Failed.<br/>Only [.jpg .jpeg .png .gif] file is allowed.</p>";
+                print_tail();
             }
             else    #unknown error
             {
                 print "<title>Upload Failed</title><p>Upload Failed.<br/>Unknown ERROR.</p>";
+                print_tail();
             }
         }
         else    #invalid extension
         {
             print "<title>Upload Failed</title><p>Upload Failed.<br/>Only [.jpg .jpeg .png .gif] file is allowed.</p>";
+            print_tail();
         }
     }
     else    #ivalid file name and file extension
     {
-        print "<title>Upload Failed</title><p>Upload Failed.<br/>You file name is invalid.</p>";;
+        print "<title>Upload Failed</title><p>Upload Failed.<br/>You file name is invalid.</p>";
+        print_tail();
     }
 
     #######################################################
@@ -162,16 +181,7 @@ __html_file__
     #print "<h4>'shortcut_dir' = $out3</h4></br>";
     #######################################################
 
-    if($flag != 2)
-    {
-        print <<__html_file__;
-            <br/><a href="file_picking.cgi">Back to File Picking Interface</a>
-            <br/><br/><a href="display_panel.cgi">Back to Display Panel</a>
-        </body>
-        </html>
-__html_file__
-    }
-    else
+    if($flag eq 2)
     {
         print <<__html_file__;
         </body>
