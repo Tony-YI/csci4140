@@ -96,9 +96,12 @@ __html_file__
         {
             #check file size, check file existence and upload photo/description
             
-            print "<h2>111111111111</h2><br/>";
+            #print "<h2>111111111111</h2><br/>";
             
             upload_pic($CGI_o, $user_name, $file_name, $description, \$flag);
+            
+            print "<h2>8888888888888</h2><br/>";
+            
             if($flag eq 1)    #upload sucessfully
             {
                 print "<title>Upload Successed</title><p>Upload Successed.<br/></p>";

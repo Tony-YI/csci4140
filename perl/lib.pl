@@ -338,7 +338,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         return;
     }
     
-    print "<h2>55555555555555555</h2><br/>";
+    #print "<h2>55555555555555555</h2><br/>";
     
     #move the temp file to $img_dir
     if(-e "$upload_dir$user_name$temp_dir/$file_name")
@@ -351,7 +351,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         `convert "$upload_dir$user_name$img_dir/$file_name" -resize 100x100 "$upload_dir$user_name$shortcut_dir/$file_name"`;
     }
     
-    print "<h2>66666666666666666</h2><br/>";
+    #print "<h2>66666666666666666</h2><br/>";
     
     #convert description into viewable
     $_ = $description;
@@ -368,7 +368,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$file_name', '$totalBytes', CURRENT_TIMESTAMP, '$description', '$img_path', '$shortcut_path');";  #remember the ' ' of SQL
     db_execute($query);
     
-    print "<h2>777777777777777</h2><br/>";
+    #print "<h2>777777777777777</h2><br/>";
     
     $$flag_ptr = 1;
 }
