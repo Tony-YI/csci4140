@@ -462,8 +462,8 @@ sub duplication_upload_pic  #usage: duplication_upload_pic($user_name, $descript
             #add time stamp
             
             ###I don't use update because there are sometime the file is in the dir but not insert into database
-            $query = "DELETE FROM file WHERE user_name='$user_name' AND file_name='$old_file_name';";
-            db_execute($query);
+            #$query = "DELETE FROM file WHERE user_name='$user_name' AND file_name='$old_file_name';";
+            #db_execute($query);
             $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$old_file_name', '$totalBytes', CURRENT_TIMESTAMP, '$description', '$img_path', '$shortcut_path');";
             db_execute($query);
             
