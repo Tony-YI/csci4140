@@ -271,7 +271,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     
     ###TODO:check file size in an easy way...no can do
     
-    print "<h2>222222222222222</h2><br/>";
+    #print "<h2>222222222222222</h2><br/>";
     
     #upload picture to $temp_dir
     if(!open(OUTFILE, ">", "$upload_dir$user_name$temp_dir/$file_name"))    #can't open file for writing
