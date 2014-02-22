@@ -305,7 +305,7 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     
     close(OUTFILE); #file uploaded
     
-    print "<h2>33333333333</h2><br/>";
+    #print "<h2>33333333333</h2><br/>";
     
     #indentify the file
     my $identity = `identify -verbose "$upload_dir$user_name$temp_dir/$file_name" | grep Format:`;
