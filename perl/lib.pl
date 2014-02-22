@@ -271,8 +271,6 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     
     ###TODO:check file size in an easy way...no can do
     
-    #print "<h2>222222222222222</h2><br/>";
-    
     #upload picture to $temp_dir
     if(!open(OUTFILE, ">", "$upload_dir$user_name$temp_dir/$file_name"))    #can't open file for writing
     {
@@ -305,8 +303,6 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     
     close(OUTFILE); #file uploaded
     
-    #print "<h2>33333333333</h2><br/>";
-    
     #indentify the file
     my $identity = `identify -verbose "$upload_dir$user_name$temp_dir/$file_name" | grep Format:`;
     my @temp_array = split(/\n/, $identity);
@@ -323,9 +319,6 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         return;
     }
     
-    
-    #print "<h2>44444444444444</h2><br/>";
-    
     #check file existence
     my @result = ();
     my $row_len = "";
@@ -338,8 +331,6 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
         return;
     }
     
-    #print "<h2>55555555555555555</h2><br/>";
-    
     #move the temp file to $img_dir
     if(-e "$upload_dir$user_name$temp_dir/$file_name")
     {
@@ -348,10 +339,9 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     #generate a shortcut, convert it to 100x100
     if(-e "$upload_dir$user_name$img_dir/$file_name")
     {
-        `convert "$upload_dir$user_name$img_dir/$file_name" -resize 100x100 "$upload_dir$user_name$shortcut_dir/$file_name"`;
+        `convert "$upload_dir$user_name$img_dir/$file_name" -resize 100x100 "$upload_dir$user_name$shortcut_dir/$file_name" &`;
+        #add & at the end of the command to make it run in background so that it will make the openshift timeout
     }
-    
-    #print "<h2>66666666666666666</h2><br/>";
     
     #convert description into viewable
     $_ = $description;
@@ -367,8 +357,6 @@ sub upload_pic  #if the ./user_name_img and ./user_name_shortcut do not exist, c
     my $shortcut_path = "$upload_dir$user_name$shortcut_dir/$file_name";
     $query = "INSERT INTO file (user_name, file_name, file_size, upload_time, img_description, img_path, shortcut_path) VALUES ('$user_name', '$file_name', '$totalBytes', CURRENT_TIMESTAMP, '$description', '$img_path', '$shortcut_path');";  #remember the ' ' of SQL
     db_execute($query);
-    
-    #print "<h2>777777777777777</h2><br/>";
     
     $$flag_ptr = 1;
 }
