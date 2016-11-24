@@ -17,7 +17,7 @@ my $db_username = $ENV{"OPENSHIFT_MYSQL_DB_USERNAME"};
 my $db_password = $ENV{"OPENSHIFT_MYSQL_DB_PASSWORD"};
 my $db_name = $ENV{"OPENSHIFT_APP_NAME"};	#default database name is same as the application name, csci4140assig1
 
-echo $db_host
+print "$db_host";
 
 my $db_handler;	#GLOBAL VARIABLE
 
