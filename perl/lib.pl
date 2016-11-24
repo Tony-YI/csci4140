@@ -488,7 +488,7 @@ sub duplication_upload_pic  #usage: duplication_upload_pic($user_name, $descript
 #add file "deploy" in [project_name]/.openshift/action_hooks/
 #the file name must be "deploy"
 #add line into "deploy"
-#ln -s {OPENSHIFT_DATA_DIR} {OPENSHIFT_REPO_DIR}/perl/data
+#ln -s {OPENSHIFT_DATA_DIR} {OPENSHIFT_REPO_DIR}data
 
 sub get_photo   #usage: get_photo($user_name, $amount, $option_sort, $option_order, \@result, \$row_len, \$count)
                 #then we will get $amount number of photos of $user_name and sotre the result in \@result and \$row_len
