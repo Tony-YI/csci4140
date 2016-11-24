@@ -12,10 +12,17 @@ use strict;
 ###            Setup MySQL database             ###
 ###################################################
 
-my $db_host = $ENV{"OPENSHIFT_MYSQL_DB_HOST"};
+#my $db_host = $ENV{"OPENSHIFT_MYSQL_DB_HOST"};
+#my $db_username = $ENV{"OPENSHIFT_MYSQL_DB_USERNAME"};
+#my $db_password = $ENV{"OPENSHIFT_MYSQL_DB_PASSWORD"};
+#my $db_name = $ENV{"OPENSHIFT_APP_NAME"};	#default database name is same as the application name, csci4140assig1
+
+my $db_host = "mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/";
 my $db_username = $ENV{"OPENSHIFT_MYSQL_DB_USERNAME"};
 my $db_password = $ENV{"OPENSHIFT_MYSQL_DB_PASSWORD"};
-my $db_name = $ENV{"OPENSHIFT_APP_NAME"};	#default database name is same as the application name, csci4140assig1
+my $db_name = $ENV{"OPENSHIFT_APP_NAME"};  #default database name is same as the application name, csci4140assig1
+
+
 
 my $db_handler;	#GLOBAL VARIABLE
 
